@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>tvguide-sample-parent</artifactId>
+		<groupId>com.acme.gwt</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.acme.gwt</groupId>
+	<artifactId>tvguide-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<repositories>
+		<repository>
+			<name>gin-repo</name>
+			<id>gin-repo</id>
+			<url>https://github.com/larsenje/google-gin-pom/raw/master/maven/snapshots</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<!-- Google Web Toolkit -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- GWT Dependency Injection -->
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.1-2.2-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- Server and shared details -->
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>tvguide-shared</artifactId>
+			<version>${version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>tvguide-server</artifactId>
+			<version>${version}</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-user</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-dev</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<!-- <goal>test</goal> -->
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

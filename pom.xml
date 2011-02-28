@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.acme.gwt</groupId>
+	<artifactId>tvguide-sample-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Sample app to get to know GWT, Guice, Gin, and Maven, which should also start with a G to fit in</name>
+	<properties>
+		<java.compiler.version>1.6</java.compiler.version>
+
+		<gwt.version>2.2.0</gwt.version>
+		<gwt.plugin.version>2.1.0-1</gwt.plugin.version>
+
+		<guice.version>3.0-rc2</guice.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.compiler.version}</source>
+					<target>${java.compiler.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>tvguide-server</module>
+		<module>tvguide-shared</module>
+		<module>tvguide-client</module>
+	</modules>
+</project>
