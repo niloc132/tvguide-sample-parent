@@ -48,7 +48,6 @@
 			<groupId>${groupId}</groupId>
 			<artifactId>tvguide-server</artifactId>
 			<version>${version}</version>
-			<scope>runtime</scope>
 		</dependency>
 		
 		<!-- CellTable Tools -->

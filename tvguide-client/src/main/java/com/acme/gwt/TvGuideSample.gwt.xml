@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.1.1//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.1.1/distro-source/core/src/gwt-module.dtd">
-<module>
+<module rename-to="tvguide">
+	<!-- Basic packages to get the app working -->
 	<inherits name="com.google.gwt.user.User" />
-		<inherits name='com.google.gwt.requestfactory.RequestFactory' />
+	<inherits name='com.google.gwt.requestfactory.RequestFactory' />
 	<inherits name='com.google.gwt.place.Place' />
 	<inherits name='com.google.gwt.activity.Activity' />
 
+	<!-- GWT provided look and feel -->
 	<inherits name='com.google.gwt.user.theme.standard.Standard' />
-	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
 
+	<!-- Gin, DI for GWT -->
 	<inherits name='com.google.gwt.inject.Inject' />
 
+	<!-- Make all code in the client package available to the compiler -->
 	<source path="client" />
-	<source path="shared" />
 	
+	<!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>
 </module>
