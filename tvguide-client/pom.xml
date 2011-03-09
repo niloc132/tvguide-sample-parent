@@ -10,13 +10,7 @@
 	<artifactId>tvguide-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<repositories>
-		<repository>
-			<name>gin-repo</name>
-			<id>gin-repo</id>
-			<url>https://github.com/larsenje/google-gin-pom/raw/master/maven/snapshots</url>
-		</repository>
-	</repositories>
+
 	<dependencies>
 		<!-- Google Web Toolkit -->
 		<dependency>
@@ -31,6 +25,7 @@
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- GWT Dependency Injection -->
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -40,7 +35,7 @@
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
-			<version>1.1-2.2-SNAPSHOT</version>
+			<version>1.5.0</version>
 		</dependency>
 		
 		<!-- Server and shared details -->
@@ -54,6 +49,13 @@
 			<artifactId>tvguide-server</artifactId>
 			<version>${version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- CellTable Tools -->
+		<dependency>
+			<groupId>com.colinalworth</groupId>
+			<artifactId>celltable-tools</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

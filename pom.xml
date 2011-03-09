@@ -10,7 +10,7 @@
 		<java.compiler.version>1.6</java.compiler.version>
 
 		<gwt.version>2.2.0</gwt.version>
-		<gwt.plugin.version>2.1.0-1</gwt.plugin.version>
+		<gwt.plugin.version>2.2.0</gwt.plugin.version>
 
 		<guice.version>3.0-rc2</guice.version>
 	</properties>
