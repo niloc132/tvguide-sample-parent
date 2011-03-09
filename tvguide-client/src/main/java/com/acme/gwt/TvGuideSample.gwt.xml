@@ -17,7 +17,7 @@
 	<source path="client" />
 	
 	<!-- Reference the RF stuff in the shared project -->
-	<inherits name="com.acme.gwt.TvGuideShared"/>
+	<inherits name="com.acme.gwt.TvGuideEntities"/>
 	
 	<!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>
