@@ -40,14 +40,14 @@
 
 		<!-- Server and shared details -->
 		<dependency>
-			<groupId>${groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tvguide-shared</artifactId>
-			<version>${version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tvguide-server</artifactId>
-			<version>${version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		
 		<!-- CellTable Tools -->
