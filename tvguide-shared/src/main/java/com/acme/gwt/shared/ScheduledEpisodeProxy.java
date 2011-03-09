@@ -19,6 +19,11 @@ package com.acme.gwt.shared;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 
 /**
+ * Maps a Channel,AirTime tuple to a single episode, as only one episode can be shown at a given
+ * time on a given channel.
+ * 
+ * Okay, a given User,Channel, since the same Channel can have different times in different zones.
+ * But I think that a Channel object is already local to the given user, so User is assumed.
  * 
  * @author colin
  *
@@ -26,6 +31,9 @@ import com.google.gwt.requestfactory.shared.EntityProxy;
 public interface ScheduledEpisodeProxy extends EntityProxy {
 	void setEpisode(EpisodeProxy show);
 	EpisodeProxy getEpisode();
+
+	void setChannel(ChannelProxy channel);
+	ChannelProxy getChannel();
 
 	void setBlock(AirTimeProxy block);
 	AirTimeProxy getBlock();

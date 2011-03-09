@@ -19,6 +19,10 @@ package com.acme.gwt.shared;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 
 /**
+ * First draft at representing an entire show. Does not drag the full list of episodes and seasons
+ * along with it, as this could be quite extensive, and does not indicate channels or show times, as
+ * these could vary.
+ * 
  * @author colin
  *
  */

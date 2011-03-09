@@ -19,6 +19,12 @@ package com.acme.gwt.shared;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 
 /**
+ * An individual episode of a ShowProxy. Contains a reference to the show that it belongs to, and to
+ * its place in that show, as well as a brief name and description of the episode.
+ * 
+ * @todo Do we want a Season object as well? Only utility I could see in that is to provide meta-
+ * data to a List of Episodes.
+ * 
  * @author colin
  *
  */

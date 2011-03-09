@@ -21,6 +21,9 @@ import java.util.Date;
 import com.google.gwt.requestfactory.shared.ValueProxy;
 
 /**
+ * Represents a block of time that something can air - start time and duration in minutes. There is
+ * probably a neater way to represent this, but I can't think of it right now.
+ * 
  * @author colin
  *
  */

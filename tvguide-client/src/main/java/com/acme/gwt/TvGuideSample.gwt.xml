@@ -16,6 +16,9 @@
 	<!-- Make all code in the client package available to the compiler -->
 	<source path="client" />
 	
+	<!-- Reference the RF stuff in the shared project -->
+	<inherits name="com.acme.gwt.TvGuideShared"/>
+	
 	<!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>
 </module>

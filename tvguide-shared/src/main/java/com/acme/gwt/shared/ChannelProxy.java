@@ -17,8 +17,17 @@
 package com.acme.gwt.shared;
 
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyId;
 
 /**
+ * Proxy object for a tv channel, with options to provide a name, icon/symbol, and channel number.
+ * Number is almost certainly based on particular user details, as channels can have different
+ * mappings through different providers and in different areas.
+ * 
+ * Channel objects do not themselves contain more data, at least on the client, as there could be
+ * a very large amount of data that would need to either be included, or not. As such, showtimes and
+ * shows are made available through different requests, and possibly should be cached on the client.
+ * 
  * @author colin
  *
  */
@@ -28,4 +37,10 @@ public interface ChannelProxy extends EntityProxy {
 
 	String getIcon();
 	void setIcon(String icon);
+
+	int getChannelNumber();
+	void setChannelNumber(int channelNum);
+
+
+	public EntityProxyId<ChannelProxy> stableId();
 }
