@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.acme.gwt.server.TvGuideService;
+import com.google.gwt.requestfactory.shared.InstanceRequest;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
 import com.google.gwt.requestfactory.shared.Service;
@@ -65,13 +66,12 @@ public interface TvGuideRequest extends RequestContext {
 	 * It is possible we want the channel param to change to a list, but since this is a single 
 	 * RequestContext, more than one call to this can be batched, and the client can handle each
 	 * as desired.
-	 * 
-	 * @param channel
+	 *
 	 * @param startDate
 	 * @param endDate
 	 * @return
 	 */
-	Request<List<ScheduledEpisodeProxy>> getEpisodesInRange(ChannelProxy channel, Date startDate, Date endDate);
+	InstanceRequest<ChannelProxy, List<ScheduledEpisodeProxy>> getChannelEpisodesInRange(Date startDate, Date endDate);
 
 	/**
 	 * Gets all of the scheduled instances of this show in the given range. For users making use of
@@ -80,11 +80,11 @@ public interface TvGuideRequest extends RequestContext {
 	 * As with the other overload of getEpisodesInRange, this can be called many times on a given
 	 * request to get the data for many shows. This will probably be intended to be called over
 	 * longer periods of time, and over all channels available to this user.
-	 * 
-	 * @param show
+	 *
+   *
 	 * @param startDate
 	 * @param endDate
 	 * @return
 	 */
-	Request<List<ScheduledEpisodeProxy>> getEpisodesInRange(ShowProxy show, Date startDate, Date endDate);
+	InstanceRequest<ShowProxy,List<ScheduledEpisodeProxy>> getShowEpisodesInRange(  Date startDate, Date endDate);
 }
