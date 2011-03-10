@@ -44,6 +44,7 @@ public class EntityValidatorTest {
 		RequestFactoryInterfaceValidator v = new RequestFactoryInterfaceValidator(
 				logger, new ClassLoaderLoader(TvGuideRequest.class.getClassLoader()));
 		v.validateRequestContext(TvGuideRequest.class.getName());
+
 		assertFalse(v.isPoisoned());
 	}
 
