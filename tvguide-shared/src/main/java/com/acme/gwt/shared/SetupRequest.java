@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -22,11 +22,9 @@ import com.google.gwt.requestfactory.shared.RequestContext;
  * This RequestContext will be used to inform the server about how a particular locale is set up.
  * This will probably not be used by most users, and it is possible that we want to deny access to
  * this for certain types of users (i.e. users who are not logged in, or are not admins).
- * 
- * @todo No methods yet, I am assuming we will get to this
- * 
- * @author colin
  *
+ * @author colin
+ * @todo No methods yet, I am assuming we will get to this
  */
 public interface SetupRequest extends RequestContext {
 

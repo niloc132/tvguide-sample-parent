@@ -1,18 +1,12 @@
 package com.acme.gwt.shared;
 
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Version;
 
-import com.acme.gwt.data.Show;
+import com.acme.gwt.data.ViewerProfile;
 import com.acme.gwt.shared.defs.Geo;
+import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.Request;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,23 +15,19 @@ import com.acme.gwt.shared.defs.Geo;
  * Time: 9:31 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface ViewerProfileProxy {
-  @Id
+public interface ViewerProfileProxy extends EntityProxy {
+
   Long getId();
 
-  @Version
   Integer getVersion();
 
   void setId(Long id);
 
   void setVersion(Integer version);
 
-  @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-  @JoinTable(name = "user_favorite_shows")
-  @OrderColumn(name = "rank")
-  List<Show> getFavoriteShows();
+  List<ShowProxy> getFavoriteShows();
 
-  void setFavoriteShows(List<Show> favoriteShows);
+  void setFavoriteShows(List<ShowProxy> favoriteShows);
 
   String getName();
 
@@ -51,8 +41,13 @@ public interface ViewerProfileProxy {
 
   void setSalt(String salt);
 
-  @Enumerated(EnumType.STRING)
   Geo getGeo();
 
   void setGeo(Geo geo);
+}
+
+@Service(ViewerProfile.class)
+interface ViewerProfileRequest extends Request<ViewerProfileProxy> {
+  //replace with controller
+  Request<Boolean> authenticate(String name, String digest);
 }
