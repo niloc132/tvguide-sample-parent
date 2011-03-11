@@ -38,16 +38,16 @@ public interface TvGuideRequest extends RequestContext {
    *
    * @return
    */
-  Request<List<ShowProxy>> getFavoriteShows();
+  Request<List<TvShowProxy>> getFavoriteShows();
 
   /**
    * Informs the server that the list of favorites has changed.
    *
-   * @param shows
+   * @param tvShows
    * @return
    * @TODO This should probably go away, and in its place, methods for add and remove favorites.
    */
-  Request<Void> setFavoriteShows(List<ShowProxy> shows);
+  Request<Void> setFavoriteShows(List<TvShowProxy> tvShows);
 
   /**
    * Gets all the User's channels (based on Locale,Provider, yet to be determined how we look this
@@ -55,13 +55,13 @@ public interface TvGuideRequest extends RequestContext {
    *
    * @return
    */
-  Request<List<ChannelProxy>> getAllChannels();
+  Request<List<TvChannelProxy>> getAllChannels();
 
   /**
-   * Gets all of the shows schedules between the start and end date on the given channel. For the
+   * Gets all of the shows schedules between the start and end date on the given tvChannel. For the
    * general (i.e. non-favorites) case, this is the main method to actually do things.
    * <p/>
-   * It is possible we want the channel param to change to a list, but since this is a single
+   * It is possible we want the tvChannel param to change to a list, but since this is a single
    * RequestContext, more than one call to this can be batched, and the client can handle each
    * as desired.
    *
@@ -69,10 +69,10 @@ public interface TvGuideRequest extends RequestContext {
    * @param endDate
    * @return
    */
-  Request<List<ScheduledEpisodeProxy>> findEpisodesByChannelAndDateBetween(ChannelProxy channel, Date startDate, Date endDate);
+  Request<List<ScheduledEpisodeProxy>> findEpisodesByChannelAndDateBetween(TvChannelProxy tvChannel, Date startDate, Date endDate);
 
   /**
-   * Gets all of the scheduled instances of this show in the given range. For users making use of
+   * Gets all of the scheduled instances of this tvShow in the given range. For users making use of
    * the favorites functionality, this allows them to select only shows they care about.
    * <p/>
    * As with the other overload of getEpisodesInRange, this can be called many times on a given
@@ -83,5 +83,5 @@ public interface TvGuideRequest extends RequestContext {
    * @param endDate
    * @return
    */
-  Request<List<ScheduledEpisodeProxy>> findEpisodesByShowAndDateBetween(ShowProxy show, Date startDate, Date endDate);
+  Request<List<ScheduledEpisodeProxy>> findEpisodesByShowAndDateBetween(TvShowProxy tvShow, Date startDate, Date endDate);
 }

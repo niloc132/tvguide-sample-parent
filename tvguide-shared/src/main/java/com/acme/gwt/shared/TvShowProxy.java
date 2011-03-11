@@ -36,7 +36,7 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 
 @ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
-public interface ShowProxy extends EntityProxy {
+public interface TvShowProxy extends EntityProxy {
   String getName();
 
   void setName(String name);
@@ -47,7 +47,7 @@ public interface ShowProxy extends EntityProxy {
 }
 
 @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
-interface ShowRequest {
-  InstanceRequest<ShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+interface TvShowRequest {
+  InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
 }

@@ -37,9 +37,9 @@ interface ScheduledEpisodeProxy extends EntityProxy {
 
   EpisodeProxy getEpisode();
 
-  ChannelProxy getChannel();
+  TvChannelProxy getTvChannel();
 
-  void setChannel(ChannelProxy channel);
+  void setTvChannel(TvChannelProxy tvChannel);
 
   AirTimeProxy getBlock();
 

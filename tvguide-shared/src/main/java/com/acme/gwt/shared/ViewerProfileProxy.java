@@ -26,9 +26,9 @@ public interface ViewerProfileProxy extends EntityProxy {
 
   void setVersion(Integer version);
 
-  List<ShowProxy> getFavoriteShows();
+  List<TvShowProxy> getFavoriteShows();
 
-  void setFavoriteShows(List<ShowProxy> favoriteShows);
+  void setFavoriteShows(List<TvShowProxy> favoriteTvShows);
 
   String getName();
 

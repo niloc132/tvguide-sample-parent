@@ -22,7 +22,7 @@ import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 
 /**
- * An individual episode of a ShowProxy. Contains a reference to the show that it belongs to, and to
+ * An individual episode of a TvShowProxy. Contains a reference to the show that it belongs to, and to
  * its place in that show, as well as a brief name and description of the episode.
  *
  * @author colin
@@ -32,9 +32,9 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
 public
 @ProxyFor(value = Episode.class,locator = InjectingLocator.class)
 interface EpisodeProxy extends EntityProxy {
-  ShowProxy getShow();
+  TvShowProxy getTvShow();
 
-  void setShow(ShowProxy show);
+  void setTvShow(TvShowProxy tvShow);
 
   String getName();
 
