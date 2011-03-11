@@ -24,6 +24,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -76,15 +77,18 @@ public class TvGuide implements EntryPoint {
               Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), passwordTextBox.getText());
               authenticate.with("geo", "name",
                   "favoriteShows.name", "favoriteShows.description"
-              ).fire(new GateKeeper());
-              hide();
+              ).to(new GateKeeper()).fire(new Receiver<Void>() {
+                @Override
+                public void onSuccess(Void response) {
+                  hide(); //todo: review for a purpose
+                }
+              });
             }
           });
         }});
       }});
       center();
       show();
-
     }};
   }
 
