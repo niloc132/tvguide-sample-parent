@@ -16,7 +16,7 @@
  */
 package com.acme.gwt.client;
 
-
+import com.acme.gwt.client.ioc.TvGuideGinjector;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.acme.gwt.shared.util.Md5;
 import com.google.gwt.core.client.EntryPoint;
@@ -33,69 +33,88 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 
 /**
  * @author colin
  */
 public class TvGuide implements EntryPoint {
-  public MyRequestFactory rf;
-  public EventBus eventBus;
-  private static TvGuide instance;
 
-  {
-    instance = this;
-    eventBus = GWT.create(SimpleEventBus.class);
-    rf = GWT.create(MyRequestFactory.class);
-    rf.initialize(eventBus);
-  }
+	public MyRequestFactory rf;
+	public EventBus eventBus;
+	private static TvGuide instance;
 
-  static TvGuide getInstance() {
-    return instance;
-  }
+	{
+		instance = this;
+		eventBus = GWT.create(SimpleEventBus.class);
+		rf = GWT.create(MyRequestFactory.class);
+		rf.initialize(eventBus);
+	}
 
-  public void onModuleLoad() {
-    final GateKeeper[] gateKeeper = new GateKeeper[1];
-    gateKeeper[0] = new GateKeeper();
-    new DialogBox() {{
-      final TextBox email = new TextBox() {{
-        setText("you@example.com");
-      }};
-      final PasswordTextBox passwordTextBox = new PasswordTextBox();
-      setText("please log in");
-      setWidget(new VerticalPanel() {{
-        add(new HorizontalPanel() {{
-          add((IsWidget) new Label("email"));
-          add((IsWidget) email);
-        }});
-        add(new HorizontalPanel() {{
-          add((IsWidget) new Label("Password"));
-          add((IsWidget) passwordTextBox);
-        }});
-        add(new Button("OK!!") {{
-          addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-              String text = passwordTextBox.getText();
-              String digest = Md5.md5Hex(text);
-              Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), digest);
-              authenticate.with("geo", "name",
-                  "favoriteShows.name", "favoriteShows.description"
-              ).to(gateKeeper[0]).fire(new Receiver<Void>() {
-                @Override
-                public void onSuccess(Void response) {
-                  hide(); //todo: review for a purpose
-                  removeFromParent();
-                }
-              });
-            }
-          });
-        }});
-      }});
-      center();
-      show();
-    }};
-  }
+	static TvGuide getInstance() {
+		return instance;
+	}
+
+	public void onModuleLoad() {
+
+		//code from jnorthrup's fork, will be moved to a presenter soon enough
+		final GateKeeper[] gateKeeper = new GateKeeper[1];
+		gateKeeper[0] = new GateKeeper();
+		new DialogBox() {{
+			final TextBox email = new TextBox() {{
+				setText("you@example.com");
+			}};
+			final PasswordTextBox passwordTextBox = new PasswordTextBox();
+			setText("please log in");
+			setWidget(new VerticalPanel() {{
+				add(new HorizontalPanel() {{
+					add((IsWidget) new Label("email"));
+					add((IsWidget) email);
+				}});
+				add(new HorizontalPanel() {{
+					add((IsWidget) new Label("Password"));
+					add((IsWidget) passwordTextBox);
+				}});
+				add(new Button("OK!!") {{
+					addClickHandler(new ClickHandler() {
+						@Override
+						public void onClick(ClickEvent event) {
+							String text = passwordTextBox.getText();
+							String digest = Md5.md5Hex(text);
+							Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), digest);
+							authenticate.with("geo", "name",
+									"favoriteShows.name", "favoriteShows.description"
+							).to(gateKeeper[0]).fire(new Receiver<Void>() {
+								@Override
+								public void onSuccess(Void response) {
+									hide(); //todo: review for a purpose
+									removeFromParent();
+								}
+							});
+						}
+					});
+				}});
+			}});
+			center();
+			show();
+		}};
+
+
+		// Make the ginjector
+		TvGuideGinjector injector = GWT.create(TvGuideGinjector.class);
+
+		// Set up app components to talk to the underlying html page
+		//?
+
+		// Attach the root view to the page
+		RootLayoutPanel.get().add(injector.getAppShell());
+
+		// Go! Fire the current history token
+		injector.getHistoryHandler().handleCurrentHistory();
+	}
+
 
 }
