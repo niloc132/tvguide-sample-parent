@@ -47,7 +47,7 @@ public interface TvGuideRequest extends RequestContext {
    * @return
    * @TODO This should probably go away, and in its place, methods for add and remove favorites.
    */
-  void setFavoriteShows(List<ShowProxy> shows);
+  Request<Void> setFavoriteShows(List<ShowProxy> shows);
 
   /**
    * Gets all the User's channels (based on Locale,Provider, yet to be determined how we look this
