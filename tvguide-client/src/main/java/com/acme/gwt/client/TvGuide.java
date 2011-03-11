@@ -18,8 +18,8 @@ package com.acme.gwt.client;
 
 import java.util.List;
 
-import com.acme.gwt.data.Channel;
-import com.acme.gwt.data.Show;
+import com.acme.gwt.shared.ChannelProxy;
+import com.acme.gwt.shared.ShowProxy;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.user.client.Window;
@@ -32,13 +32,10 @@ public class TvGuide implements EntryPoint {
 	public void onModuleLoad() {
 		Window.alert("Yarp.");
 	}
-
-
-  Request<List<Show>> getFavoriteShows() {
+  Request<List<ShowProxy>> getFavoriteShows() {
     return null;  //todo: review for a fit
   }
-
-  Request<List<Channel>> getAllChannels() {
+  Request<List<ChannelProxy>> getAllChannels() {
     return null;  //todo: review for a fit
   }
 }
