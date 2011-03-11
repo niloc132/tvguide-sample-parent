@@ -14,29 +14,34 @@ import javax.persistence.Version;
 public
 @Entity
 class Channel implements HasVersionAndId {
-  @Id
-  private Long id;
-  @Version
-  private Integer version;
-  private String name;
-  private String icon;
-  private Integer channelNumber;
 
+  private Long id;
+
+  @Id
   public Long getId() {
     return id;
+  }
+
+
+  private Integer version;
+
+  @Version
+  public Integer getVersion() {
+    return version;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public Integer getVersion() {
-    return version;
-  }
-
   public void setVersion(Integer version) {
     this.version = version;
   }
+
+  private String name;
+  private String icon;
+  private Integer channelNumber;
+
 
   public String getName() {
     return name;

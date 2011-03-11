@@ -14,29 +14,32 @@ import javax.persistence.Version;
 public
 @Entity
 class Episode implements HasVersionAndId {
-  @Id
-  private Long id;
-  @Version
-  private Integer version;
-  private Show show;
-  private Integer season;
-  private Integer episode;
 
+  private Long id;
+
+  @Id
   public Long getId() {
     return id;
+  }
+
+  private Integer version;
+
+  @Version
+  public Integer getVersion() {
+    return version;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public Integer getVersion() {
-    return version;
-  }
-
   public void setVersion(Integer version) {
     this.version = version;
   }
+
+  private Show show;
+  private Integer season;
+  private Integer episode;
 
   public Show getShow() {
     return show;

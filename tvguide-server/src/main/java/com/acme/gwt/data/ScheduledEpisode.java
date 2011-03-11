@@ -14,29 +14,33 @@ import javax.persistence.Version;
 public
 @Entity
 class ScheduledEpisode implements HasVersionAndId {
-  @Id
-  private Long id;
-  @Version
-  private Integer version;
-  private Episode episode;
-  private Channel channel;
-  private AirTime block;
 
+  private Long id;
+
+  @Id
   public Long getId() {
     return id;
+  }
+
+
+  private Integer version;
+
+  @Version
+  public Integer getVersion() {
+    return version;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public Integer getVersion() {
-    return version;
-  }
-
   public void setVersion(Integer version) {
     this.version = version;
   }
+
+  private Episode episode;
+  private Channel channel;
+  private AirTime block;
 
   public Episode getEpisode() {
     return episode;
