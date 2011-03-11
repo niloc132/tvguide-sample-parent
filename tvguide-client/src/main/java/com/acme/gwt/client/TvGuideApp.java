@@ -1,6 +1,8 @@
 package com.acme.gwt.client;
 
+import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.inject.Inject;
 
 import static com.google.gwt.user.client.Window.alert;
 
@@ -14,6 +16,14 @@ import static com.google.gwt.user.client.Window.alert;
  * To change this template use File | Settings | File Templates.
  */
 class TvGuideApp implements RunAsyncCallback {
+  private final TvViewerProxy response;
+
+  @Inject
+  public TvGuideApp(TvViewerProxy response) {
+
+    this.response = response;
+  }
+
   @Override
   public void onFailure(Throwable reason) {
     //todo: review for a purpose

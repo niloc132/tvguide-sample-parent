@@ -16,7 +16,7 @@ import com.google.gwt.requestfactory.shared.Receiver;
 class GateKeeper extends Receiver<TvViewerProxy> {
   @Override
   public void onSuccess(TvViewerProxy response) {
-    GWT.runAsync(new TvGuideApp());
+    GWT.runAsync(new TvGuideApp(response));
   }
 
 }
