@@ -21,6 +21,7 @@ class ScheduledEpisode implements HasVersionAndId {
   public Long getId() {
     return id;
   }
+
   private Integer version;
 
   @Version
@@ -37,7 +38,7 @@ class ScheduledEpisode implements HasVersionAndId {
   }
 
   private Episode episode;
-  private Channel channel;
+  private TvChannel tvChannel;
   private AirTime block;
 
   public Episode getEpisode() {
@@ -48,12 +49,12 @@ class ScheduledEpisode implements HasVersionAndId {
     this.episode = episode;
   }
 
-  public Channel getChannel() {
-    return channel;
+  public TvChannel getTvChannel() {
+    return tvChannel;
   }
 
-  public void setChannel(Channel channel) {
-    this.channel = channel;
+  public void setTvChannel(TvChannel tvChannel) {
+    this.tvChannel = tvChannel;
   }
 
   public AirTime getBlock() {

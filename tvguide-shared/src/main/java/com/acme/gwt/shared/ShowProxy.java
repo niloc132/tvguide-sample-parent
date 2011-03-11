@@ -19,7 +19,7 @@ package com.acme.gwt.shared;
 import java.util.Date;
 import java.util.List;
 
-import com.acme.gwt.data.Show;
+import com.acme.gwt.data.TvShow;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
@@ -35,7 +35,7 @@ import com.google.gwt.requestfactory.shared.Service;
  * @author colin
  */
 
-@ProxyFor(value = Show.class,locator = InjectingLocator.class)
+@ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
 public interface ShowProxy extends EntityProxy {
   String getName();
 
@@ -46,7 +46,7 @@ public interface ShowProxy extends EntityProxy {
   void setDescription(String desc);
 }
 
-@Service(value = Show.class,locator = InjectingServiceLocator.class)
+@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
 interface ShowRequest {
   InstanceRequest<ShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 

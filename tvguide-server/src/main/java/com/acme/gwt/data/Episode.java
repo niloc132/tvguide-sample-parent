@@ -37,16 +37,17 @@ class Episode implements HasVersionAndId {
     this.version = version;
   }
 
-  private Show show;
+  private TvShow tvShow;
   private Integer season;
   private Integer episodeNumber;
   private String name;
-  public Show getShow() {
-    return show;
+
+  public TvShow getTvShow() {
+    return tvShow;
   }
 
-  public void setShow(Show show) {
-    this.show = show;
+  public void setTvShow(TvShow tvShow) {
+    this.tvShow = tvShow;
   }
 
   public Integer getSeason() {

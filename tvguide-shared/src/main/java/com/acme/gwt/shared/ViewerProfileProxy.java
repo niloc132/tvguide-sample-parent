@@ -47,8 +47,8 @@ public interface ViewerProfileProxy extends EntityProxy {
   void setGeo(Geo geo);
 }
 
-@Service(value = ViewerProfile.class,locator = InjectingServiceLocator.class)
+@Service(value = ViewerProfile.class, locator = InjectingServiceLocator.class)
 interface ViewerProfileRequest extends Request<ViewerProfileProxy> {
   //replace with controller
-  Request<Boolean> authenticate(String name, String digest);
+  Request<ViewerProfileProxy> authenticate(String email, String digest);
 }

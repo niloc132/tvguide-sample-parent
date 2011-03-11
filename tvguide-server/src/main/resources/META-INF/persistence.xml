@@ -5,13 +5,16 @@
 
   <persistence-unit name="tvgtest" transaction-type="RESOURCE_LOCAL">
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-    <class>com.acme.gwt.data.AirTime</class>
-    <class>com.acme.gwt.data.Channel</class>
-    <class>com.acme.gwt.data.Episode</class>
-    <class>com.acme.gwt.data.ScheduledEpisode</class>
+    <!--<class>com.acme.gwt.data.AirTime</class>-->
+    <!--<class>com.acme.gwt.data.TvChannelel</class>-->
+    <!--<class>com.acme.gwt.data.Episode</class>-->
+    <!--<class>com.acme.gwt.data.ScheduledEpisode</class>-->
+    <!--<class>com.acme.gwt.data.ViewerProfile</class>-->
+
     <properties>
-      <!--<property name="openjpa.LockManager" value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
-      <!-- value="buildSchema" to runtime forward map the DDL SQL; value="validate" makes no changes to the database -->
+      <property name="openjpa.LockManager"
+                value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>
+      <!--value="buildSchema" to runtime forward map the DDL SQL; value="validate" makes no changes to the database -->
       <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>-->
       <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
       <!--<property name="openjpa.Log" value="DefaultLevel=TRACE"/>-->
@@ -36,15 +39,15 @@
       <property name="openjpa.jdbc.SynchronizeMappings"
                 value="buildSchema(ForeignKeys=true)"/>
       <!--<property name="openjpa.Multithreaded" value="true"/>-->
-      <property name="openjpa.Log" value="SQL=TRACE"/>
-      <!--<property name="openjpa.jdbc.SchemaFactory"-->
-      <!--value="native(ForeignKeys=true)"/>-->
-      <!--<property name="openjpa.jdbc.MappingDefaults"-->
-      <!--value="ForeignKeyDeleteAction=restrict"/>-->
-      <!--<property name="openjpa.DynamicEnhancementAgent" value="true"/>-->
-      <!--<property name="openjpa.DetachState"-->
-      <!--value="all(DetachedStateField=transient)"/>-->
-      <!--<property name="openjpa.DynamicDataStructs" value="true"/>-->
+      <property name="openjpa.Log" value="SQL=TRACE,DefaultLevel=TRACE"/>
+      <property name="openjpa.jdbc.SchemaFactory"
+                value="native(ForeignKeys=true)"/>
+      <property name="openjpa.jdbc.MappingDefaults"
+                value="ForeignKeyDeleteAction=restrict"/>
+      <property name="openjpa.DynamicEnhancementAgent" value="true"/>
+      <property name="openjpa.DetachState"
+                value="all(DetachedStateField=transient)"/>
+      <property name="openjpa.DynamicDataStructs" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

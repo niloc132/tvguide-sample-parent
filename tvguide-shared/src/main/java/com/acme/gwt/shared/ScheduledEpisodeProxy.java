@@ -22,11 +22,11 @@ import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 
 /**
- * Maps a Channel,AirTime tuple to a single episode, as only one episode can be shown at a given
+ * Maps a TvChannel,AirTime tuple to a single episode, as only one episode can be shown at a given
  * time on a given channel.
  * <p/>
- * Okay, a given User,Channel, since the same Channel can have different times in different zones.
- * But I think that a Channel object is already local to the given user, so User is assumed.
+ * Okay, a given User,TvChannel, since the same TvChannel can have different times in different zones.
+ * But I think that a TvChannel object is already local to the given user, so User is assumed.
  *
  * @author colin
  */

@@ -13,7 +13,7 @@ import javax.persistence.Version;
  */
 public
 @Entity
-class Show implements HasVersionAndId {
+class TvShow implements HasVersionAndId {
 
   private Long id;
 

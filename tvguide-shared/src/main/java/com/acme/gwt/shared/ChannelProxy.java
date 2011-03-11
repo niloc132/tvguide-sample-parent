@@ -19,7 +19,7 @@ package com.acme.gwt.shared;
 import java.util.Date;
 import java.util.List;
 
-import com.acme.gwt.data.Channel;
+import com.acme.gwt.data.TvChannel;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
@@ -33,14 +33,14 @@ import com.google.gwt.requestfactory.shared.Service;
  * Number is almost certainly based on particular user details, as channels can have different
  * mappings through different providers and in different areas.
  * <p/>
- * Channel objects do not themselves contain more data, at least on the client, as there could be
+ * TvChannel objects do not themselves contain more data, at least on the client, as there could be
  * a very large amount of data that would need to either be included, or not. As such, showtimes and
  * shows are made available through different requests, and possibly should be cached on the client.
  *
  * @author colin
  */
 public
-@ProxyFor(value = Channel.class,locator = InjectingLocator.class)
+@ProxyFor(value = TvChannel.class, locator = InjectingLocator.class)
 interface ChannelProxy extends EntityProxy {
   String getName();
 
@@ -58,7 +58,7 @@ interface ChannelProxy extends EntityProxy {
   public EntityProxyId<ChannelProxy> stableId();
 }
 
-@Service(value = Channel.class,locator = InjectingServiceLocator.class)
+@Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
 interface ChannelRequest {
   InstanceRequest<ChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 

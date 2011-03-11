@@ -13,7 +13,7 @@ import javax.persistence.Version;
  */
 public
 @Entity
-class Channel implements HasVersionAndId {
+class TvChannel implements HasVersionAndId {
 
   private Long id;
 

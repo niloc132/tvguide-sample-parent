@@ -19,12 +19,11 @@ package com.acme.gwt.server;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
-import com.acme.gwt.data.Channel;
+import com.acme.gwt.data.TvChannel;
 import com.acme.gwt.data.ScheduledEpisode;
-import com.acme.gwt.data.Show;
+import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.ViewerProfile;
 import com.google.inject.Inject;
 
@@ -38,40 +37,40 @@ import com.google.inject.Inject;
 public class TvGuideService {
 
 
-  static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(Show show, Date begin, Date end) {
+  static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(TvShow tvShow, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
 
-  static List<ScheduledEpisode> findEpisodesByChannelAndDateBetween(Channel channel, Date begin, Date end) {
+  static List<ScheduledEpisode> findEpisodesByChannelAndDateBetween(TvChannel tvChannel, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
 
- static List<Show> getFavoriteShows() {
+  static List<TvShow> getFavoriteShows() {
     ViewerProfile call = null;
     try {
       call = new ViewerProfileCallable().call();
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }
-    return call.getFavoriteShows();
+    return call.getFavorites();
   }
 
- static  void setFavoriteShows(List<Show> favoriteShows) {
+  static void setFavoriteShows(List<TvShow> favoriteTvShows) {
     try {
       ViewerProfile call = new ViewerProfileCallable().call();
-      call.setFavoriteShows(favoriteShows);
+      call.setFavorites(favoriteTvShows);
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }
   }
 
-  static public List<Channel> getAllChannels() {
+  static public List<TvChannel> getAllChannels() {
     try {
-      return (List<Channel>) new Callable() {
+      return (List<TvChannel>) new Callable() {
         public Object call() throws Exception {
           try {
             //todo: make current user's geo matter to this list
-            return new Em().call().createQuery("select Channel from Channel Channel", Channel.class).getResultList();
+            return new Em().call().createQuery("select Channel from TvChannel Channel", TvChannel.class).getResultList();
           } catch (Exception e) {
             e.printStackTrace();  //todo: verify for a fit
           }
@@ -83,26 +82,27 @@ public class TvGuideService {
     }
     return null;
   }
-}
 
-class Em implements Callable<EntityManager> {
+  public static class Em implements Callable<EntityManager> {
 
-  @Inject
-  EntityManager entityManager;
+    @Inject
+    EntityManager entityManager;
 
-  @Override
-  public EntityManager call() throws Exception {
-    return entityManager;
+    @Override
+    public EntityManager call() throws Exception {
+      return entityManager;
+    }
   }
-}
 
-class ViewerProfileCallable implements Callable<ViewerProfile> {
+  static class ViewerProfileCallable implements Callable<ViewerProfile> {
 
-  @Inject
-  ViewerProfile currentViewerFromSession;
+    @Inject
+    ViewerProfile currentViewerFromSession;
 
-  @Override
-  public ViewerProfile call() throws Exception {
-    return currentViewerFromSession;
+    @Override
+    public ViewerProfile call() throws Exception {
+      return currentViewerFromSession;
+    }
+
   }
 }
