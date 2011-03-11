@@ -16,7 +16,12 @@
  */
 package com.acme.gwt.client;
 
+import java.util.List;
+
+import com.acme.gwt.data.Channel;
+import com.acme.gwt.data.Show;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.user.client.Window;
 
 /**
@@ -28,4 +33,12 @@ public class TvGuide implements EntryPoint {
 		Window.alert("Yarp.");
 	}
 
+
+  Request<List<Show>> getFavoriteShows() {
+    return null;  //todo: review for a fit
+  }
+
+  Request<List<Channel>> getAllChannels() {
+    return null;  //todo: review for a fit
+  }
 }

@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.acme.gwt.data.Channel;
+import com.acme.gwt.server.InjectingLocator;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.gwt.requestfactory.shared.InstanceRequest;
@@ -38,7 +40,7 @@ import com.google.gwt.requestfactory.shared.Service;
  * @author colin
  */
 public
-@ProxyFor(Channel.class)
+@ProxyFor(value = Channel.class,locator = InjectingLocator.class)
 interface ChannelProxy extends EntityProxy {
   String getName();
 
@@ -48,15 +50,15 @@ interface ChannelProxy extends EntityProxy {
 
   void setIcon(String icon);
 
-  int getChannelNumber();
+  Integer getChannelNumber();
 
-  void setChannelNumber(int channelNum);
+  void setChannelNumber(Integer channelNum);
 
 
   public EntityProxyId<ChannelProxy> stableId();
 }
 
-@Service(Channel.class)
+@Service(value = Channel.class,locator = InjectingServiceLocator.class)
 interface ChannelRequest {
   InstanceRequest<ChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 

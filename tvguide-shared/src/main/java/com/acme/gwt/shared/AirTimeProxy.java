@@ -18,6 +18,8 @@ package com.acme.gwt.shared;
 
 import java.util.Date;
 
+import com.acme.gwt.data.AirTime;
+import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.ValueProxy;
 
@@ -28,13 +30,13 @@ import com.google.gwt.requestfactory.shared.ValueProxy;
  * @author colin
  */
 public
-@ProxyFor(AirTimeProxy.class)
+@ProxyFor(value = AirTime.class,locator = InjectingLocator.class)
 interface AirTimeProxy extends ValueProxy {
+  Date getStartDate();
   void setStartDate(Date date);
 
-  Date getStartDate();
 
-  void setDuration(int duration);
+  Integer getDuration();
+  void setDuration(Integer duration);
 
-  int getDuration();
 }

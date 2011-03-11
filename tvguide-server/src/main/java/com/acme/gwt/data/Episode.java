@@ -39,8 +39,8 @@ class Episode implements HasVersionAndId {
 
   private Show show;
   private Integer season;
-  private Integer episode;
-
+  private Integer episodeNumber;
+  private String name;
   public Show getShow() {
     return show;
   }
@@ -57,11 +57,19 @@ class Episode implements HasVersionAndId {
     this.season = season;
   }
 
-  public Integer getEpisode() {
-    return episode;
+  public Integer getEpisodeNumber() {
+    return episodeNumber;
   }
 
-  public void setEpisode(Integer episode) {
-    this.episode = episode;
+  public void setEpisodeNumber(Integer episodeNumber) {
+    this.episodeNumber = episodeNumber;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

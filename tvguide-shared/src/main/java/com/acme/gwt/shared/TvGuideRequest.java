@@ -69,7 +69,7 @@ public interface TvGuideRequest extends RequestContext {
    * @param endDate
    * @return
    */
-  Request<List<ScheduledEpisodeProxy>> getEpisodesInRange(ChannelProxy channel, Date startDate, Date endDate);
+  Request<List<ScheduledEpisodeProxy>> findEpisodesByChannelAndDateBetween(ChannelProxy channel, Date startDate, Date endDate);
 
   /**
    * Gets all of the scheduled instances of this show in the given range. For users making use of
@@ -83,5 +83,5 @@ public interface TvGuideRequest extends RequestContext {
    * @param endDate
    * @return
    */
-  Request<List<ScheduledEpisodeProxy>> getEpisodesInRange(ShowProxy show, Date startDate, Date endDate);
+  Request<List<ScheduledEpisodeProxy>> findEpisodesByShowAndDateBetween(ShowProxy show, Date startDate, Date endDate);
 }

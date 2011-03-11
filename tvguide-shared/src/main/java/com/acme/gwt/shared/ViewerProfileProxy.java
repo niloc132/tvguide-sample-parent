@@ -3,6 +3,7 @@ package com.acme.gwt.shared;
 import java.util.List;
 
 import com.acme.gwt.data.ViewerProfile;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.Request;
@@ -46,7 +47,7 @@ public interface ViewerProfileProxy extends EntityProxy {
   void setGeo(Geo geo);
 }
 
-@Service(ViewerProfile.class)
+@Service(value = ViewerProfile.class,locator = InjectingServiceLocator.class)
 interface ViewerProfileRequest extends Request<ViewerProfileProxy> {
   //replace with controller
   Request<Boolean> authenticate(String name, String digest);

@@ -21,8 +21,6 @@ class ScheduledEpisode implements HasVersionAndId {
   public Long getId() {
     return id;
   }
-
-
   private Integer version;
 
   @Version

@@ -17,6 +17,7 @@
 package com.acme.gwt.shared;
 
 import com.acme.gwt.data.ScheduledEpisode;
+import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 
@@ -29,17 +30,18 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
  *
  * @author colin
  */
-@ProxyFor(ScheduledEpisode.class)
-public interface ScheduledEpisodeProxy extends EntityProxy {
+public
+@ProxyFor(value = ScheduledEpisode.class, locator = InjectingLocator.class)
+interface ScheduledEpisodeProxy extends EntityProxy {
   void setEpisode(EpisodeProxy show);
 
   EpisodeProxy getEpisode();
 
-  void setChannel(ChannelProxy channel);
-
   ChannelProxy getChannel();
 
-  void setBlock(AirTimeProxy block);
+  void setChannel(ChannelProxy channel);
 
   AirTimeProxy getBlock();
+
+  void setBlock(AirTimeProxy block);
 }

@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import javax.persistence.EntityManager;
+
 import com.acme.gwt.data.Channel;
 import com.acme.gwt.data.ScheduledEpisode;
 import com.acme.gwt.data.Show;
@@ -34,14 +36,24 @@ import com.google.inject.Inject;
  * @author colin
  */
 public class TvGuideService {
-  List<ScheduledEpisode> getEpisodesInRange(Show show
-      , Date begin, Date end) {
-    return null;  //todo: review for a fit
+
+ static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(Show show, Date begin, Date end) {
+    return null;  //todo: call the appropriate finder
   }
 
-  List<ScheduledEpisode> getEpisodesInRange(Channel channel, Date begin, Date end) {
-    return null;  //todo: review for a fit
+  static List<ScheduledEpisode> findEpisodesByChannelAndDateBetween(Channel channel, Date begin, Date end) {
+    return null;  //todo: call the appropriate finder
   }
+
+  List<Show> getFavoriteShows(){
+    ViewerProfile call = null;
+    try {
+      call = new ViewerProfileCallable().call();
+    } catch (Exception e) {
+      e.printStackTrace();  //todo: verify for a fit
+    }
+    return  call.getFavoriteShows( );
+  };
 
   void setFavoriteShows(List<Show> favoriteShows) {
     try {
@@ -52,14 +64,35 @@ public class TvGuideService {
     }
   }
 
-  static class ViewerProfileCallable implements Callable<ViewerProfile> {
-    @Inject
-    ViewerProfile currentViewerFromSession;
-
-    @Override
-    public ViewerProfile call() throws Exception {
-
-      return currentViewerFromSession;
+  static public List<Channel >getAllChannels(){
+    try {
+      //todo: make current user's geo matter to this list
+      return new Em().call().createQuery("select Channel from Channel Channel",Channel.class).getResultList();
+    } catch (Exception e) {
+      e.printStackTrace();  //todo: verify for a fit
     }
+
+    return null;
+  }
+}
+
+class Em implements Callable<EntityManager > {
+
+  @Inject
+  EntityManager entityManager;
+
+  @Override
+  public EntityManager  call() throws Exception {
+    return entityManager;
+  }
+}
+class ViewerProfileCallable implements Callable<ViewerProfile> {
+
+  @Inject
+  ViewerProfile currentViewerFromSession;
+
+  @Override
+  public ViewerProfile call() throws Exception {
+    return currentViewerFromSession;
   }
 }
