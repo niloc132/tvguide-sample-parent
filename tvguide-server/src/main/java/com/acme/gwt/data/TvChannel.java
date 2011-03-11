@@ -1,6 +1,8 @@
 package com.acme.gwt.data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -18,6 +20,7 @@ class TvChannel implements HasVersionAndId {
   private Long id;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }

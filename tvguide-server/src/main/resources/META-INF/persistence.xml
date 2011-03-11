@@ -5,27 +5,39 @@
 
   <persistence-unit name="tvgtest" transaction-type="RESOURCE_LOCAL">
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-    <!--<class>com.acme.gwt.data.AirTime</class>-->
-    <!--<class>com.acme.gwt.data.TvChannelel</class>-->
-    <!--<class>com.acme.gwt.data.Episode</class>-->
-    <!--<class>com.acme.gwt.data.ScheduledEpisode</class>-->
-    <!--<class>com.acme.gwt.data.ViewerProfile</class>-->
+    <class>com.acme.gwt.data.TvAirTime</class>
+    <class>com.acme.gwt.data.TvChannel</class>
+    <class>com.acme.gwt.data.TvEpisode</class>
+    <class>com.acme.gwt.data.TvScheduledEpisode</class>
+    <class>com.acme.gwt.data.TvShow</class>
+    <class>com.acme.gwt.data.TvViewer</class>
 
     <properties>
-      <property name="openjpa.LockManager"
-                value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>
+      <!--<property name="openjpa.LockManager"-->
+                <!--value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
       <!--value="buildSchema" to runtime forward map the DDL SQL; value="validate" makes no changes to the database -->
-      <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>-->
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
       <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
       <!--<property name="openjpa.Log" value="DefaultLevel=TRACE"/>-->
-      <!--h2-->
+
+         <!--hsql-->
       <property name="openjpa.jdbc.DBDictionary"
-                value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
-      <property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>
-      <property name="openjpa.ConnectionURL"
-                value="jdbc:h2:mem:tvgtest;DB_CLOSE_DELAY=-1"/>
+                value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>
+      <property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver"/>
+      <property name="openjpa.ConnectionURL" value="jdbc:hsqldb:mem:tvgtest"/>
       <property name="openjpa.ConnectionUserName" value="sa"/>
       <property name="openjpa.ConnectionPassword" value=""/>
+
+
+
+      <!--h2-->
+      <!--<property name="openjpa.jdbc.DBDictionary"-->
+                <!--value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>-->
+      <!--<property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>-->
+      <!--<property name="openjpa.ConnectionURL"-->
+                <!--value="jdbc:h2:mem:tvgtest;DB_CLOSE_DELAY=-1"/>-->
+      <!--<property name="openjpa.ConnectionUserName" value="sa"/>-->
+      <!--<property name="openjpa.ConnectionPassword" value=""/>-->
 
 
       <!--mysql-->
@@ -36,18 +48,18 @@
       <!--<property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/tvgprod"/>-->
 
 
-      <property name="openjpa.jdbc.SynchronizeMappings"
-                value="buildSchema(ForeignKeys=true)"/>
+      <!--<property name="openjpa.jdbc.SynchronizeMappings"-->
+                <!--value="buildSchema(ForeignKeys=true)"/>-->
       <!--<property name="openjpa.Multithreaded" value="true"/>-->
       <property name="openjpa.Log" value="SQL=TRACE,DefaultLevel=TRACE"/>
-      <property name="openjpa.jdbc.SchemaFactory"
-                value="native(ForeignKeys=true)"/>
-      <property name="openjpa.jdbc.MappingDefaults"
-                value="ForeignKeyDeleteAction=restrict"/>
-      <property name="openjpa.DynamicEnhancementAgent" value="true"/>
-      <property name="openjpa.DetachState"
-                value="all(DetachedStateField=transient)"/>
-      <property name="openjpa.DynamicDataStructs" value="true"/>
+      <!--<property name="openjpa.jdbc.SchemaFactory"-->
+                <!--value="native(ForeignKeys=true)"/>-->
+      <!--<property name="openjpa.jdbc.MappingDefaults"-->
+                <!--value="ForeignKeyDeleteAction=restrict"/>-->
+      <!--<property name="openjpa.DynamicEnhancementAgent" value="true"/>-->
+      <!--<property name="openjpa.DetachState"-->
+                <!--value="all(DetachedStateField=transient)"/>-->
+      <!--<property name="openjpa.DynamicDataStructs" value="true"/>-->
     </properties>
   </persistence-unit>
 </persistence>

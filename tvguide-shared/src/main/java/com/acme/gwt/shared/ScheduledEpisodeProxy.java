@@ -16,13 +16,13 @@
  */
 package com.acme.gwt.shared;
 
-import com.acme.gwt.data.ScheduledEpisode;
+import com.acme.gwt.data.TvScheduledEpisode;
 import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 
 /**
- * Maps a TvChannel,AirTime tuple to a single episode, as only one episode can be shown at a given
+ * Maps a TvChannel,TvAirTime tuple to a single episode, as only one episode can be shown at a given
  * time on a given channel.
  * <p/>
  * Okay, a given User,TvChannel, since the same TvChannel can have different times in different zones.
@@ -31,7 +31,7 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
  * @author colin
  */
 public
-@ProxyFor(value = ScheduledEpisode.class, locator = InjectingLocator.class)
+@ProxyFor(value = TvScheduledEpisode.class, locator = InjectingLocator.class)
 interface ScheduledEpisodeProxy extends EntityProxy {
   void setEpisode(EpisodeProxy show);
 

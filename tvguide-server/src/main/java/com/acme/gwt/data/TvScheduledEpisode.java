@@ -1,6 +1,8 @@
 package com.acme.gwt.data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -13,11 +15,12 @@ import javax.persistence.Version;
  */
 public
 @Entity
-class ScheduledEpisode implements HasVersionAndId {
+class TvScheduledEpisode implements HasVersionAndId {
 
   private Long id;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }
@@ -37,16 +40,16 @@ class ScheduledEpisode implements HasVersionAndId {
     this.version = version;
   }
 
-  private Episode episode;
+  private TvEpisode tvEpisode;
   private TvChannel tvChannel;
-  private AirTime block;
+  private TvAirTime block;
 
-  public Episode getEpisode() {
-    return episode;
+  public TvEpisode getTvEpisode() {
+    return tvEpisode;
   }
 
-  public void setEpisode(Episode episode) {
-    this.episode = episode;
+  public void setTvEpisode(TvEpisode tvEpisode) {
+    this.tvEpisode = tvEpisode;
   }
 
   public TvChannel getTvChannel() {
@@ -57,11 +60,11 @@ class ScheduledEpisode implements HasVersionAndId {
     this.tvChannel = tvChannel;
   }
 
-  public AirTime getBlock() {
+  public TvAirTime getBlock() {
     return block;
   }
 
-  public void setBlock(AirTime block) {
+  public void setBlock(TvAirTime block) {
     this.block = block;
   }
 }

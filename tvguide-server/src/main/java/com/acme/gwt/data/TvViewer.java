@@ -4,17 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
 import javax.persistence.OrderColumn;
 import javax.persistence.Version;
 
 import com.acme.gwt.server.TvGuideService;
-import com.acme.gwt.shared.defs.Geo;
 
 
 /**
@@ -25,15 +23,16 @@ import com.acme.gwt.shared.defs.Geo;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public
-@NamedQuery(name = ViewerProfile.SIMPLE_AUTH, query = "select vp from ViewerProfile vp where vp.email=:email and vp.digest=:digest")
-class ViewerProfile implements HasVersionAndId {
+//@NamedQuery(name = TvViewer.SIMPLE_AUTH, query = "select vp from TvViewer vp where vp.email=:email and vp.digest=:digest")
+
+public class TvViewer implements HasVersionAndId {
 
   static final String SIMPLE_AUTH = "simpleAuth";
   private Long id;
 
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }
@@ -57,7 +56,7 @@ class ViewerProfile implements HasVersionAndId {
     this.version = version;
   }
 
-  private Geo geo;
+//  private Geo geo;
   private String email;
   private String digest;
   private String salt;
@@ -105,24 +104,25 @@ class ViewerProfile implements HasVersionAndId {
   public void setSalt(String salt) {
     this.salt = salt;
   }
+//
+//
+//  @Enumerated(EnumType.STRING)
+//  public Geo getGeo() {
+//    return geo;
+//  }
+//
+//
+//  public void setGeo(Geo geo) {
+//    this.geo = geo;
+//  }
 
-
-  @Enumerated(EnumType.STRING)
-  public Geo getGeo() {
-    return geo;
-  }
-
-
-  public void setGeo(Geo geo) {
-    this.geo = geo;
-  }
-
-  // todo: @Finder (namedQuery = SIMPLE_AUTH)static ViewerProfile findViewerProfileByEmailAndDigest(String email,String digest){}
+  // todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
   //handwritten finder
-  static ViewerProfile findViewerProfileByEmailAndDigest(String email, String digest) {
+  static TvViewer findTvViewerByEmailAndDigest(String email, String digest) {
     try {
-      return new TvGuideService.Em().call().createNamedQuery(SIMPLE_AUTH, ViewerProfile.class).setParameter("email", email).setParameter("digest", digest).getSingleResult();
+      return new TvGuideService.Em().call().createQuery("select vp from TvViewer vp where vp.email=:email and vp.digest=:digest", TvViewer.class).setParameter("email", email).setParameter("digest", digest).getSingleResult();
+
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }

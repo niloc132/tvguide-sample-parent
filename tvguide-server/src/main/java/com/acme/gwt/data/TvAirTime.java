@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
  * To change this template use File | Settings | File Templates.
  */
 @Embeddable
-public class AirTime {
+public class TvAirTime {
 
   private Date startDate;
 

@@ -2,9 +2,8 @@ package com.acme.gwt.shared;
 
 import java.util.List;
 
-import com.acme.gwt.data.ViewerProfile;
+import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingServiceLocator;
-import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.Service;
@@ -16,7 +15,7 @@ import com.google.gwt.requestfactory.shared.Service;
  * Time: 9:31 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface ViewerProfileProxy extends EntityProxy {
+public interface TvViewerProxy extends EntityProxy {
 
   Long getId();
 
@@ -41,14 +40,14 @@ public interface ViewerProfileProxy extends EntityProxy {
   String getSalt();
 
   void setSalt(String salt);
-
+/*
   Geo getGeo();
 
-  void setGeo(Geo geo);
+  void setGeo(Geo geo);*/
 }
 
-@Service(value = ViewerProfile.class, locator = InjectingServiceLocator.class)
-interface ViewerProfileRequest extends Request<ViewerProfileProxy> {
+@Service(value = TvViewer.class, locator = InjectingServiceLocator.class)
+interface TvViewerRequest extends Request<TvViewerProxy> {
   //replace with controller
-  Request<ViewerProfileProxy> authenticate(String email, String digest);
+  Request<TvViewerProxy> authenticate(String email, String digest);
 }

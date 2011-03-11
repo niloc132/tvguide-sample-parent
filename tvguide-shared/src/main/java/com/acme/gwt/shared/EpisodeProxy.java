@@ -16,7 +16,7 @@
  */
 package com.acme.gwt.shared;
 
-import com.acme.gwt.data.Episode;
+import com.acme.gwt.data.TvEpisode;
 import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
@@ -30,7 +30,7 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
  * data to a List of Episodes.
  */
 public
-@ProxyFor(value = Episode.class,locator = InjectingLocator.class)
+@ProxyFor(value = TvEpisode.class,locator = InjectingLocator.class)
 interface EpisodeProxy extends EntityProxy {
   TvShowProxy getTvShow();
 

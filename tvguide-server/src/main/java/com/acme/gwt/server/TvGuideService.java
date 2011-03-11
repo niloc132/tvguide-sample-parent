@@ -22,9 +22,9 @@ import java.util.concurrent.Callable;
 import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.TvChannel;
-import com.acme.gwt.data.ScheduledEpisode;
+import com.acme.gwt.data.TvScheduledEpisode;
 import com.acme.gwt.data.TvShow;
-import com.acme.gwt.data.ViewerProfile;
+import com.acme.gwt.data.TvViewer;
 import com.google.inject.Inject;
 
 /**
@@ -37,18 +37,18 @@ import com.google.inject.Inject;
 public class TvGuideService {
 
 
-  static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(TvShow tvShow, Date begin, Date end) {
+  static List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(TvShow tvShow, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
 
-  static List<ScheduledEpisode> findEpisodesByChannelAndDateBetween(TvChannel tvChannel, Date begin, Date end) {
+  static List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(TvChannel tvChannel, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
 
   static List<TvShow> getFavoriteShows() {
-    ViewerProfile call = null;
+    TvViewer call = null;
     try {
-      call = new ViewerProfileCallable().call();
+      call = new TvViewerCallable().call();
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }
@@ -57,7 +57,7 @@ public class TvGuideService {
 
   static void setFavoriteShows(List<TvShow> favoriteTvShows) {
     try {
-      ViewerProfile call = new ViewerProfileCallable().call();
+      TvViewer call = new TvViewerCallable().call();
       call.setFavorites(favoriteTvShows);
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
@@ -94,14 +94,14 @@ public class TvGuideService {
     }
   }
 
-  static class ViewerProfileCallable implements Callable<ViewerProfile> {
+  static class TvViewerCallable implements Callable<TvViewer> {
 
     @Inject
-    ViewerProfile currentViewerFromSession;
+    TvViewer currentTvViewerFromSession;
 
     @Override
-    public ViewerProfile call() throws Exception {
-      return currentViewerFromSession;
+    public TvViewer call() throws Exception {
+      return currentTvViewerFromSession;
     }
 
   }

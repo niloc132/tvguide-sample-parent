@@ -1,6 +1,8 @@
 package com.acme.gwt.data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -13,11 +15,12 @@ import javax.persistence.Version;
  */
 public
 @Entity
-class Episode implements HasVersionAndId {
+class TvEpisode implements HasVersionAndId {
 
   private Long id;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }

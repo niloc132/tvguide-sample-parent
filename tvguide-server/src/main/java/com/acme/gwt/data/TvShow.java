@@ -1,6 +1,8 @@
 package com.acme.gwt.data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -11,13 +13,14 @@ import javax.persistence.Version;
  * Time: 7:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public
 @Entity
+public
 class TvShow implements HasVersionAndId {
 
   private Long id;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }
