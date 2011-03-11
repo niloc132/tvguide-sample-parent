@@ -1,4 +1,4 @@
-package com.acme.gwt.defs;
+package com.acme.gwt.shared.defs;
 
 /**
  * Created by IntelliJ IDEA.

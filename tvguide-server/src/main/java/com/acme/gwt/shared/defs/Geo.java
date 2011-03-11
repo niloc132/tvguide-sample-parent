@@ -1,7 +1,4 @@
-package com.acme.gwt.defs;
-
-import com.acme.gwt.defs.Continent;
-import com.acme.gwt.defs.Region;
+package com.acme.gwt.shared.defs;
 
 public enum Geo {
   CALIFORNIA(Continent.NAMERICA, Region.WEST),
