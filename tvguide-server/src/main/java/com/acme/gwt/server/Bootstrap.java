@@ -40,31 +40,31 @@ public class Bootstrap {
       em.persist(tvViewer);
 
       TvShow tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #1");
+      tvShow.setDescription("the Show is #1");
       tvShow.setName("show1");
       em.persist(tvShow);
       tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #2");
+      tvShow.setDescription("the Show is #2");
       tvShow.setName("show2");
       em.persist(tvShow);
       tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #3");
+      tvShow.setDescription("the Show is #3");
       tvShow.setName("show3");
       em.persist(tvShow);
       tvViewer.getFavorites().add(tvShow);
 
       tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #4");
+      tvShow.setDescription("the Show is #4");
       tvShow.setName("show4");
 
       em.persist(tvShow);
       tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #5");
+      tvShow.setDescription("the Show is #5");
       tvShow.setName("show5");
 
       em.persist(tvShow);
       tvShow = new TvShow();
-      tvShow.setDescription("the tvShow is #6");
+      tvShow.setDescription("the Show is #6");
       tvShow.setName("show6");
       em.persist(tvShow);
       tvViewer.getFavorites().add(tvShow);

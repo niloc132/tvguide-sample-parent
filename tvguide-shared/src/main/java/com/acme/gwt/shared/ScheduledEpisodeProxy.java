@@ -33,9 +33,9 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
 public
 @ProxyFor(value = TvScheduledEpisode.class, locator = InjectingLocator.class)
 interface ScheduledEpisodeProxy extends EntityProxy {
-  void setEpisode(EpisodeProxy show);
+  void setTvEpisode(EpisodeProxy show);
 
-  EpisodeProxy getEpisode();
+  EpisodeProxy getTvEpisode();
 
   TvChannelProxy getTvChannel();
 
