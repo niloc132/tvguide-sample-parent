@@ -48,7 +48,8 @@ public class EntityValidatorTest {
 
 
   @Test
-  @Ignore
+
+
   public void verifySetupRequestAndEntities() {
     Logger logger = Logger.getLogger("");
     RequestFactoryInterfaceValidator v = new RequestFactoryInterfaceValidator(

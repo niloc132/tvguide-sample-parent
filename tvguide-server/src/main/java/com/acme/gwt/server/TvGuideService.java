@@ -19,7 +19,6 @@ package com.acme.gwt.server;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
-
 import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.Channel;
@@ -37,7 +36,7 @@ import com.google.inject.Inject;
  */
 public class TvGuideService {
 
- static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(Show show, Date begin, Date end) {
+  static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(Show show, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
 
@@ -45,15 +44,17 @@ public class TvGuideService {
     return null;  //todo: call the appropriate finder
   }
 
-  List<Show> getFavoriteShows(){
+  List<Show> getFavoriteShows() {
     ViewerProfile call = null;
     try {
       call = new ViewerProfileCallable().call();
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }
-    return  call.getFavoriteShows( );
-  };
+    return call.getFavoriteShows();
+  }
+
+  ;
 
   void setFavoriteShows(List<Show> favoriteShows) {
     try {
@@ -64,28 +65,37 @@ public class TvGuideService {
     }
   }
 
-  static public List<Channel >getAllChannels(){
+  static public List<Channel> getAllChannels() {
     try {
-      //todo: make current user's geo matter to this list
-      return new Em().call().createQuery("select Channel from Channel Channel",Channel.class).getResultList();
+      return (List<Channel>) new Callable() {
+        public Object call() throws Exception {
+          try {
+            //todo: make current user's geo matter to this list
+            return new Em().call().createQuery("select Channel from Channel Channel", Channel.class).getResultList();
+          } catch (Exception e) {
+            e.printStackTrace();  //todo: verify for a fit
+          }
+          return null;
+        }
+      }.call();
     } catch (Exception e) {
       e.printStackTrace();  //todo: verify for a fit
     }
-
     return null;
   }
 }
 
-class Em implements Callable<EntityManager > {
+class Em implements Callable<EntityManager> {
 
   @Inject
   EntityManager entityManager;
 
   @Override
-  public EntityManager  call() throws Exception {
+  public EntityManager call() throws Exception {
     return entityManager;
   }
 }
+
 class ViewerProfileCallable implements Callable<ViewerProfile> {
 
   @Inject

@@ -17,6 +17,7 @@
 package com.acme.gwt.shared;
 
 import com.google.gwt.requestfactory.shared.RequestContext;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
  * This RequestContext will be used to inform the server about how a particular locale is set up.
@@ -26,6 +27,10 @@ import com.google.gwt.requestfactory.shared.RequestContext;
  * @author colin
  * @todo No methods yet, I am assuming we will get to this
  */
+@Service (SetupRequest.SetupReqImpl.class)
 public interface SetupRequest extends RequestContext {
 
+  public class SetupReqImpl {
+
+  }
 }
