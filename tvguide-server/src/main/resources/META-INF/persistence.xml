@@ -11,7 +11,6 @@
     <class>com.acme.gwt.data.TvScheduledEpisode</class>
     <class>com.acme.gwt.data.TvShow</class>
     <class>com.acme.gwt.data.TvViewer</class>
-
     <properties>
       <!--<property name="openjpa.LockManager"-->
                 <!--value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
@@ -21,23 +20,21 @@
       <!--<property name="openjpa.Log" value="DefaultLevel=TRACE"/>-->
 
          <!--hsql-->
-      <property name="openjpa.jdbc.DBDictionary"
-                value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>
-      <property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver"/>
-      <property name="openjpa.ConnectionURL" value="jdbc:hsqldb:mem:tvgtest"/>
-      <property name="openjpa.ConnectionUserName" value="sa"/>
-      <property name="openjpa.ConnectionPassword" value=""/>
+      <!--<property name="openjpa.jdbc.DBDictionary"-->
+                <!--value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>-->
+      <!--<property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver"/>-->
+      <!--<property name="openjpa.ConnectionURL" value="jdbc:hsqldb:mem:tvgtest"/>-->
+      <!--<property name="openjpa.ConnectionUserName" value="sa"/>-->
+      <!--<property name="openjpa.ConnectionPassword" value=""/>-->
 
 
 
       <!--h2-->
-      <!--<property name="openjpa.jdbc.DBDictionary"-->
-                <!--value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>-->
-      <!--<property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>-->
-      <!--<property name="openjpa.ConnectionURL"-->
-                <!--value="jdbc:h2:mem:tvgtest;DB_CLOSE_DELAY=-1"/>-->
-      <!--<property name="openjpa.ConnectionUserName" value="sa"/>-->
-      <!--<property name="openjpa.ConnectionPassword" value=""/>-->
+      <property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
+      <property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>
+      <property name="openjpa.ConnectionURL" value="jdbc:h2:mem:tvgtest2;DB_CLOSE_DELAY=-1"/>
+      <property name="openjpa.ConnectionUserName" value="sa"/>
+      <property name="openjpa.ConnectionPassword" value=""/>
 
 
       <!--mysql-->

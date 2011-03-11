@@ -5,6 +5,7 @@ import javax.persistence.Persistence;
 
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
+import com.acme.gwt.shared.defs.Geo;
 import com.thoughtworks.xstream.XStream;
 import org.apache.openjpa.persistence.OpenJPAEntityManager;
 
@@ -36,6 +37,7 @@ public class Bootstrap {
       tvViewer.setEmail("you@example.com");
       tvViewer.setDigest("sa");
       tvViewer.setSalt("unused");
+      tvViewer.setGeo(Geo.CALIFORNIA);
 
       em.persist(tvViewer);
 

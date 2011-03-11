@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,7 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Version;
 
 import com.acme.gwt.server.TvGuideService;
+import com.acme.gwt.shared.defs.Geo;
 
 
 /**
@@ -29,6 +32,7 @@ public class TvViewer implements HasVersionAndId {
 
   static final String SIMPLE_AUTH = "simpleAuth";
   private Long id;
+  private Geo geo;
 
 
   @Id
@@ -104,17 +108,17 @@ public class TvViewer implements HasVersionAndId {
   public void setSalt(String salt) {
     this.salt = salt;
   }
-//
-//
-//  @Enumerated(EnumType.STRING)
-//  public Geo getGeo() {
-//    return geo;
-//  }
-//
-//
-//  public void setGeo(Geo geo) {
-//    this.geo = geo;
-//  }
+
+
+  @Enumerated(EnumType.STRING)
+  public Geo getGeo() {
+    return geo;
+  }
+
+
+  public void setGeo(Geo geo) {
+    this.geo = geo;
+  }
 
   // todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
