@@ -26,6 +26,14 @@ import com.google.inject.Injector;
  * @author colin
  */
 public class DataLoader {
+
+
+//  { /*one-time use of these statements to entice intellij
+// to add maven deps, just uncomment*/
+//    org.apache.openjpa.jdbc.sql.H2Dictionary h2;
+//    com.mysql.jdbc.Driver mysql;
+//  }
+
   @Inject
   Injector injector;
 
