@@ -16,7 +16,6 @@
  */
 package com.acme.gwt.server;
 
-import com.acme.gwt.data.DataLoader;
 import com.google.inject.AbstractModule;
 
 /**
@@ -26,8 +25,13 @@ import com.google.inject.AbstractModule;
 public class TvGuideServiceModule extends AbstractModule {
 	@Override
 	protected void configure() {
-		bind(TvGuideService.class);
-		bind(DataLoader.class).to(DataLoader.class);
+//		bind(TvGuideService.class);
+/*1) Binding points to itself.
+  at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:30)
+	*/
+ /*   bind(DataLoader$.class).to(DataLoader$.class);      1) Binding points to itself.
+  at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:33)
+*/
 	}
 
 }

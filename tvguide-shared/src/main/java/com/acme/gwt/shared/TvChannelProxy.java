@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,31 +16,51 @@
  */
 package com.acme.gwt.shared;
 
+import java.util.Date;
+import java.util.List;
+
+import com.acme.gwt.data.TvChannel;
+import com.acme.gwt.server.InjectingLocator;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.EntityProxyId;
+import com.google.gwt.requestfactory.shared.InstanceRequest;
+import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
  * Proxy object for a tv channel, with options to provide a name, icon/symbol, and channel number.
  * Number is almost certainly based on particular user details, as channels can have different
  * mappings through different providers and in different areas.
- * 
- * Channel objects do not themselves contain more data, at least on the client, as there could be
+ * <p/>
+ * TvChannel objects do not themselves contain more data, at least on the client, as there could be
  * a very large amount of data that would need to either be included, or not. As such, showtimes and
  * shows are made available through different requests, and possibly should be cached on the client.
- * 
- * @author colin
  *
+ * @author colin
  */
-public interface ChannelProxy extends EntityProxy {
-	String getName();
-	void setName(String name);
+public
+@ProxyFor(value = TvChannel.class, locator = InjectingLocator.class)
+interface TvChannelProxy extends EntityProxy {
+  String getName();
 
-	String getIcon();
-	void setIcon(String icon);
+  void setName(String name);
 
-	int getChannelNumber();
-	void setChannelNumber(int channelNum);
+  String getIcon();
+
+  void setIcon(String icon);
+
+  Integer getChannelNumber();
+
+  void setChannelNumber(Integer channelNum);
 
 
-	public EntityProxyId<ChannelProxy> stableId();
+  public EntityProxyId<TvChannelProxy> stableId();
+
+  @Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
+  public interface TvChannelRequest {
+    InstanceRequest<TvChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+
+  }
 }
+

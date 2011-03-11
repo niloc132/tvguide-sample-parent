@@ -29,7 +29,8 @@ public class TvGuideInjectorProvider extends GuiceServletContextListener {
 	protected Injector getInjector() {
 		return Guice.createInjector(
 				new TvGuideServiceModule(),
-				new GwtWebModule());
+				new GwtWebModule()
+        );
 	}
 
 }

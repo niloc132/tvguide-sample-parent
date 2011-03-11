@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,25 +16,32 @@
  */
 package com.acme.gwt.shared;
 
+import com.acme.gwt.data.TvScheduledEpisode;
+import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.ProxyFor;
 
 /**
- * Maps a Channel,AirTime tuple to a single episode, as only one episode can be shown at a given
+ * Maps a TvChannel,TvAirTime tuple to a single episode, as only one episode can be shown at a given
  * time on a given channel.
- * 
- * Okay, a given User,Channel, since the same Channel can have different times in different zones.
- * But I think that a Channel object is already local to the given user, so User is assumed.
- * 
- * @author colin
+ * <p/>
+ * Okay, a given User,TvChannel, since the same TvChannel can have different times in different zones.
+ * But I think that a TvChannel object is already local to the given user, so User is assumed.
  *
+ * @author colin
  */
-public interface ScheduledEpisodeProxy extends EntityProxy {
-	void setEpisode(EpisodeProxy show);
-	EpisodeProxy getEpisode();
+public
+@ProxyFor(value = TvScheduledEpisode.class, locator = InjectingLocator.class)
+interface ScheduledEpisodeProxy extends EntityProxy {
+  void setTvEpisode(EpisodeProxy show);
 
-	void setChannel(ChannelProxy channel);
-	ChannelProxy getChannel();
+  EpisodeProxy getTvEpisode();
 
-	void setBlock(AirTimeProxy block);
-	AirTimeProxy getBlock();
+  TvChannelProxy getTvChannel();
+
+  void setTvChannel(TvChannelProxy tvChannel);
+
+  AirTimeProxy getBlock();
+
+  void setBlock(AirTimeProxy block);
 }

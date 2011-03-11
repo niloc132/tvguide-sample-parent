@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -18,19 +18,25 @@ package com.acme.gwt.shared;
 
 import java.util.Date;
 
+import com.acme.gwt.data.TvAirTime;
+import com.acme.gwt.server.InjectingLocator;
+import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.ValueProxy;
 
 /**
  * Represents a block of time that something can air - start time and duration in minutes. There is
  * probably a neater way to represent this, but I can't think of it right now.
- * 
- * @author colin
  *
+ * @author colin
  */
-public interface AirTimeProxy extends ValueProxy {
-	void setStartDate(Date date);
-	Date getStartDate();
+public
+@ProxyFor(value = TvAirTime.class,locator = InjectingLocator.class)
+interface AirTimeProxy extends ValueProxy {
+  Date getStartDate();
+  void setStartDate(Date date);
 
-	void setDuration(int duration);
-	int getDuration();
+
+  Integer getDuration();
+  void setDuration(Integer duration);
+
 }

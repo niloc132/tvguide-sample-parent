@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,28 +16,35 @@
  */
 package com.acme.gwt.shared;
 
+import com.acme.gwt.data.TvEpisode;
+import com.acme.gwt.server.InjectingLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.ProxyFor;
 
 /**
- * An individual episode of a ShowProxy. Contains a reference to the show that it belongs to, and to
+ * An individual episode of a TvShowProxy. Contains a reference to the show that it belongs to, and to
  * its place in that show, as well as a brief name and description of the episode.
- * 
+ *
+ * @author colin
  * @todo Do we want a Season object as well? Only utility I could see in that is to provide meta-
  * data to a List of Episodes.
- * 
- * @author colin
- *
  */
-public interface EpisodeProxy extends EntityProxy {
-	ShowProxy getShow();
-	void setShow(ShowProxy show);
+public
+@ProxyFor(value = TvEpisode.class,locator = InjectingLocator.class)
+interface EpisodeProxy extends EntityProxy {
+  TvShowProxy getTvShow();
 
-	String getName();
-	void setName(String name);
+  void setTvShow(TvShowProxy tvShow);
 
-	int getSeason();
-	void setSeason(int num);
+  String getName();
 
-	int getEpisodeNumber();
-	void setEpisodeNumber(int num);
+  void setName(String name);
+
+  Integer getSeason();
+
+  void setSeason(Integer num);
+
+  Integer getEpisodeNumber();
+
+  void setEpisodeNumber(Integer num);
 }

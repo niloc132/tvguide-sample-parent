@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,20 +16,39 @@
  */
 package com.acme.gwt.shared;
 
+import java.util.Date;
+import java.util.List;
+
+import com.acme.gwt.data.TvShow;
+import com.acme.gwt.server.InjectingLocator;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.InstanceRequest;
+import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
  * First draft at representing an entire show. Does not drag the full list of episodes and seasons
  * along with it, as this could be quite extensive, and does not indicate channels or show times, as
  * these could vary.
- * 
- * @author colin
  *
+ * @author colin
  */
-public interface ShowProxy extends EntityProxy {
-	String getName();
-	void setName(String name);
 
-	String getDescription();
-	void setDescription(String desc);
+@ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
+public interface TvShowProxy extends EntityProxy {
+  String getName();
+
+  void setName(String name);
+
+  String getDescription();
+
+  void setDescription(String desc);
+
+  @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
+  public interface TvShowRequest {
+    InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+
+  }
 }
+

@@ -3,6 +3,6 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 	<g:HTMLPanel>
-		<c:CellTable ui:field="list"></c:CellTable>
+		<c:CellTable ui:field="list"/>
 	</g:HTMLPanel>
 </ui:UiBinder> 

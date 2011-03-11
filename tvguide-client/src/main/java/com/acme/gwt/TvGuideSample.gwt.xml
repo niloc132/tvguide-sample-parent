@@ -18,7 +18,8 @@
 	
 	<!-- Reference the RF stuff in the shared project -->
 	<inherits name="com.acme.gwt.TvGuideEntities"/>
-	
-	<!-- Start the app with this EntryPoint -->
+  <inherits name="com.colinalworth.celltable.columns.ColumnsCreator"/>
+
+  <!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>
 </module>

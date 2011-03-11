@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -24,36 +24,40 @@ import com.google.inject.Inject;
 /**
  * Simple Locator for entity types, with basic data creation and finding pass along to another
  * service, provided by the server module
- * 
- * @author colin
  *
+ * @author colin
  */
 public class InjectingLocator<T extends HasVersionAndId> extends Locator<T, Long> {
-	@Inject DataLoader data;
-	@Override
-	public T create(Class<? extends T> clazz) {
-		return data.create(clazz);
-	}
-	@Override
-	public T find(Class<? extends T> clazz, Long id) {
-		return data.find(clazz, id);
-	}
+  @Inject
+  DataLoader data;
 
-	@Override
-	public Class<T> getDomainType() {
-		throw new UnsupportedOperationException();//unused, and if it becomes used, we're in trouble
-	}
+  @Override
+  public T create(Class<? extends T> clazz) {
+    return data.create(clazz);
+  }
 
-	@Override
-	public Long getId(T domainObject) {
-		return domainObject.getId();
-	}
-	@Override
-	public Class<Long> getIdType() {
-		return Long.class;
-	}
-	@Override
-	public Object getVersion(T domainObject) {
-		return domainObject.getVersion();
-	}
+  @Override
+  public T find(Class<? extends T> clazz, Long id) {
+    return data.find(clazz, id);
+  }
+
+  @Override
+  public Class<T> getDomainType() {
+    throw new UnsupportedOperationException();//unused, and if it becomes used, we're in trouble
+  }
+
+  @Override
+  public Long getId(T domainObject) {
+    return domainObject.getId();
+  }
+
+  @Override
+  public Class<Long> getIdType() {
+    return Long.class;
+  }
+
+  @Override
+  public Object getVersion(T domainObject) {
+    return domainObject.getVersion();
+  }
 }

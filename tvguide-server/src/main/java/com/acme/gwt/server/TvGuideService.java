@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,14 +16,93 @@
  */
 package com.acme.gwt.server;
 
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.Callable;
+import javax.persistence.EntityManager;
+
+import com.acme.gwt.data.TvChannel;
+import com.acme.gwt.data.TvScheduledEpisode;
+import com.acme.gwt.data.TvShow;
+import com.acme.gwt.data.TvViewer;
+import com.google.inject.Inject;
+
 /**
- * Represents basic operations that can be performed by external users of this server. 
+ * Represents basic operations that can be performed by external users of this server.
  * Authentication and authorization should occur at this level, with data provided before the call
  * gets here.
- * 
- * @author colin
  *
+ * @author colin
  */
 public class TvGuideService {
 
+
+  static List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(TvShow tvShow, Date begin, Date end) {
+    return null;  //todo: call the appropriate finder
+  }
+
+  static List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(TvChannel tvChannel, Date begin, Date end) {
+    return null;  //todo: call the appropriate finder
+  }
+
+  static List<TvShow> getFavoriteShows() {
+    TvViewer call = null;
+    try {
+      call = new TvViewerCallable().call();
+    } catch (Exception e) {
+      e.printStackTrace();  //todo: verify for a fit
+    }
+    return call.getFavorites();
+  }
+
+  static void setFavoriteShows(List<TvShow> favoriteTvShows) {
+    try {
+      TvViewer call = new TvViewerCallable().call();
+      call.setFavorites(favoriteTvShows);
+    } catch (Exception e) {
+      e.printStackTrace();  //todo: verify for a fit
+    }
+  }
+
+  static public List<TvChannel> getAllChannels() {
+    try {
+      return (List<TvChannel>) new Callable() {
+        public Object call() throws Exception {
+          try {
+            //todo: make current user's geo matter to this list
+            return new Em().call().createQuery("select Channel from TvChannel Channel", TvChannel.class).getResultList();
+          } catch (Exception e) {
+            e.printStackTrace();  //todo: verify for a fit
+          }
+          return null;
+        }
+      }.call();
+    } catch (Exception e) {
+      e.printStackTrace();  //todo: verify for a fit
+    }
+    return null;
+  }
+
+  public static class Em implements Callable<EntityManager> {
+
+    @Inject
+    EntityManager entityManager;
+
+    @Override
+    public EntityManager call() throws Exception {
+      return entityManager;
+    }
+  }
+
+  static class TvViewerCallable implements Callable<TvViewer> {
+
+    @Inject
+    TvViewer currentTvViewerFromSession;
+
+    @Override
+    public TvViewer call() throws Exception {
+      return currentTvViewerFromSession;
+    }
+
+  }
 }

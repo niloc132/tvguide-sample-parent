@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -18,7 +18,7 @@ package com.acme.gwt.client.widget;
 
 import java.util.List;
 
-import com.acme.gwt.shared.ShowProxy;
+import com.acme.gwt.shared.TvShowProxy;
 import com.colinalworth.celltable.columns.client.Columns;
 import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.google.gwt.cell.client.TextCell;
@@ -31,33 +31,33 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
+ * @author colin
  * @TODO consider pushing the basics of this to a shows list widget, and wrapping it for use for
  * Favorites
- * 
- * @author colin
- *
  */
-public class FavoriteShowsListWidget extends Composite implements Editor<List<ShowProxy>> {
-	private static Binder uiBinder = GWT.create(Binder.class);
+public class FavoriteShowsListWidget extends Composite implements Editor<List<TvShowProxy>> {
+  private static Binder uiBinder = GWT.create(Binder.class);
 
-	interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {}
+  interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {
+  }
 
-	interface ShowColumns extends Columns<ShowProxy> {
-		TextCell name();
-		TextCell description();
-	}
+  interface ShowColumns extends Columns<TvShowProxy> {
+    TextCell name();
 
-	private ShowColumns columns = GWT.create(ShowColumns.class);
-	@Path("") HasDataFlushableEditor<ShowProxy> listEditor;
-	@UiField(provided=true) CellTable<ShowProxy> list = new CellTable<ShowProxy>();
+    TextCell description();
+  }
 
-	public FavoriteShowsListWidget() {
-		listEditor = HasDataFlushableEditor.of(list);
+  private ShowColumns columns = GWT.create(ShowColumns.class);
+  @Path("")
+  HasDataFlushableEditor<TvShowProxy> listEditor;
+  @UiField(provided = true)
+  CellTable<TvShowProxy> list = new CellTable<TvShowProxy>();
 
-		columns.configure(list, listEditor);
+  public FavoriteShowsListWidget() {
+    listEditor = HasDataFlushableEditor.of(list);
 
-		initWidget(uiBinder.createAndBindUi(this));
-	}
+    columns.configure(list, listEditor);
 
-
+    initWidget(uiBinder.createAndBindUi(this));
+  }
 }
