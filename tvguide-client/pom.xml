@@ -1,114 +1,205 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>tvguide-sample-parent</artifactId>
-		<groupId>com.acme.gwt</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>tvguide-client</artifactId>
-	<packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>tvguide-sample-parent</artifactId>
+    <groupId>com.acme.gwt</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>tvguide-client</artifactId>
+  <packaging>war</packaging>
 
-	<dependencies>
-		<!-- Google Web Toolkit -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
-			<scope>compile</scope>
+  <dependencies>
+    <!-- Google Web Toolkit -->
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwt.version}</version>
+      <scope>compile</scope>
     </dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<!-- GWT Dependency Injection -->
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>${guice.version}</version>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- GWT Dependency Injection -->
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>${guice.version}</version>
 
     </dependency>
-		<dependency>
-			<groupId>com.google.gwt.inject</groupId>
-			<artifactId>gin</artifactId>
-			<version>1.5.0</version>
-		</dependency>
+    <dependency>
+      <groupId>com.google.gwt.inject</groupId>
+      <artifactId>gin</artifactId>
+      <version>1.5.0</version>
+    </dependency>
 
-		<!-- Server and shared details -->
-		<dependency>
-			<groupId>${parent.groupId}</groupId>
-			<artifactId>tvguide-shared</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${parent.groupId}</groupId>
-			<artifactId>tvguide-server</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		
-		<!-- CellTable Tools -->
-		<dependency>
-			<groupId>com.colinalworth</groupId>
-			<artifactId>celltable-tools</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<!-- GWT Maven Plugin -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<version>${gwt.plugin.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>com.google.gwt</groupId>
-						<artifactId>gwt-user</artifactId>
-						<version>${gwt.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>com.google.gwt</groupId>
-						<artifactId>gwt-dev</artifactId>
-						<version>${gwt.version}</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<!-- <goal>test</goal> <goal>i18n</goal> <goal>generateAsync</goal> -->
-						</goals>
-					</execution>
-				</executions>
-				<!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
-					documentation at codehaus.org -->
-				<configuration>
-					<runTarget>tvguide.html</runTarget>
-					<hostedWebapp>${webappDirectory}</hostedWebapp>
-					<!-- i18nMessagesBundle>com.acme.gwt.client.Messages</i18nMessagesBundle -->
-				</configuration>
-			</plugin>
+    <!-- Server and shared details -->
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>tvguide-shared</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>tvguide-server</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
 
-			<!-- Copy static web files before executing gwt:run -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>exploded</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<webappDirectory>${webappDirectory}</webappDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- CellTable Tools -->
+    <dependency>
+      <groupId>com.colinalworth</groupId>
+      <artifactId>celltable-tools</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!-- GWT Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>${gwt.plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <!-- <goal>test</goal> <goal>i18n</goal> <goal>generateAsync</goal> -->
+            </goals>
+          </execution>
+        </executions>
+        <!-- Plugin configuration. There are many available options, see gwt-maven-plugin
+              documentation at codehaus.org -->
+        <configuration>
+          <runTarget>tvguide.html</runTarget>
+          <hostedWebapp>${webappDirectory}</hostedWebapp>
+          <!-- i18nMessagesBundle>com.acme.gwt.client.Messages</i18nMessagesBundle -->
+        </configuration>
+      </plugin>
+
+      <!-- Copy static web files before executing gwt:run -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>exploded</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <webappDirectory>${webappDirectory}</webappDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1-beta-1</version>
+        <!--
+            <configuration> <webXml>target/web.xml</webXml> </configuration>
+        -->
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <!--<plugin>-->
+      <!--<groupId>org.codehaus.mojo</groupId>-->
+      <!--<artifactId>aspectj-maven-plugin</artifactId>-->
+      <!--<version>1.0</version>-->
+      <!--<dependencies>-->
+      <!--&lt;!&ndash; NB: You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) &ndash;&gt;-->
+      <!--<dependency>-->
+      <!--<groupId>org.aspectj</groupId>-->
+      <!--<artifactId>aspectjrt</artifactId>-->
+      <!--<version>${aspectj.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+      <!--<groupId>org.aspectj</groupId>-->
+      <!--<artifactId>aspectjtools</artifactId>-->
+      <!--<version>${aspectj.version}</version>-->
+      <!--</dependency>-->
+      <!--</dependencies>-->
+      <!--<executions>-->
+      <!--<execution>-->
+      <!--<goals>-->
+      <!--<goal>compile</goal>-->
+      <!--<goal>test-compile</goal>-->
+      <!--</goals>-->
+      <!--</execution>-->
+      <!--</executions>-->
+      <!--<configuration>-->
+      <!--<outxml>true</outxml>-->
+      <!--<aspectLibraries>-->
+      <!--<aspectLibrary>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-aspects</artifactId>-->
+      <!--</aspectLibrary>-->
+      <!--</aspectLibraries>-->
+      <!--<source>1.6</source>-->
+      <!--<target>1.6</target>-->
+      <!--</configuration>-->
+      <!--</plugin>-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.4.2</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <excludes>
+            <exclude>**/*_Roo_*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-5</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+    </plugins>
+    <outputDirectory>
+      ${project.build.directory}/${project.build.finalName}/WEB-INF/classes
+    </outputDirectory>
+  </build>
 </project>

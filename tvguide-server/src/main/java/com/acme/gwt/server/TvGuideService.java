@@ -19,6 +19,7 @@ package com.acme.gwt.server;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.Channel;
@@ -36,6 +37,7 @@ import com.google.inject.Inject;
  */
 public class TvGuideService {
 
+
   static List<ScheduledEpisode> findEpisodesByShowAndDateBetween(Show show, Date begin, Date end) {
     return null;  //todo: call the appropriate finder
   }
@@ -44,7 +46,7 @@ public class TvGuideService {
     return null;  //todo: call the appropriate finder
   }
 
-  List<Show> getFavoriteShows() {
+ static List<Show> getFavoriteShows() {
     ViewerProfile call = null;
     try {
       call = new ViewerProfileCallable().call();
@@ -54,9 +56,7 @@ public class TvGuideService {
     return call.getFavoriteShows();
   }
 
-  ;
-
-  void setFavoriteShows(List<Show> favoriteShows) {
+ static  void setFavoriteShows(List<Show> favoriteShows) {
     try {
       ViewerProfile call = new ViewerProfileCallable().call();
       call.setFavoriteShows(favoriteShows);

@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,26 +16,52 @@
  */
 package com.acme.gwt.client;
 
-import java.util.List;
 
-import com.acme.gwt.shared.ChannelProxy;
-import com.acme.gwt.shared.ShowProxy;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.requestfactory.shared.Request;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * @author colin
- *
  */
 public class TvGuide implements EntryPoint {
-	public void onModuleLoad() {
-		Window.alert("Yarp.");
-	}
-  Request<List<ShowProxy>> getFavoriteShows() {
-    return null;  //todo: review for a fit
+  public void onModuleLoad() {
+    new DialogBox() {{
+      final TextBox textBox = new TextBox() {{
+        setText("you@example.com");
+      }};
+      final PasswordTextBox passwordTextBox = new PasswordTextBox();
+      setText("please log in");
+      setWidget(new VerticalPanel() {{
+        add(new HorizontalPanel() {{
+          add((IsWidget) new Label("email"));
+          add((IsWidget) textBox);
+        }});
+        add(new HorizontalPanel() {{
+          add((IsWidget) new Label("Password"));
+          add((IsWidget) passwordTextBox);
+        }});
+        add(new Button("OK!!") {{
+          addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+              hide();
+            }
+          });
+        }});
+      }});
+      center();
+      show();
+
+    }};
   }
-  Request<List<ChannelProxy>> getAllChannels() {
-    return null;  //todo: review for a fit
-  }
+
 }
