@@ -17,6 +17,13 @@
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Need to depend on server to get access to the services we can proxy to -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
