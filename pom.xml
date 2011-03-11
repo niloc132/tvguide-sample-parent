@@ -11,8 +11,10 @@
 
 		<gwt.version>2.2.0</gwt.version>
 		<gwt.plugin.version>2.2.0</gwt.plugin.version>
-
 		<guice.version>3.0-rc2</guice.version>
+
+    <!--2.2.0-SNAPSHOT is an option also-->
+    <openjpa.version>2.1.0</openjpa.version>
 	</properties>
 
 	<dependencies>

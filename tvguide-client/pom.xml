@@ -6,9 +6,7 @@
 		<groupId>com.acme.gwt</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.acme.gwt</groupId>
 	<artifactId>tvguide-client</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -18,7 +16,7 @@
 			<artifactId>gwt-servlet</artifactId>
 			<version>${gwt.version}</version>
 			<scope>compile</scope>
-		</dependency>
+    </dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
@@ -31,7 +29,8 @@
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>${guice.version}</version>
-		</dependency>
+
+    </dependency>
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
@@ -40,14 +39,14 @@
 
 		<!-- Server and shared details -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>${parent.groupId}</groupId>
 			<artifactId>tvguide-shared</artifactId>
-			<version>${project.version}</version>
+			<version>${parent.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>${parent.groupId}</groupId>
 			<artifactId>tvguide-server</artifactId>
-			<version>${project.version}</version>
+			<version>${parent.version}</version>
 		</dependency>
 		
 		<!-- CellTable Tools -->

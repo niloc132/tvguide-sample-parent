@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -22,17 +22,18 @@ import com.google.inject.Injector;
 /**
  * Simple window into the data store, whatever that is. This should be made into an interface, with
  * a proper impl somewhere.
- * 
- * @author colin
  *
+ * @author colin
  */
 public class DataLoader {
-	@Inject Injector injector;
-	public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
-		return injector.getInstance(clazz);//TODO
-	}
+  @Inject
+  Injector injector;
 
-	public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
-		return null;//TODO
-	}
+  public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
+    return injector.getInstance(clazz);//TODO
+  }
+
+  public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
+    return null;//TODO
+  }
 }

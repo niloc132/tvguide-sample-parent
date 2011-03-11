@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -18,11 +18,11 @@ package com.acme.gwt.data;
 
 /**
  * Simple interface with basic properties of any object in the data store.
- * 
- * @author colin
  *
+ * @author colin
  */
 public interface HasVersionAndId {
-	Long getId();
-	Long getVersion();
+  Long getId();
+
+  Integer getVersion();
 }
