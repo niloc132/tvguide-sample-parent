@@ -44,10 +44,11 @@ public interface TvShowProxy extends EntityProxy {
   String getDescription();
 
   void setDescription(String desc);
+
+  @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
+  public interface TvShowRequest {
+    InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+
+  }
 }
 
-@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
-interface TvShowRequest {
-  InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
-
-}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingServiceLocator;
+import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.Service;
@@ -40,14 +41,15 @@ public interface TvViewerProxy extends EntityProxy {
   String getSalt();
 
   void setSalt(String salt);
-/*
+
   Geo getGeo();
 
-  void setGeo(Geo geo);*/
+  void setGeo(Geo geo);
+
+  @Service(value = TvViewer.class, locator = InjectingServiceLocator.class)
+  public interface TvViewerRequest extends Request<TvViewerProxy> {
+    //replace with controller
+    Request<TvViewerProxy> authenticate(String email, String digest);
+  }
 }
 
-@Service(value = TvViewer.class, locator = InjectingServiceLocator.class)
-interface TvViewerRequest extends Request<TvViewerProxy> {
-  //replace with controller
-  Request<TvViewerProxy> authenticate(String email, String digest);
-}

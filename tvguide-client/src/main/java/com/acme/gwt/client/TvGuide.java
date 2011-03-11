@@ -17,9 +17,14 @@
 package com.acme.gwt.client;
 
 
+import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -33,9 +38,24 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * @author colin
  */
 public class TvGuide implements EntryPoint {
+  public MyRequestFactory rf;
+  public EventBus eventBus;
+  private static TvGuide instance;
+
+  {
+    instance = this;
+    eventBus = GWT.create(SimpleEventBus.class);
+    rf = GWT.create(MyRequestFactory.class);
+    rf.initialize(eventBus);
+  }
+
+  static TvGuide getInstance() {
+    return instance;
+  }
+
   public void onModuleLoad() {
     new DialogBox() {{
-      final TextBox textBox = new TextBox() {{
+      final TextBox email = new TextBox() {{
         setText("you@example.com");
       }};
       final PasswordTextBox passwordTextBox = new PasswordTextBox();
@@ -43,7 +63,7 @@ public class TvGuide implements EntryPoint {
       setWidget(new VerticalPanel() {{
         add(new HorizontalPanel() {{
           add((IsWidget) new Label("email"));
-          add((IsWidget) textBox);
+          add((IsWidget) email);
         }});
         add(new HorizontalPanel() {{
           add((IsWidget) new Label("Password"));
@@ -53,6 +73,10 @@ public class TvGuide implements EntryPoint {
           addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
+              Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), passwordTextBox.getText());
+              authenticate.with("geo", "name",
+                  "favoriteShows.name", "favoriteShows.description"
+              ).fire(new GateKeeper());
               hide();
             }
           });

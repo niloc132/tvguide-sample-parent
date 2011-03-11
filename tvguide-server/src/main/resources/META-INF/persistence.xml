@@ -13,26 +13,27 @@
     <class>com.acme.gwt.data.TvViewer</class>
     <properties>
       <!--<property name="openjpa.LockManager"-->
-                <!--value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
+      <!--value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
       <!--value="buildSchema" to runtime forward map the DDL SQL; value="validate" makes no changes to the database -->
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
       <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
       <!--<property name="openjpa.Log" value="DefaultLevel=TRACE"/>-->
 
-         <!--hsql-->
+      <!--hsql-->
       <!--<property name="openjpa.jdbc.DBDictionary"-->
-                <!--value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>-->
+      <!--value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>-->
       <!--<property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver"/>-->
       <!--<property name="openjpa.ConnectionURL" value="jdbc:hsqldb:mem:tvgtest"/>-->
       <!--<property name="openjpa.ConnectionUserName" value="sa"/>-->
       <!--<property name="openjpa.ConnectionPassword" value=""/>-->
 
 
-
       <!--h2-->
-      <property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
+      <property name="openjpa.jdbc.DBDictionary"
+                value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
       <property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>
-      <property name="openjpa.ConnectionURL" value="jdbc:h2:mem:tvgtest2;DB_CLOSE_DELAY=-1"/>
+      <property name="openjpa.ConnectionURL"
+                value="jdbc:h2:mem:tvgtest;DB_CLOSE_DELAY=-1"/>
       <property name="openjpa.ConnectionUserName" value="sa"/>
       <property name="openjpa.ConnectionPassword" value=""/>
 
@@ -46,16 +47,16 @@
 
 
       <!--<property name="openjpa.jdbc.SynchronizeMappings"-->
-                <!--value="buildSchema(ForeignKeys=true)"/>-->
+      <!--value="buildSchema(ForeignKeys=true)"/>-->
       <!--<property name="openjpa.Multithreaded" value="true"/>-->
       <property name="openjpa.Log" value="SQL=TRACE,DefaultLevel=TRACE"/>
       <!--<property name="openjpa.jdbc.SchemaFactory"-->
-                <!--value="native(ForeignKeys=true)"/>-->
+      <!--value="native(ForeignKeys=true)"/>-->
       <!--<property name="openjpa.jdbc.MappingDefaults"-->
-                <!--value="ForeignKeyDeleteAction=restrict"/>-->
+      <!--value="ForeignKeyDeleteAction=restrict"/>-->
       <!--<property name="openjpa.DynamicEnhancementAgent" value="true"/>-->
       <!--<property name="openjpa.DetachState"-->
-                <!--value="all(DetachedStateField=transient)"/>-->
+      <!--value="all(DetachedStateField=transient)"/>-->
       <!--<property name="openjpa.DynamicDataStructs" value="true"/>-->
     </properties>
   </persistence-unit>

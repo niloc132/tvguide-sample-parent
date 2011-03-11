@@ -56,10 +56,11 @@ interface TvChannelProxy extends EntityProxy {
 
 
   public EntityProxyId<TvChannelProxy> stableId();
+
+  @Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
+  public interface TvChannelRequest {
+    InstanceRequest<TvChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+
+  }
 }
 
-@Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
-interface TvChannelRequest {
-  InstanceRequest<TvChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
-
-}
