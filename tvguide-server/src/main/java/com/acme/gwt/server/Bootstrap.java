@@ -35,7 +35,8 @@ public class Bootstrap {
 
 
       tvViewer.setEmail("you@example.com");
-      tvViewer.setDigest("sa");
+
+      tvViewer.setDigest(com.acme.gwt.shared.util.Md5.md5Hex("sa"));
       tvViewer.setSalt("unused");
       tvViewer.setGeo(Geo.CALIFORNIA);
 
@@ -85,3 +86,4 @@ public class Bootstrap {
   }
 
 }
+

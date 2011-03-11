@@ -18,6 +18,7 @@ package com.acme.gwt.client;
 
 
 import com.acme.gwt.shared.TvViewerProxy;
+import com.acme.gwt.shared.util.Md5;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -55,6 +56,8 @@ public class TvGuide implements EntryPoint {
   }
 
   public void onModuleLoad() {
+    final GateKeeper[] gateKeeper = new GateKeeper[1];
+    gateKeeper[0] = new GateKeeper();
     new DialogBox() {{
       final TextBox email = new TextBox() {{
         setText("you@example.com");
@@ -74,13 +77,16 @@ public class TvGuide implements EntryPoint {
           addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-              Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), passwordTextBox.getText());
+              String text = passwordTextBox.getText();
+              String digest = Md5.md5Hex(text);
+              Request<TvViewerProxy> authenticate = TvGuide.getInstance().rf.reqViewer().authenticate(email.getText(), digest);
               authenticate.with("geo", "name",
                   "favoriteShows.name", "favoriteShows.description"
-              ).to(new GateKeeper()).fire(new Receiver<Void>() {
+              ).to(gateKeeper[0]).fire(new Receiver<Void>() {
                 @Override
                 public void onSuccess(Void response) {
                   hide(); //todo: review for a purpose
+                  removeFromParent();
                 }
               });
             }

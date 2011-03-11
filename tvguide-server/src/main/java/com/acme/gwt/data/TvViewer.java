@@ -125,6 +125,7 @@ public class TvViewer implements HasVersionAndId {
   //handwritten finder
   static TvViewer findTvViewerByEmailAndDigest(String email, String digest) {
     try {
+      //digest is md5'd on client
       return new TvGuideService.Em().call().createQuery("select vp from TvViewer vp where vp.email=:email and vp.digest=:digest", TvViewer.class).setParameter("email", email).setParameter("digest", digest).getSingleResult();
 
     } catch (Exception e) {
