@@ -25,7 +25,7 @@ import com.google.inject.Injector;
  *
  * @author colin
  */
-public class DataLoader {
+public class DataLoader$ {
 
 
 //  { /*one-time use of these statements to entice intellij

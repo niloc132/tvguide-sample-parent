@@ -87,41 +87,25 @@
         <!-- Plugin configuration. There are many available options, see gwt-maven-plugin
               documentation at codehaus.org -->
         <configuration>
-          <runTarget>tvguide.html</runTarget>
-          <hostedWebapp>${webappDirectory}</hostedWebapp>
+          <!--<runTarget>tvguide.html</runTarget>-->
+          <!--<hostedWebapp>${webappDirectory}</hostedWebapp>-->
           <!-- i18nMessagesBundle>com.acme.gwt.client.Messages</i18nMessagesBundle -->
         </configuration>
       </plugin>
-
-      <!-- Copy static web files before executing gwt:run -->
-      <plugin>
+ <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.1.1</version>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>exploded</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <webappDirectory>${webappDirectory}</webappDirectory>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1-beta-1</version>
         <!--
             <configuration> <webXml>target/web.xml</webXml> </configuration>
         -->
       </plugin>
+
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.3.2</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>

@@ -29,7 +29,7 @@ public class TvGuideServiceModule extends AbstractModule {
 /*1) Binding points to itself.
   at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:30)
 	*/
- /*   bind(DataLoader.class).to(DataLoader.class);      1) Binding points to itself.
+ /*   bind(DataLoader$.class).to(DataLoader$.class);      1) Binding points to itself.
   at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:33)
 */
 	}

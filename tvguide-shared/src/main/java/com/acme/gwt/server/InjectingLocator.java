@@ -16,7 +16,7 @@
  */
 package com.acme.gwt.server;
 
-import com.acme.gwt.data.DataLoader;
+import com.acme.gwt.data.DataLoader$;
 import com.acme.gwt.data.HasVersionAndId;
 import com.google.gwt.requestfactory.shared.Locator;
 import com.google.inject.Inject;
@@ -29,7 +29,8 @@ import com.google.inject.Inject;
  *
  */
 public class InjectingLocator<T extends HasVersionAndId> extends Locator<T, Long> {
-	@Inject DataLoader data;
+	@Inject
+  DataLoader$ data;
 	@Override
 	public T create(Class<? extends T> clazz) {
 		return data.create(clazz);
