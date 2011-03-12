@@ -7,6 +7,7 @@ import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
@@ -21,7 +22,6 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 @ProxyFor(value = TvViewer.class, locator = InjectingLocator.class)
 public interface TvViewerProxy extends EntityProxy {
-
   Long getId();
 
   Integer getVersion();
@@ -32,7 +32,7 @@ public interface TvViewerProxy extends EntityProxy {
 
   List<TvShowProxy> getFavorites();
 
-  void setFavorites(List<TvShowProxy> favoriteTvShows);
+  void setFavorites(List<TvShowProxy> favorites);
 
   String getEmail();
 
@@ -49,6 +49,8 @@ public interface TvViewerProxy extends EntityProxy {
   Geo getGeo();
 
   void setGeo(Geo geo);
+
+  public EntityProxyId<TvViewerProxy> stableId();
 
   @Service(value = TvViewer.class, locator = InjectingServiceLocator.class)
   public interface TvViewerRequest extends RequestContext {

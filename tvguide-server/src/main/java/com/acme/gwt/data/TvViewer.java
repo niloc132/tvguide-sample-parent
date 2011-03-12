@@ -121,7 +121,6 @@ public class TvViewer implements HasVersionAndId {
     this.geo = geo;
   }
 
-
   @Inject
   static Provider<EntityManager> emProvider;
   @Inject

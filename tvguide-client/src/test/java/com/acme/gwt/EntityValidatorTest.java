@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 import org.junit.Test;
 
-import com.acme.gwt.shared.SetupRequest;
+import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvChannelProxy.TvChannelRequest;
 import com.acme.gwt.shared.TvGuideRequest;
 import com.acme.gwt.shared.TvShowProxy.TvShowRequest;
@@ -39,37 +39,37 @@ import com.google.gwt.requestfactory.shared.RequestContext;
  */
 public class EntityValidatorTest {
 
-	@Test
-	public void verifyTvGuideRequestAndEntities() {
-		assertIsValidRequestContext(TvGuideRequest.class);
-	}
+  @Test
+  public void verifyTvGuideRequestAndEntities() {
+    assertIsValidRequestContext(TvGuideRequest.class);
+  }
 
-	@Test
-	public void verifySetupRequestAndEntities() {
-		assertIsValidRequestContext(SetupRequest.class);
-	}
+  @Test
+  public void verifySetupRequestAndEntities() {
+    assertIsValidRequestContext(TvSetupRequest.class);
+  }
 
-	@Test
-	public void verifyTvViewerRequestAndEntities() {
-		assertIsValidRequestContext(TvViewerRequest.class);
-	}
+  @Test
+  public void verifyTvViewerRequestAndEntities() {
+    assertIsValidRequestContext(TvViewerRequest.class);
+  }
 
-	@Test
-	public void verifyTvShowRequestAndEntities() {
-		assertIsValidRequestContext(TvShowRequest.class);
-	}
+  @Test
+  public void verifyTvShowRequestAndEntities() {
+    assertIsValidRequestContext(TvShowRequest.class);
+  }
 
-	@Test
-	public void verifyTvChannelRequestAndEntities() {
-		assertIsValidRequestContext(TvChannelRequest.class);
-	}
+  @Test
+  public void verifyTvChannelRequestAndEntities() {
+    assertIsValidRequestContext(TvChannelRequest.class);
+  }
 
 
-	private void assertIsValidRequestContext(Class<? extends RequestContext> clazz) {
-		Logger logger = Logger.getLogger("");
-		RequestFactoryInterfaceValidator v = new RequestFactoryInterfaceValidator(
-				logger, new ClassLoaderLoader(clazz.getClassLoader()));
-		v.validateRequestContext(clazz.getName());
-		assertFalse(v.isPoisoned());
-	}
+  private void assertIsValidRequestContext(Class<? extends RequestContext> clazz) {
+    Logger logger = Logger.getLogger("");
+    RequestFactoryInterfaceValidator v = new RequestFactoryInterfaceValidator(
+        logger, new ClassLoaderLoader(clazz.getClassLoader()));
+    v.validateRequestContext(clazz.getName());
+    assertFalse(v.isPoisoned());
+  }
 }

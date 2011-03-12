@@ -16,10 +16,16 @@
  */
 package com.acme.gwt.shared;
 
+import java.util.List;
+
 import com.acme.gwt.data.TvEpisode;
 import com.acme.gwt.server.InjectingLocator;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.RequestContext;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
  * An individual episode of a TvShowProxy. Contains a reference to the show that it belongs to, and to
@@ -32,20 +38,41 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
  */
 public
 @ProxyFor(value = TvEpisode.class, locator = InjectingLocator.class)
-interface EpisodeProxy extends EntityProxy {
-    TvShowProxy getTvShow();
+interface TvEpisodeProxy extends EntityProxy {
+  Long getId();
 
-    void setTvShow(TvShowProxy tvShow);
+  Integer getVersion();
 
-    String getName();
+  void setId(Long id);
 
-    void setName(String name);
+  void setVersion(Integer version);
 
-    Integer getSeason();
+  TvShowProxy getTvShow();
 
-    void setSeason(Integer num);
+  void setTvShow(TvShowProxy iShow);
 
-    Integer getEpisodeNumber();
+  Integer getSeason();
 
-    void setEpisodeNumber(Integer num);
+  void setSeason(Integer season);
+
+  Integer getEpisodeNumber();
+
+  void setEpisodeNumber(Integer episodeNumber);
+
+  String getName();
+
+  void setName(String name);
+
+  List<TvScheduledEpisodeProxy> getScheduledEpisodes();
+
+  public EntityProxyId<TvEpisodeProxy> stableId();
+
+  void setScheduledEpisodes(List<TvScheduledEpisodeProxy> scheduledEpisodes);
+
+  @Service(value = TvEpisode.class, locator = InjectingServiceLocator.class)
+  public interface TvEpisodeRequest extends RequestContext {
+    //un-implemented on the server, commenting out to stop test failures until it exists
+    //InstanceRequest<TvEpisodeProxy, List<TvScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+
+  }
 }

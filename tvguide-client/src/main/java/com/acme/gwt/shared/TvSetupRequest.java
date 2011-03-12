@@ -16,27 +16,20 @@
  */
 package com.acme.gwt.shared;
 
-import java.util.Date;
-
-import com.acme.gwt.data.TvAirTime;
-import com.acme.gwt.server.InjectingLocator;
-import com.google.gwt.requestfactory.shared.ProxyFor;
-import com.google.gwt.requestfactory.shared.ValueProxy;
+import com.google.gwt.requestfactory.shared.RequestContext;
+import com.google.gwt.requestfactory.shared.Service;
 
 /**
- * Represents a block of time that something can air - start time and duration in minutes. There is
- * probably a neater way to represent this, but I can't think of it right now.
+ * This RequestContext will be used to inform the server about how a particular locale is set up.
+ * This will probably not be used by most users, and it is possible that we want to deny access to
+ * this for certain types of users (i.e. users who are not logged in, or are not admins).
  *
  * @author colin
+ * @todo No methods yet, I am assuming we will get to this
  */
-public
-@ProxyFor(value = TvAirTime.class,locator = InjectingLocator.class)
-interface AirTimeProxy extends ValueProxy {
-  Date getStartDate();
-  void setStartDate(Date date);
+@Service(TvSetupRequest.SetupReqImpl.class)
+public interface TvSetupRequest extends RequestContext {
 
-
-  Integer getDuration();
-  void setDuration(Integer duration);
-
+  public class SetupReqImpl {
+  }
 }
