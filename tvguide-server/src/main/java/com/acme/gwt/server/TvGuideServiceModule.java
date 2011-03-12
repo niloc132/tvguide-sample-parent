@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -25,36 +25,82 @@ import com.acme.gwt.data.DataLoader;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.matcher.Matcher;
+import com.google.inject.matcher.Matchers;
+import com.google.inject.persist.Transactional;
 import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.ServletScopes;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+import static com.google.inject.matcher.Matchers.*;
 
 /**
  * @author colin
- *
  */
 public class TvGuideServiceModule extends AbstractModule {
-	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tvgtest");
-	@Override
-	protected void configure() {
-		bind(TvGuideService.class);
-		bind(DataLoader.class);
+  private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tvgtest");
 
-		bind(AuthenticatedViewerProvider.class).in(ServletScopes.SESSION);
-		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
+  @Override
+  protected void configure() {
+    bind(TvGuideService.class);
+    bind(DataLoader.class);
 
-		//workaround for TvViewer which wants a static reference to a EntityManager provider
-		requestStaticInjection(TvViewer.class);
-	}
+    bind(AuthenticatedViewerProvider.class).in(ServletScopes.SESSION);
+    bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
-	@Provides EntityManagerFactory provideEMF() {
-		return emf;
-	}
+    //workaround for TvViewer which wants a static reference to a EntityManager provider
+    // from the wiki page ...
+    // Methods that return a Request object in the
+    // client interface are implemented as static methods on the entity.
+    // Alternatively, they may be implemented as instance methods in a
+    // service returned by a ServiceLocator.
+    // no longer requires statics, i changed the request to the injectingslo,
+    // i guess -jn
 
-	/**
-	 * Gets an instance of a EntityManager, and will only be called once per servlet Request
-	 * @return
-	 */
-	@Provides @RequestScoped EntityManager provideEntityManager(EntityManagerFactory emf) {
-		return emf.createEntityManager();
-	}
+    requestStaticInjection(TvViewer.class);
+    Matcher<Object> disabled = not(any());
+    bindInterceptor(disabled, Matchers.annotatedWith(Transactional.class), new MethodInterceptor() {
+      @Override
+      public Object invoke(MethodInvocation invocation) throws Throwable {
+        //em.begin()
+        Object ret = null;
+        //ret=invoke()
+        //em.commit()
+        //rollback errors
+        //releaseAll/evictAll/detachAll if necessary
+        //cache and reuse unclosed em
+
+        return ret;  //todo: review for a purpose
+      }
+    });
+
+    bindInterceptor(disabled, Matchers.returns(subclassesOf(EntityManager
+        .class)),
+        new MethodInterceptor() {
+          @Override
+          public Object invoke(MethodInvocation invocation) throws Throwable {
+            //return emf matchign requested value or default
+            // createEmf(null).createEntityManager
+
+            return null;  //todo: review for a purpose
+          }
+        });
+  }
+
+  @Provides
+  EntityManagerFactory provideEMF() {
+    return emf;
+  }
+
+  /**
+   * Gets an instance of a EntityManager, and will only be called once per servlet Request
+   *
+   * @return
+   */
+  @Provides
+  @RequestScoped
+  EntityManager provideEntityManager(EntityManagerFactory emf) {
+    return emf.createEntityManager();
+  }
 }
