@@ -121,14 +121,14 @@
 					<toolProperties>
 						<property>
 							<name>directory</name>
-							<value>target/.otherdirectory</value>
+							<value>target/classes</value>
 						</property>
 					</toolProperties>
 				</configuration>
 				<executions>
 					<execution>
 						<id>enhancer</id>
-						<phase>compile</phase>
+						<phase>process-classes</phase>
 						<goals>
 							<goal>enhance</goal>
 						</goals>

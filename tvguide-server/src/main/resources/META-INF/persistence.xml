@@ -16,7 +16,7 @@
       <!--value="pessimistic(VersionCheckOnReadLock=true,VersionUpdateOnWriteLock=true)"/>-->
       <!--value="buildSchema" to runtime forward map the DDL SQL; value="validate" makes no changes to the database -->
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
-      <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+      <!-- property name="openjpa.RuntimeUnenhancedClasses" value="supported"/ -->
       <!--<property name="openjpa.Log" value="DefaultLevel=TRACE"/>-->
 
       <!--hsql-->
@@ -33,7 +33,7 @@
                 value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
       <property name="openjpa.ConnectionDriverName" value="org.h2.Driver"/>
       <property name="openjpa.ConnectionURL"
-                value="jdbc:h2:mem:tvgtest;DB_CLOSE_DELAY=-1"/>
+                value="jdbc:h2:file:data/tvgtest;DB_CLOSE_DELAY=-1"/>
       <property name="openjpa.ConnectionUserName" value="sa"/>
       <property name="openjpa.ConnectionPassword" value=""/>
 

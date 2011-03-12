@@ -9,7 +9,10 @@
 	<artifactId>tvguide-client</artifactId>
 	<packaging>war</packaging>
 	<name>TvGuide Client: GWT code, and the servlets that allow it to get at the data</name>
-
+	<properties>
+		<gwt.style>OBF</gwt.style>
+		<gwt.draftCompile>false</gwt.draftCompile>
+	</properties>
 	<dependencies>
 		<!-- Google Web Toolkit -->
 		<dependency>
@@ -127,12 +130,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<!-- <configuration> <webXml>target/web.xml</webXml> </configuration> -->
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.5</version>
 				<configuration>
@@ -151,20 +148,51 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-5</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.5</version>
 			</plugin>
 		</plugins>
 		<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
 	</build>
+	<profiles>
+		<profile>
+			<!-- Simplified a few of the default GWT compiler settings in an effort to speed up dev builds -->
+			<id>dev-build</id>
+			<properties>
+				<gwt.style>PRETTY</gwt.style>
+				<gwt.draftCompile>true</gwt.draftCompile>
+				<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
+			</properties>
+		</profile>
+		<profile>
+			<!-- Runs the Bootstrap script, which sets up a sample database for use in the webapp's output dir -->
+			<id>db-init</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>java</executable>
+									<arguments>
+										<argument>-classpath</argument>
+										<classpath/>
+										<argument>com.acme.gwt.server.Bootstrap</argument>
+									</arguments>
+									<workingDirectory>${project.build.directory}/${project.build.finalName}</workingDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
