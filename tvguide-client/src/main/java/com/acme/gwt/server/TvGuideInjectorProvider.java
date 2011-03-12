@@ -26,10 +26,8 @@ import com.google.inject.servlet.GuiceServletContextListener;
 public class TvGuideInjectorProvider extends GuiceServletContextListener {
   @Override
   protected Injector getInjector() {
-    return Guice.createInjector(
-        new TvGuideServiceModule(),
-        new GwtWebModule()
-    );
+    return Guice.createInjector(new TvGuideServiceModule(),
+        new GwtWebModule());
   }
 
 }

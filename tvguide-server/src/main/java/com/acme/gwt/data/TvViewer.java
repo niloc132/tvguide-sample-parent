@@ -30,13 +30,11 @@ import com.google.inject.Provider;
  */
 @Entity
 //@NamedQuery(name = TvViewer.SIMPLE_AUTH, query = "select vp from TvViewer vp where vp.email=:email and vp.digest=:digest")
-
 public class TvViewer implements HasVersionAndId {
 
   static final String SIMPLE_AUTH = "simpleAuth";
   private Long id;
   private Geo geo;
-
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,20 +42,16 @@ public class TvViewer implements HasVersionAndId {
     return id;
   }
 
-
   private Integer version;
-
 
   @Version
   public Integer getVersion() {
     return version;
   }
 
-
   public void setId(Long id) {
     this.id = id;
   }
-
 
   public void setVersion(Integer version) {
     this.version = version;
@@ -68,7 +62,6 @@ public class TvViewer implements HasVersionAndId {
   private String salt;
 
   private List<TvShow> favorites = new LinkedList<TvShow>();
-
 
   @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
   @OrderColumn(name = "rank")
@@ -85,37 +78,30 @@ public class TvViewer implements HasVersionAndId {
     return email;
   }
 
-
   public void setEmail(String email) {
     this.email = email;
   }
-
 
   public String getDigest() {
     return digest;
   }
 
-
   public void setDigest(String digest) {
     this.digest = digest;
   }
-
 
   public String getSalt() {
     return salt;
   }
 
-
   public void setSalt(String salt) {
     this.salt = salt;
   }
-
 
   @Enumerated(EnumType.STRING)
   public Geo getGeo() {
     return geo;
   }
-
 
   public void setGeo(Geo geo) {
     this.geo = geo;
@@ -141,12 +127,18 @@ public class TvViewer implements HasVersionAndId {
   // todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
   //handwritten finder
-  public static TvViewer findTvViewerByEmailAndDigest(String email, String digest) {
+  public static TvViewer findTvViewerByEmailAndDigest(String email,
+                                                      String digest) {
     TvViewer singleResult = null;
     try {
-      singleResult = emProvider.get().createQuery("select vp from TvViewer vp where vp.email=:email and vp.digest=:digest", TvViewer.class).setParameter("email", email).setParameter("digest", digest).getSingleResult();
+      singleResult = emProvider
+          .get()
+          .createQuery(
+              "select vp from TvViewer vp where vp.email=:email and vp.digest=:digest",
+              TvViewer.class).setParameter("email", email)
+          .setParameter("digest", digest).getSingleResult();
     } catch (Exception e) {
-//            e.printStackTrace();  //todo: verify for a fit
+      //            e.printStackTrace();  //todo: verify for a fit
     } finally {
     }
     return singleResult;

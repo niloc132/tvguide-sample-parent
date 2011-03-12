@@ -40,6 +40,7 @@ public class GwtWebModule extends ServletModule {
 
   @Override
   protected void configureServlets() {
+    /**todo: intellij calls this a pointless binding.*/
     bind(InjectableServiceLayerDecorator.class);
     serve(requestFactoryPath).with(RequestFactoryServlet.class);
   }
@@ -47,7 +48,9 @@ public class GwtWebModule extends ServletModule {
   @Inject
   @Singleton
   @Provides
-  RequestFactoryServlet provideRequestFactoryServlet(InjectableServiceLayerDecorator injectableSLD) {
-    return new RequestFactoryServlet(new DefaultExceptionHandler(), injectableSLD);
+  RequestFactoryServlet provideRequestFactoryServlet(
+      InjectableServiceLayerDecorator injectableSLD) {
+    return new RequestFactoryServlet(new DefaultExceptionHandler(),
+        injectableSLD);
   }
 }

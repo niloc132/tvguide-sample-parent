@@ -34,7 +34,6 @@ class TvChannel implements HasVersionAndId {
     return id;
   }
 
-
   private Integer version;
 
   @Version
@@ -53,7 +52,6 @@ class TvChannel implements HasVersionAndId {
   private String name;
   private String icon;
   private Integer channelNumber;
-
 
   public String getName() {
     return name;

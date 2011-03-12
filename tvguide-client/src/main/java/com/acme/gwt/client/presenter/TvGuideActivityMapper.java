@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -25,20 +25,19 @@ import com.google.inject.Inject;
 
 /**
  * @author colin
- *
  */
 public class TvGuideActivityMapper implements ActivityMapper {
-	@Inject TvGuideGinjector injector;
+  @Inject
+  TvGuideGinjector injector;
 
-	public Activity getActivity(Place place) {
-		if (place instanceof WelcomePlace) {
-			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
-			injector.injectPresenter(p);
-			return p;
-		}
+  public Activity getActivity(Place place) {
+    if (place instanceof WelcomePlace) {
+      WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
+      injector.injectPresenter(p);
+      return p;
+    }
 
-
-		return null;
-	}
+    return null;
+  }
 
 }

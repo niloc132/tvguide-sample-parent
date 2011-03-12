@@ -37,9 +37,11 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
   }
 
   @Override
-  public Object createServiceInstance(Method contextMethod, Method domainMethod) {
+  public Object createServiceInstance(Method contextMethod,
+                                      Method domainMethod) {
     // Check if the request needs a service locator
-    Class<? extends ServiceLocator> locatorType = getTop().resolveServiceLocator(contextMethod, domainMethod);
+    Class<? extends ServiceLocator> locatorType = getTop()
+        .resolveServiceLocator(contextMethod, domainMethod);
     assert locatorType != null;
 
     // Inject an instance of the locator itself, and then get an instance from it

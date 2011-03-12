@@ -36,6 +36,3 @@ public class TvAirTime {
     this.duration = duration;
   }
 }
-
-
-

@@ -63,8 +63,7 @@ public class TvShow implements HasVersionAndId {
     this.description = description;
   }
 
-  private
-  List<TvEpisode> episodes;
+  private List<TvEpisode> episodes;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "tvShow", fetch = FetchType.LAZY, orphanRemoval = true)
   @OrderBy("episodeNumber")

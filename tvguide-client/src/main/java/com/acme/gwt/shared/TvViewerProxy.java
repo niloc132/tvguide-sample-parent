@@ -58,4 +58,3 @@ public interface TvViewerProxy extends EntityProxy {
     Request<TvViewerProxy> authenticate(String email, String digest);
   }
 }
-

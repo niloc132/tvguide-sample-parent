@@ -51,7 +51,6 @@ interface TvChannelProxy extends EntityProxy {
 
   void setChannelNumber(Integer channelNum);
 
-
   public EntityProxyId<TvChannelProxy> stableId();
 
   @Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
@@ -61,4 +60,3 @@ interface TvChannelProxy extends EntityProxy {
 
   }
 }
-

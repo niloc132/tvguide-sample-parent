@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -25,17 +25,19 @@ import com.google.inject.Inject;
 
 /**
  * @author colin
- *
  */
-public class WelcomePresenter extends AbstractActivity implements WelcomeView.Presenter {
-	@Inject WelcomeView view;
+public class WelcomePresenter extends AbstractActivity
+    implements
+    WelcomeView.Presenter {
+  @Inject
+  WelcomeView view;
 
-	public WelcomePresenter(WelcomePlace place) {
-		//place is meaningless, this is just a simple view to show
-	}
+  public WelcomePresenter(WelcomePlace place) {
+    //place is meaningless, this is just a simple view to show
+  }
 
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(view);
-	}
+  public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    panel.setWidget(view);
+  }
 
 }

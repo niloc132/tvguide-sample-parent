@@ -35,7 +35,9 @@ import com.google.gwt.user.client.ui.Widget;
  * @TODO consider pushing the basics of this to a shows list widget, and wrapping it for use for
  * Favorites
  */
-public class FavoriteShowsListWidget extends Composite implements Editor<List<TvShowProxy>> {
+public class FavoriteShowsListWidget extends Composite
+    implements
+    Editor<List<TvShowProxy>> {
   private static Binder uiBinder = GWT.create(Binder.class);
 
   interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {

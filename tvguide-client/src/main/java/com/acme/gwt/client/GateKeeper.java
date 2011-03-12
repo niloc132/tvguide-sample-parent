@@ -16,15 +16,17 @@ import com.google.gwt.user.client.AsyncProxy.ConcreteType;
  * To change this template use File | Settings | File Templates.
  */
 public class GateKeeper extends Receiver<TvViewerProxy> {
-	@Override
-	public void onSuccess(TvViewerProxy response) {
-		AppProxy app = GWT.<AppProxy>create(AppProxy.class);
-		app.setUser(response);
-	}
+  @Override
+  public void onSuccess(TvViewerProxy response) {
+    AppProxy app = GWT.<AppProxy>create(AppProxy.class);
+    app.setUser(response);
+  }
 
-	interface App {
-		void setUser(TvViewerProxy user);
-	}
-	@ConcreteType(TvGuideApp.class)
-	interface AppProxy extends AsyncProxy<App>, App {}
+  interface App {
+    void setUser(TvViewerProxy user);
+  }
+
+  @ConcreteType(TvGuideApp.class)
+  interface AppProxy extends AsyncProxy<App>, App {
+  }
 }

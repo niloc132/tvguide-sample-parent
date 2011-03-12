@@ -27,7 +27,9 @@ import com.google.inject.Inject;
  *
  * @author colin
  */
-public class InjectingLocator<T extends HasVersionAndId> extends Locator<T, Long> {
+public class InjectingLocator<T extends HasVersionAndId>
+    extends
+    Locator<T, Long> {
   @Inject
   DataLoader data;
 

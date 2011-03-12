@@ -12,8 +12,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Md5 {
   public static final String HTTP = "http://";
-  public static final String[] GRAVPREFIX = {
-      HTTP, HTTP + "0.", HTTP + "1.", HTTP + "2.", HTTP + "www.",};
+  public static final String[] GRAVPREFIX = {HTTP, HTTP + "0.", HTTP + "1.",
+      HTTP + "2.", HTTP + "www.",};
   public static int c;
 
   public static String md5Hex(String input) {
@@ -38,12 +38,14 @@ public class Md5 {
     }
     return null;
   }
+
   public static <T extends Number> String rgb2hex(final String prefix, T... c) {
-    final StringBuilder sb = prefix == null ? new StringBuilder()
+    final StringBuilder sb = prefix == null
+        ? new StringBuilder()
         : new StringBuilder(prefix);
     for (T b : c) {
-      sb.append(Integer.toHexString(((b.intValue())) & 0xff | 0x100).substring(
-          1));
+      sb.append(Integer.toHexString(((b.intValue())) & 0xff | 0x100)
+          .substring(1));
     }
     return sb.toString();
   }

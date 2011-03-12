@@ -62,7 +62,5 @@ public interface TvShowProxy extends EntityProxy {
   @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
   public interface TvShowRequest extends RequestContext {
 
-
   }
 }
-

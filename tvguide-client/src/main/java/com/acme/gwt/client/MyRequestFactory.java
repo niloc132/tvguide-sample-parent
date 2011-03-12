@@ -6,7 +6,6 @@ import com.acme.gwt.shared.TvShowProxy;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.requestfactory.shared.RequestFactory;
 
-
 /**
  * Created by IntelliJ IDEA.
  * User: jim

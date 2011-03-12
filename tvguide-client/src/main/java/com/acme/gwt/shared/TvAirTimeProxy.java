@@ -36,7 +36,6 @@ interface TvAirTimeProxy extends ValueProxy {
 
   void setStartDate(Date date);
 
-
   Integer getDuration();
 
   void setDuration(Integer duration);

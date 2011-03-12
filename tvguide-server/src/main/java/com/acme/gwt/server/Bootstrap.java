@@ -1,13 +1,13 @@
 package com.acme.gwt.server;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.defs.Geo;
 import com.thoughtworks.xstream.XStream;
 import org.apache.openjpa.persistence.OpenJPAEntityManager;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,74 +18,72 @@ import javax.persistence.Persistence;
  */
 public class Bootstrap {
 
-    /**
-     * creates a user and some shows
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
-        EntityManager entityManager = Persistence.createEntityManagerFactory("tvgtest").createEntityManager();
+  /**
+   * creates a user and some shows
+   *
+   * @param args
+   */
+  public static void main(String args[]) {
+    EntityManager entityManager = Persistence.createEntityManagerFactory(
+        "tvgtest").createEntityManager();
 
+    final OpenJPAEntityManager em = (OpenJPAEntityManager) entityManager;
+    em.begin();
+    TvViewer tvViewer = null;
+    try {
+      tvViewer = new TvViewer();
 
-        final OpenJPAEntityManager em = (OpenJPAEntityManager) entityManager;
-        em.begin();
-        TvViewer tvViewer = null;
-        try {
-            tvViewer = new TvViewer();
+      tvViewer.setEmail("you@example.com");
 
+      tvViewer.setDigest(com.acme.gwt.shared.util.Md5.md5Hex("sa"));
+      tvViewer.setSalt("unused");
+      tvViewer.setGeo(Geo.CALIFORNIA);
 
-            tvViewer.setEmail("you@example.com");
+      em.persist(tvViewer);
 
-            tvViewer.setDigest(com.acme.gwt.shared.util.Md5.md5Hex("sa"));
-            tvViewer.setSalt("unused");
-            tvViewer.setGeo(Geo.CALIFORNIA);
+      TvShow tvShow = new TvShow();
+      tvShow.setDescription("the Show is #1");
+      tvShow.setName("show1");
+      em.persist(tvShow);
+      tvShow = new TvShow();
+      tvShow.setDescription("the Show is #2");
+      tvShow.setName("show2");
+      em.persist(tvShow);
+      tvShow = new TvShow();
+      tvShow.setDescription("the Show is #3");
+      tvShow.setName("show3");
+      em.persist(tvShow);
+      tvViewer.getFavorites().add(tvShow);
 
-            em.persist(tvViewer);
+      tvShow = new TvShow();
+      tvShow.setDescription("the Show is #4");
+      tvShow.setName("show4");
 
-            TvShow tvShow = new TvShow();
-            tvShow.setDescription("the Show is #1");
-            tvShow.setName("show1");
-            em.persist(tvShow);
-            tvShow = new TvShow();
-            tvShow.setDescription("the Show is #2");
-            tvShow.setName("show2");
-            em.persist(tvShow);
-            tvShow = new TvShow();
-            tvShow.setDescription("the Show is #3");
-            tvShow.setName("show3");
-            em.persist(tvShow);
-            tvViewer.getFavorites().add(tvShow);
+      em.persist(tvShow);
+      tvShow = new TvShow();
+      tvShow.setDescription("the Show is #5");
+      tvShow.setName("show5");
 
-            tvShow = new TvShow();
-            tvShow.setDescription("the Show is #4");
-            tvShow.setName("show4");
-
-            em.persist(tvShow);
-            tvShow = new TvShow();
-            tvShow.setDescription("the Show is #5");
-            tvShow.setName("show5");
-
-            em.persist(tvShow);
-            tvShow = new TvShow();
-            tvShow.setDescription("the Show is #6");
-            tvShow.setName("show6");
-            em.persist(tvShow);
-            tvViewer.getFavorites().add(tvShow);
-            em.commit();
-        } catch (Exception e) {
-            if (em.isActive()) {
-                em.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        XStream xStream = new XStream();
-        xStream.autodetectAnnotations(true);
-        xStream.toXML(tvViewer, System.err);
-
+      em.persist(tvShow);
+      tvShow = new TvShow();
+      tvShow.setDescription("the Show is #6");
+      tvShow.setName("show6");
+      em.persist(tvShow);
+      tvViewer.getFavorites().add(tvShow);
+      em.commit();
+    } catch (Exception e) {
+      if (em.isActive()) {
+        em.rollback();
+      }
+      e.printStackTrace();
+    } finally {
+      entityManager.close();
     }
 
-}
+    XStream xStream = new XStream();
+    xStream.autodetectAnnotations(true);
+    xStream.toXML(tvViewer, System.err);
 
+  }
+
+}
