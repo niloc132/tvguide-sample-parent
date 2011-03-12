@@ -23,6 +23,10 @@ import com.google.inject.Provider;
  * Stores the current user. Currently it keeps a ref to the user object, but this might cause 
  * issues, in which case it will probably just keep the id, and get the user each time it is asked.
  * 
+ * Any other auth logic or tracking can go here as well, and it might be wise to push the login
+ * code here too, or at least let this class deal with it, so that something like OpenID can be
+ * wired in easily.
+ * 
  * @author colin
  *
  */
