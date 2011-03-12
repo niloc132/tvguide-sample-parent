@@ -27,9 +27,9 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
  */
 @GinModules({TvGuideClientModule.class})
 public interface TvGuideGinjector extends Ginjector {
-  TvGuideAppShell getAppShell();
+	TvGuideAppShell getAppShell();
 
-  PlaceHistoryHandler getHistoryHandler();
+	PlaceHistoryHandler getHistoryHandler();
 
-  void injectPresenter(WelcomePresenter place);
+	void injectPresenter(WelcomePresenter place);
 }

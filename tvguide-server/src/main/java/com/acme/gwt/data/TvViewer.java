@@ -32,115 +32,115 @@ import com.google.inject.Provider;
 //@NamedQuery(name = TvViewer.SIMPLE_AUTH, query = "select vp from TvViewer vp where vp.email=:email and vp.digest=:digest")
 public class TvViewer implements HasVersionAndId {
 
-  static final String SIMPLE_AUTH = "simpleAuth";
-  private Long id;
-  private Geo geo;
+	static final String SIMPLE_AUTH = "simpleAuth";
+	private Long id;
+	private Geo geo;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public Long getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-  private Integer version;
+	private Integer version;
 
-  @Version
-  public Integer getVersion() {
-    return version;
-  }
+	@Version
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-  private String email;
-  private String digest;
-  private String salt;
+	private String email;
+	private String digest;
+	private String salt;
 
-  private List<TvShow> favorites = new LinkedList<TvShow>();
+	private List<TvShow> favorites = new LinkedList<TvShow>();
 
-  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-  @OrderColumn(name = "rank")
-  public List<TvShow> getFavorites() {
-    return favorites;
-  }
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	@OrderColumn(name = "rank")
+	public List<TvShow> getFavorites() {
+		return favorites;
+	}
 
-  public void setFavorites(List<TvShow> favorites) {
-    this.favorites = favorites;
-  }
+	public void setFavorites(List<TvShow> favorites) {
+		this.favorites = favorites;
+	}
 
-  @Column(unique = true)
-  public String getEmail() {
-    return email;
-  }
+	@Column(unique = true)
+	public String getEmail() {
+		return email;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-  public String getDigest() {
-    return digest;
-  }
+	public String getDigest() {
+		return digest;
+	}
 
-  public void setDigest(String digest) {
-    this.digest = digest;
-  }
+	public void setDigest(String digest) {
+		this.digest = digest;
+	}
 
-  public String getSalt() {
-    return salt;
-  }
+	public String getSalt() {
+		return salt;
+	}
 
-  public void setSalt(String salt) {
-    this.salt = salt;
-  }
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
-  @Enumerated(EnumType.STRING)
-  public Geo getGeo() {
-    return geo;
-  }
+	@Enumerated(EnumType.STRING)
+	public Geo getGeo() {
+		return geo;
+	}
 
-  public void setGeo(Geo geo) {
-    this.geo = geo;
-  }
+	public void setGeo(Geo geo) {
+		this.geo = geo;
+	}
 
-  @Inject
-  static Provider<EntityManager> emProvider;
-  @Inject
-  static Provider<AuthenticatedViewerProvider> currentUserProvider;
+	@Inject
+	static Provider<EntityManager> emProvider;
+	@Inject
+	static Provider<AuthenticatedViewerProvider> currentUserProvider;
 
-  public static TvViewer authenticate(String email, String digest) {
-    TvViewer user = null;
-    try {
-      user = findTvViewerByEmailAndDigest(email, digest);
-      String email1 = user.getEmail();//throw NPE here if possible
-      currentUserProvider.get().setCurrentViewer(user);
-      return user;
-    } catch (Throwable e) {
-      throw new RuntimeException("Failed login attempt.");
-    }
-  }
+	public static TvViewer authenticate(String email, String digest) {
+		TvViewer user = null;
+		try {
+			user = findTvViewerByEmailAndDigest(email, digest);
+			String email1 = user.getEmail();//throw NPE here if possible
+			currentUserProvider.get().setCurrentViewer(user);
+			return user;
+		} catch (Throwable e) {
+			throw new RuntimeException("Failed login attempt.");
+		}
+	}
 
-  // todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
+	// todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
-  //handwritten finder
-  public static TvViewer findTvViewerByEmailAndDigest(String email,
-                                                      String digest) {
-    TvViewer singleResult = null;
-    try {
-      singleResult = emProvider
-          .get()
-          .createQuery(
-              "select vp from TvViewer vp where vp.email=:email and vp.digest=:digest",
-              TvViewer.class).setParameter("email", email)
-          .setParameter("digest", digest).getSingleResult();
-    } catch (Exception e) {
-      //            e.printStackTrace();  //todo: verify for a fit
-    } finally {
-    }
-    return singleResult;
-  }
+	//handwritten finder
+	public static TvViewer findTvViewerByEmailAndDigest(String email,
+			String digest) {
+		TvViewer singleResult = null;
+		try {
+			singleResult = emProvider
+					.get()
+					.createQuery(
+							"select vp from TvViewer vp where vp.email=:email and vp.digest=:digest",
+							TvViewer.class).setParameter("email", email)
+					.setParameter("digest", digest).getSingleResult();
+		} catch (Exception e) {
+			//            e.printStackTrace();  //todo: verify for a fit
+		} finally {
+		}
+		return singleResult;
+	}
 }

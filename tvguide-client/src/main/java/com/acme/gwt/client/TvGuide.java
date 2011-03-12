@@ -39,69 +39,69 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class TvGuide implements EntryPoint {
 
-  public void onModuleLoad() {
+	public void onModuleLoad() {
 
-    //code from jnorthrup's fork, will be moved to a presenter soon enough
-    EventBus eventBus = GWT.create(SimpleEventBus.class);
-    final MyRequestFactory rf = GWT.create(MyRequestFactory.class);
-    rf.initialize(eventBus);
-    final GateKeeper gateKeeper = new GateKeeper();
-    new DialogBox() {
-      {
-        final TextBox email = new TextBox() {
-          {
-            setText("you@example.com");
-          }
-        };
-        final PasswordTextBox passwordTextBox = new PasswordTextBox();
-        setText("please log in");
-        setWidget(new VerticalPanel() {
-          {
-            add(new HorizontalPanel() {
-              {
-                add(new Label("email"));
-                add(email);
-              }
-            });
-            add(new HorizontalPanel() {
-              {
-                add(new Label("Password"));
-                add(passwordTextBox);
-              }
-            });
-            add(new Button("OK!!") {
-              {
-                addClickHandler(new ClickHandler() {
-                  @Override
-                  public void onClick(ClickEvent event) {
-                    String text = passwordTextBox.getText();
-                    String digest = Md5.md5Hex(text);
-                    Request<TvViewerProxy> authenticate = rf
-                        .reqViewer()
-                        .authenticate(email.getText(),
-                            digest);
-                    authenticate.with("geo", "name",
-                        "favoriteShows.name",
-                        "favoriteShows.description")
-                        .to(gateKeeper).fire(
-                        new Receiver<Void>() {
-                          @Override
-                          public void onSuccess(
-                              Void response) {
-                            hide(); //todo: review for a purpose
-                            removeFromParent();
-                          }
-                        });
-                  }
-                });
-              }
-            });
-          }
-        });
-        center();
-        show();
-      }
-    };
-  }
+		//code from jnorthrup's fork, will be moved to a presenter soon enough
+		EventBus eventBus = GWT.create(SimpleEventBus.class);
+		final MyRequestFactory rf = GWT.create(MyRequestFactory.class);
+		rf.initialize(eventBus);
+		final GateKeeper gateKeeper = new GateKeeper();
+		new DialogBox() {
+			{
+				final TextBox email = new TextBox() {
+					{
+						setText("you@example.com");
+					}
+				};
+				final PasswordTextBox passwordTextBox = new PasswordTextBox();
+				setText("please log in");
+				setWidget(new VerticalPanel() {
+					{
+						add(new HorizontalPanel() {
+							{
+								add(new Label("email"));
+								add(email);
+							}
+						});
+						add(new HorizontalPanel() {
+							{
+								add(new Label("Password"));
+								add(passwordTextBox);
+							}
+						});
+						add(new Button("OK!!") {
+							{
+								addClickHandler(new ClickHandler() {
+									@Override
+									public void onClick(ClickEvent event) {
+										String text = passwordTextBox.getText();
+										String digest = Md5.md5Hex(text);
+										Request<TvViewerProxy> authenticate = rf
+												.reqViewer()
+												.authenticate(email.getText(),
+														digest);
+										authenticate.with("geo", "name",
+												"favoriteShows.name",
+												"favoriteShows.description")
+												.to(gateKeeper).fire(
+														new Receiver<Void>() {
+															@Override
+															public void onSuccess(
+																	Void response) {
+																hide(); //todo: review for a purpose
+																removeFromParent();
+															}
+														});
+									}
+								});
+							}
+						});
+					}
+				});
+				center();
+				show();
+			}
+		};
+	}
 
 }

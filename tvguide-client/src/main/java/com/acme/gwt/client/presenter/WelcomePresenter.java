@@ -27,17 +27,17 @@ import com.google.inject.Inject;
  * @author colin
  */
 public class WelcomePresenter extends AbstractActivity
-    implements
-    WelcomeView.Presenter {
-  @Inject
-  WelcomeView view;
+		implements
+			WelcomeView.Presenter {
+	@Inject
+	WelcomeView view;
 
-  public WelcomePresenter(WelcomePlace place) {
-    //place is meaningless, this is just a simple view to show
-  }
+	public WelcomePresenter(WelcomePlace place) {
+		//place is meaningless, this is just a simple view to show
+	}
 
-  public void start(AcceptsOneWidget panel, EventBus eventBus) {
-    panel.setWidget(view);
-  }
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		panel.setWidget(view);
+	}
 
 }

@@ -15,7 +15,15 @@
 		<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
 	</properties>
 	<profiles>
-
+		<profile>
+			<!-- Simplified a few of the default GWT compiler settings in an effort to speed up dev builds -->
+			<id>dev-build</id>
+			<properties>
+				<gwt.style>PRETTY</gwt.style>
+				<gwt.draftCompile>true</gwt.draftCompile>
+				<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
+			</properties>
+		</profile>
 		<profile>
 			<!-- Runs the Bootstrap script, which sets up a sample database for use in the webapp's output dir -->
 			<id>db-init</id>
@@ -160,19 +168,12 @@
 					<!--<runTarget>tvguide.html</runTarget> -->
 					<!--<hostedWebapp>${webappDirectory}</hostedWebapp> -->
 					<!-- i18nMessagesBundle>com.acme.gwt.client.Messages</i18nMessagesBundle -->
-					<draftCompile> ${gwt.draftCompile}</draftCompile>  <style> ${gwt.style}</style>
-					<optimizationLevel>${gwt.compiler.optimizationLevel}</optimizationLevel>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.5</version>
-				<configuration>
-					<excludes>
-						<exclude>**/*_Roo_*</exclude>
-					</excludes>
-				</configuration>
 				<dependencies>
 					<!-- RequestFactory Validation tests need access to this -->
 					<dependency>

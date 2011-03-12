@@ -27,17 +27,17 @@ import com.google.inject.Inject;
  * @author colin
  */
 public class TvGuideActivityMapper implements ActivityMapper {
-  @Inject
-  TvGuideGinjector injector;
+	@Inject
+	TvGuideGinjector injector;
 
-  public Activity getActivity(Place place) {
-    if (place instanceof WelcomePlace) {
-      WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
-      injector.injectPresenter(p);
-      return p;
-    }
+	public Activity getActivity(Place place) {
+		if (place instanceof WelcomePlace) {
+			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
+			injector.injectPresenter(p);
+			return p;
+		}
 
-    return null;
-  }
+		return null;
+	}
 
 }

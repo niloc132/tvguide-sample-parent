@@ -33,36 +33,36 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class TvGuideAppShell extends Composite implements HasOneWidget {
-  interface TvGuideAppShellUiBinder extends UiBinder<Widget, TvGuideAppShell> {
-  }
+	interface TvGuideAppShellUiBinder extends UiBinder<Widget, TvGuideAppShell> {
+	}
 
-  private static TvGuideAppShellUiBinder uiBinder = GWT
-      .create(TvGuideAppShellUiBinder.class);
+	private static TvGuideAppShellUiBinder uiBinder = GWT
+			.create(TvGuideAppShellUiBinder.class);
 
-  @UiField
-  LayoutPanel display;
+	@UiField
+	LayoutPanel display;
 
-  @Inject
-  public TvGuideAppShell(ActivityManager activityManager) {
-    initWidget(uiBinder.createAndBindUi(this));
+	@Inject
+	public TvGuideAppShell(ActivityManager activityManager) {
+		initWidget(uiBinder.createAndBindUi(this));
 
-    activityManager.setDisplay(this);
-  }
+		activityManager.setDisplay(this);
+	}
 
-  @Override
-  public Widget getWidget() {
-    return display.getWidgetCount() == 0 ? null : display.getWidget(0);
-  }
+	@Override
+	public Widget getWidget() {
+		return display.getWidgetCount() == 0 ? null : display.getWidget(0);
+	}
 
-  @Override
-  public void setWidget(Widget widget) {
-    display.clear();
-    if (widget != null) {
-      display.add(widget);
-    }
-  }
+	@Override
+	public void setWidget(Widget widget) {
+		display.clear();
+		if (widget != null) {
+			display.add(widget);
+		}
+	}
 
-  public void setWidget(IsWidget w) {
-    setWidget(w.asWidget());
-  }
+	public void setWidget(IsWidget w) {
+		setWidget(w.asWidget());
+	}
 }

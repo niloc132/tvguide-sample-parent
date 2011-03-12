@@ -29,15 +29,14 @@ import com.google.gwt.requestfactory.shared.ValueProxy;
  *
  * @author colin
  */
-public
-@ProxyFor(value = TvAirTime.class, locator = InjectingLocator.class)
+public @ProxyFor(value = TvAirTime.class, locator = InjectingLocator.class)
 interface TvAirTimeProxy extends ValueProxy {
-  Date getStartDate();
+	Date getStartDate();
 
-  void setStartDate(Date date);
+	void setStartDate(Date date);
 
-  Integer getDuration();
+	Integer getDuration();
 
-  void setDuration(Integer duration);
+	void setDuration(Integer duration);
 
 }

@@ -28,29 +28,29 @@ import com.google.inject.servlet.ServletModule;
  * @author colin
  */
 public class GwtWebModule extends ServletModule {
-  private final String requestFactoryPath;
+	private final String requestFactoryPath;
 
-  public GwtWebModule() {
-    this("/" + DefaultRequestTransport.URL);
-  }
+	public GwtWebModule() {
+		this("/" + DefaultRequestTransport.URL);
+	}
 
-  public GwtWebModule(String requestFactoryPath) {
-    this.requestFactoryPath = requestFactoryPath;
-  }
+	public GwtWebModule(String requestFactoryPath) {
+		this.requestFactoryPath = requestFactoryPath;
+	}
 
-  @Override
-  protected void configureServlets() {
-    /**todo: intellij calls this a pointless binding.*/
-    bind(InjectableServiceLayerDecorator.class);
-    serve(requestFactoryPath).with(RequestFactoryServlet.class);
-  }
+	@Override
+	protected void configureServlets() {
+		/**todo: intellij calls this a pointless binding.*/
+		bind(InjectableServiceLayerDecorator.class);
+		serve(requestFactoryPath).with(RequestFactoryServlet.class);
+	}
 
-  @Inject
-  @Singleton
-  @Provides
-  RequestFactoryServlet provideRequestFactoryServlet(
-      InjectableServiceLayerDecorator injectableSLD) {
-    return new RequestFactoryServlet(new DefaultExceptionHandler(),
-        injectableSLD);
-  }
+	@Inject
+	@Singleton
+	@Provides
+	RequestFactoryServlet provideRequestFactoryServlet(
+			InjectableServiceLayerDecorator injectableSLD) {
+		return new RequestFactoryServlet(new DefaultExceptionHandler(),
+				injectableSLD);
+	}
 }

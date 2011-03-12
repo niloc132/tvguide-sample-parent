@@ -15,24 +15,24 @@ import javax.persistence.TemporalType;
 @Embeddable
 public class TvAirTime {
 
-  private Date startDate;
+	private Date startDate;
 
-  private Integer duration;
+	private Integer duration;
 
-  @Temporal(TemporalType.TIME)
-  public Date getStartDate() {
-    return startDate;
-  }
+	@Temporal(TemporalType.TIME)
+	public Date getStartDate() {
+		return startDate;
+	}
 
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 
-  public Integer getDuration() {
-    return duration;
-  }
+	public Integer getDuration() {
+		return duration;
+	}
 
-  public void setDuration(Integer duration) {
-    this.duration = duration;
-  }
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
 }

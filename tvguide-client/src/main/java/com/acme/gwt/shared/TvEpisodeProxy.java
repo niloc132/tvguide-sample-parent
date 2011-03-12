@@ -36,43 +36,42 @@ import com.google.gwt.requestfactory.shared.Service;
  * data to a List of Episodes.
  * jn: seasons are abstract
  */
-public
-@ProxyFor(value = TvEpisode.class, locator = InjectingLocator.class)
+public @ProxyFor(value = TvEpisode.class, locator = InjectingLocator.class)
 interface TvEpisodeProxy extends EntityProxy {
-  Long getId();
+	Long getId();
 
-  Integer getVersion();
+	Integer getVersion();
 
-  void setId(Long id);
+	void setId(Long id);
 
-  void setVersion(Integer version);
+	void setVersion(Integer version);
 
-  TvShowProxy getTvShow();
+	TvShowProxy getTvShow();
 
-  void setTvShow(TvShowProxy iShow);
+	void setTvShow(TvShowProxy iShow);
 
-  Integer getSeason();
+	Integer getSeason();
 
-  void setSeason(Integer season);
+	void setSeason(Integer season);
 
-  Integer getEpisodeNumber();
+	Integer getEpisodeNumber();
 
-  void setEpisodeNumber(Integer episodeNumber);
+	void setEpisodeNumber(Integer episodeNumber);
 
-  String getName();
+	String getName();
 
-  void setName(String name);
+	void setName(String name);
 
-  List<TvScheduledEpisodeProxy> getScheduledEpisodes();
+	List<TvScheduledEpisodeProxy> getScheduledEpisodes();
 
-  public EntityProxyId<TvEpisodeProxy> stableId();
+	public EntityProxyId<TvEpisodeProxy> stableId();
 
-  void setScheduledEpisodes(List<TvScheduledEpisodeProxy> scheduledEpisodes);
+	void setScheduledEpisodes(List<TvScheduledEpisodeProxy> scheduledEpisodes);
 
-  @Service(value = TvEpisode.class, locator = InjectingServiceLocator.class)
-  public interface TvEpisodeRequest extends RequestContext {
-    //un-implemented on the server, commenting out to stop test failures until it exists
-    //InstanceRequest<TvEpisodeProxy, List<TvScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+	@Service(value = TvEpisode.class, locator = InjectingServiceLocator.class)
+	public interface TvEpisodeRequest extends RequestContext {
+		//un-implemented on the server, commenting out to stop test failures until it exists
+		//InstanceRequest<TvEpisodeProxy, List<TvScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
-  }
+	}
 }

@@ -27,11 +27,11 @@ import com.google.inject.Injector;
  * @author colin
  */
 public class InjectingServiceLocator implements ServiceLocator {
-  @Inject
-  Injector injector;
+	@Inject
+	Injector injector;
 
-  public Object getInstance(Class<?> clazz) {
-    return injector.getInstance(clazz);
-  }
+	public Object getInstance(Class<?> clazz) {
+		return injector.getInstance(clazz);
+	}
 
 }

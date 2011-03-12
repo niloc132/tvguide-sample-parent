@@ -30,22 +30,22 @@ import com.google.inject.Provider;
  */
 public class DataLoader {
 
-  //  { /*one-time use of these statements to entice intellij
-  // to add maven deps, just uncomment*/
-  //    org.apache.openjpa.jdbc.sql.H2Dictionary h2;
-  //    com.mysql.jdbc.Driver mysql;
-  //  }
+	//  { /*one-time use of these statements to entice intellij
+	// to add maven deps, just uncomment*/
+	//    org.apache.openjpa.jdbc.sql.H2Dictionary h2;
+	//    com.mysql.jdbc.Driver mysql;
+	//  }
 
-  @Inject
-  Injector injector;
-  @Inject
-  Provider<EntityManager> emProvider;
+	@Inject
+	Injector injector;
+	@Inject
+	Provider<EntityManager> emProvider;
 
-  public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
-    return injector.getInstance(clazz);
-  }
+	public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
+		return injector.getInstance(clazz);
+	}
 
-  public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
-    return emProvider.get().find(clazz, id);
-  }
+	public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
+		return emProvider.get().find(clazz, id);
+	}
 }

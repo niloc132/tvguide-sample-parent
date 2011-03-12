@@ -27,9 +27,9 @@ import com.google.gwt.requestfactory.shared.RequestFactory;
  * @author colin
  */
 public interface TvGuideRequestFactory extends RequestFactory {
-  TvViewerProxy.TvViewerRequest makeLoginRequest();
+	TvViewerProxy.TvViewerRequest makeLoginRequest();
 
-  TvGuideRequest makeGuideRequest();
+	TvGuideRequest makeGuideRequest();
 
-  TvSetupRequest makeSetupRequest();
+	TvSetupRequest makeSetupRequest();
 }

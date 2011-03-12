@@ -63,7 +63,6 @@
 					<compilerSource>1.6</compilerSource>
 					<compilerCompliance>1.6</compilerCompliance>
 					<compilerTargetPlatform>1.6</compilerTargetPlatform>
-					<configFile>etc/gwt-format.xml</configFile>
 					<directories>
 						<directory>src/</directory>
 					</directories>

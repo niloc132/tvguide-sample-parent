@@ -8,5 +8,5 @@ package com.acme.gwt.shared.defs;
  * To change this template use File | Settings | File Templates.
  */
 public enum Continent {
-  NAMERICA, SAMERICA, EU, ASIA, AFRICA, OZ, ANTARCTIC
+	NAMERICA, SAMERICA, EU, ASIA, AFRICA, OZ, ANTARCTIC
 }

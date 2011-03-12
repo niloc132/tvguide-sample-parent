@@ -39,40 +39,40 @@ import com.google.inject.Singleton;
  * @author colin
  */
 public class TvGuideClientModule extends AbstractGinModule {
-  @Override
-  protected void configure() {
-    bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+	@Override
+	protected void configure() {
+		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 
-    bind(TvGuideRequestFactory.class).in(Singleton.class);
+		bind(TvGuideRequestFactory.class).in(Singleton.class);
 
-    bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
-    bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
+		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
+		bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
 
-    bind(Place.class).annotatedWith(DefaultPlace.class).to(
-        WelcomePlace.class);
+		bind(Place.class).annotatedWith(DefaultPlace.class).to(
+				WelcomePlace.class);
 
-    bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
+		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
 
-  }
+	}
 
-  @Provides
-  PlaceController providePlaceController(EventBus eventBus) {
-    return new PlaceController(eventBus);
-  }
+	@Provides
+	PlaceController providePlaceController(EventBus eventBus) {
+		return new PlaceController(eventBus);
+	}
 
-  @Provides
-  ActivityManager provideActivityManager(ActivityMapper mapper,
-                                         EventBus eventBus) {
-    return new ActivityManager(mapper, eventBus);
-  }
+	@Provides
+	ActivityManager provideActivityManager(ActivityMapper mapper,
+			EventBus eventBus) {
+		return new ActivityManager(mapper, eventBus);
+	}
 
-  @Provides
-  PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper,
-                                                 PlaceController placeController, EventBus eventBus, @DefaultPlace
-      Place defaultPlace) {
-    PlaceHistoryHandler phh = new PlaceHistoryHandler(mapper);
-    phh.register(placeController, eventBus, defaultPlace);
-    return phh;
-  }
+	@Provides
+	PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper,
+			PlaceController placeController, EventBus eventBus, @DefaultPlace
+			Place defaultPlace) {
+		PlaceHistoryHandler phh = new PlaceHistoryHandler(mapper);
+		phh.register(placeController, eventBus, defaultPlace);
+		return phh;
+	}
 
 }

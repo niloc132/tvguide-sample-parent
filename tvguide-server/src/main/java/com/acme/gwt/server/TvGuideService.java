@@ -36,59 +36,59 @@ import com.google.inject.Provider;
  * @author colin
  */
 public class TvGuideService {
-  @Inject
-  Provider<EntityManager> emProvider;
+	@Inject
+	Provider<EntityManager> emProvider;
 
-  @Inject
-  Provider<TvViewer> viewerProvider;
+	@Inject
+	Provider<TvViewer> viewerProvider;
 
-  public List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(
-      TvShow tvShow, Date begin, Date end) {
-    return null; //todo: call the appropriate finder
-  }
+	public List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(
+			TvShow tvShow, Date begin, Date end) {
+		return null; //todo: call the appropriate finder
+	}
 
-  public List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(
-      TvChannel tvChannel, Date begin, Date end) {
-    return null; //todo: call the appropriate finder
-  }
+	public List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(
+			TvChannel tvChannel, Date begin, Date end) {
+		return null; //todo: call the appropriate finder
+	}
 
-  public List<TvShow> getFavoriteShows() {
-    TvViewer call = null;
-    try {
-      call = viewerProvider.get();
-    } catch (Exception e) {
-      e.printStackTrace(); //todo: verify for a fit
-    }
-    return call.getFavorites();
-  }
+	public List<TvShow> getFavoriteShows() {
+		TvViewer call = null;
+		try {
+			call = viewerProvider.get();
+		} catch (Exception e) {
+			e.printStackTrace(); //todo: verify for a fit
+		}
+		return call.getFavorites();
+	}
 
-  public void setFavoriteShows(List<TvShow> favoriteTvShows) {
-    try {
-      TvViewer call = viewerProvider.get();
-      call.setFavorites(favoriteTvShows);
-    } catch (Exception e) {
-      e.printStackTrace(); //todo: verify for a fit
-    }
-  }
+	public void setFavoriteShows(List<TvShow> favoriteTvShows) {
+		try {
+			TvViewer call = viewerProvider.get();
+			call.setFavorites(favoriteTvShows);
+		} catch (Exception e) {
+			e.printStackTrace(); //todo: verify for a fit
+		}
+	}
 
-  public List<TvChannel> getAllChannels() {
-    try {
-      return (List<TvChannel>) new Callable() {
-        public Object call() throws Exception {
-          try {
-            //todo: make current user's geo matter to this list
-            return emProvider.get().createQuery(
-                "select Channel from TvChannel Channel",
-                TvChannel.class).getResultList();
-          } catch (Exception e) {
-            e.printStackTrace(); //todo: verify for a fit
-          }
-          return null;
-        }
-      }.call();
-    } catch (Exception e) {
-      e.printStackTrace(); //todo: verify for a fit
-    }
-    return null;
-  }
+	public List<TvChannel> getAllChannels() {
+		try {
+			return (List<TvChannel>) new Callable() {
+				public Object call() throws Exception {
+					try {
+						//todo: make current user's geo matter to this list
+						return emProvider.get().createQuery(
+								"select Channel from TvChannel Channel",
+								TvChannel.class).getResultList();
+					} catch (Exception e) {
+						e.printStackTrace(); //todo: verify for a fit
+					}
+					return null;
+				}
+			}.call();
+		} catch (Exception e) {
+			e.printStackTrace(); //todo: verify for a fit
+		}
+		return null;
+	}
 }

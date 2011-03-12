@@ -23,7 +23,7 @@ import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
  * @author colin
  */
 public interface TvGuidePlaceHistoryMapper
-    extends
-    PlaceHistoryMapperWithFactory<TvGuideGinjector> {
+		extends
+			PlaceHistoryMapperWithFactory<TvGuideGinjector> {
 
 }

@@ -22,80 +22,79 @@ import com.acme.gwt.shared.defs.Geo;
  * Time: 7:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public
-@Entity
+public @Entity
 class TvChannel implements HasVersionAndId {
 
-  private Long id;
+	private Long id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public Long getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-  private Integer version;
+	private Integer version;
 
-  @Version
-  public Integer getVersion() {
-    return version;
-  }
+	@Version
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-  private String name;
-  private String icon;
-  private Integer channelNumber;
+	private String name;
+	private String icon;
+	private Integer channelNumber;
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getIcon() {
-    return icon;
-  }
+	public String getIcon() {
+		return icon;
+	}
 
-  public void setIcon(String icon) {
-    this.icon = icon;
-  }
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
-  public Integer getChannelNumber() {
-    return channelNumber;
-  }
+	public Integer getChannelNumber() {
+		return channelNumber;
+	}
 
-  public void setChannelNumber(Integer channelNumber) {
-    this.channelNumber = channelNumber;
-  }
+	public void setChannelNumber(Integer channelNumber) {
+		this.channelNumber = channelNumber;
+	}
 
-  private Geo geo;
+	private Geo geo;
 
-  @Enumerated(EnumType.STRING)
-  public Geo getGeo() {
-    return geo;
-  }
+	@Enumerated(EnumType.STRING)
+	public Geo getGeo() {
+		return geo;
+	}
 
-  public void setGeo(Geo geo) {
-    this.geo = geo;
-  }
+	public void setGeo(Geo geo) {
+		this.geo = geo;
+	}
 
-  private List<TvScheduledEpisode> scheduledEpisodes;
+	private List<TvScheduledEpisode> scheduledEpisodes;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "tvChannel")
-  public List<TvScheduledEpisode> getScheduledEpisodes() {
-    return scheduledEpisodes;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tvChannel")
+	public List<TvScheduledEpisode> getScheduledEpisodes() {
+		return scheduledEpisodes;
+	}
 
-  public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
-    this.scheduledEpisodes = scheduledEpisodes;
-  }
+	public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
+		this.scheduledEpisodes = scheduledEpisodes;
+	}
 }

@@ -32,31 +32,31 @@ import com.google.gwt.user.client.ui.Widget;
  * @author colin
  */
 public class EditableEpisodeListWidget extends Composite {
-  private static Binder uiBinder = GWT.create(Binder.class);
+	private static Binder uiBinder = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
-  }
+	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
+	}
 
-  interface EpisodeColumns extends Columns<TvEpisodeProxy> {
-    EditTextCell season();//erp int != String
+	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
+		EditTextCell season();//erp int != String
 
-    EditTextCell episodeNumber();// int != String
+		EditTextCell episodeNumber();// int != String
 
-    EditTextCell name();
-  }
+		EditTextCell name();
+	}
 
-  private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
-  @Path("")
-  HasDataFlushableEditor<TvEpisodeProxy> listEd;
-  @UiField(provided = true)
-  CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
+	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
+	@Path("")
+	HasDataFlushableEditor<TvEpisodeProxy> listEd;
+	@UiField(provided = true)
+	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
 
-  public EditableEpisodeListWidget() {
-    listEd = HasDataFlushableEditor.of(list);
+	public EditableEpisodeListWidget() {
+		listEd = HasDataFlushableEditor.of(list);
 
-    columns.configure(list, listEd);
+		columns.configure(list, listEd);
 
-    initWidget(uiBinder.createAndBindUi(this));
-  }
+		initWidget(uiBinder.createAndBindUi(this));
+	}
 
 }

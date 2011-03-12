@@ -30,6 +30,6 @@ import com.google.gwt.requestfactory.shared.Service;
 @Service(TvSetupRequest.SetupReqImpl.class)
 public interface TvSetupRequest extends RequestContext {
 
-  public class SetupReqImpl {
-  }
+	public class SetupReqImpl {
+	}
 }

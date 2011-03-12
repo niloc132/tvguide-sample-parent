@@ -37,30 +37,30 @@ import com.google.gwt.requestfactory.shared.Service;
 
 @ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
 public interface TvShowProxy extends EntityProxy {
-  Long getId();
+	Long getId();
 
-  Integer getVersion();
+	Integer getVersion();
 
-  void setId(Long id);
+	void setId(Long id);
 
-  void setVersion(Integer version);
+	void setVersion(Integer version);
 
-  String getName();
+	String getName();
 
-  void setName(String name);
+	void setName(String name);
 
-  String getDescription();
+	String getDescription();
 
-  void setDescription(String description);
+	void setDescription(String description);
 
-  List<TvEpisodeProxy> getEpisodes();
+	List<TvEpisodeProxy> getEpisodes();
 
-  public EntityProxyId<TvShowProxy> stableId();
+	public EntityProxyId<TvShowProxy> stableId();
 
-  void setEpisodes(List<TvEpisodeProxy> episodes);
+	void setEpisodes(List<TvEpisodeProxy> episodes);
 
-  @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
-  public interface TvShowRequest extends RequestContext {
+	@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
+	public interface TvShowRequest extends RequestContext {
 
-  }
+	}
 }
