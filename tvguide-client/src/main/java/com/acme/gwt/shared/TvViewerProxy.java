@@ -33,9 +33,9 @@ public interface TvViewerProxy extends EntityProxy {
 
 	void setFavoriteShows(List<TvShowProxy> favoriteTvShows);
 
-	String getName();
+	String getEmail();
 
-	void setName(String name);
+	void setEmail(String email);
 
 	String getDigest();
 

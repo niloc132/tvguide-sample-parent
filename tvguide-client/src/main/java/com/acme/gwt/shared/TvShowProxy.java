@@ -16,14 +16,10 @@
  */
 package com.acme.gwt.shared;
 
-import java.util.Date;
-import java.util.List;
-
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
-import com.google.gwt.requestfactory.shared.InstanceRequest;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.RequestContext;
 import com.google.gwt.requestfactory.shared.Service;
@@ -48,7 +44,8 @@ public interface TvShowProxy extends EntityProxy {
 
 	@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
 	public interface TvShowRequest extends RequestContext {
-		InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+		//un-implemented on the server, commenting out to stop test failures until it exists
+		//InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
 	}
 }

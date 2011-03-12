@@ -72,14 +72,14 @@ public class TvViewer implements HasVersionAndId {
 
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	@OrderColumn(name = "rank")
-	public List<TvShow> getFavorites() {
+	public List<TvShow> getFavoriteShows() {
 		return favorites;
 	}
 
 	//end entity cut+paste header.  the real data below:
 	private List<TvShow> favorites = new LinkedList<TvShow>();
 
-	public void setFavorites(List<TvShow> favorites) {
+	public void setFavoriteShows(List<TvShow> favorites) {
 		this.favorites = favorites;
 	}
 

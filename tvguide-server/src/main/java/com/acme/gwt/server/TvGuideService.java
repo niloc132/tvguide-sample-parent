@@ -57,13 +57,13 @@ public class TvGuideService {
 		} catch (Exception e) {
 			e.printStackTrace();  //todo: verify for a fit
 		}
-		return call.getFavorites();
+		return call.getFavoriteShows();
 	}
 
 	public void setFavoriteShows(List<TvShow> favoriteTvShows) {
 		try {
 			TvViewer call = viewerProvider.get();
-			call.setFavorites(favoriteTvShows);
+			call.setFavoriteShows(favoriteTvShows);
 		} catch (Exception e) {
 			e.printStackTrace();  //todo: verify for a fit
 		}
