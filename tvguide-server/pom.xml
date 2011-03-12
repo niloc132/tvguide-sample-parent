@@ -121,7 +121,7 @@
 					<toolProperties>
 						<property>
 							<name>directory</name>
-							<value>target/classes</value>
+							<value>${project.build.directory}/classes</value>
 						</property>
 					</toolProperties>
 				</configuration>
