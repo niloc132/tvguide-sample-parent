@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingLocator;
+import com.acme.gwt.server.InjectingServiceLocator;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.ProxyFor;
@@ -18,41 +19,41 @@ import com.google.gwt.requestfactory.shared.Service;
  * Time: 9:31 PM
  * To change this template use File | Settings | File Templates.
  */
-@ProxyFor(value=TvViewer.class, locator=InjectingLocator.class)
+@ProxyFor(value = TvViewer.class, locator = InjectingLocator.class)
 public interface TvViewerProxy extends EntityProxy {
 
-	Long getId();
+  Long getId();
 
-	Integer getVersion();
+  Integer getVersion();
 
-	void setId(Long id);
+  void setId(Long id);
 
-	void setVersion(Integer version);
+  void setVersion(Integer version);
 
-	List<TvShowProxy> getFavoriteShows();
+  List<TvShowProxy> getFavorites();
 
-	void setFavoriteShows(List<TvShowProxy> favoriteTvShows);
+  void setFavorites(List<TvShowProxy> favoriteTvShows);
 
-	String getEmail();
+  String getEmail();
 
-	void setEmail(String email);
+  void setEmail(String email);
 
-	String getDigest();
+  String getDigest();
 
-	void setDigest(String digest);
+  void setDigest(String digest);
 
-	String getSalt();
+  String getSalt();
 
-	void setSalt(String salt);
+  void setSalt(String salt);
 
-	Geo getGeo();
+  Geo getGeo();
 
-	void setGeo(Geo geo);
+  void setGeo(Geo geo);
 
-	@Service(TvViewer.class)
-	public interface TvViewerRequest extends RequestContext {
-		//replace with controller
-		Request<TvViewerProxy> authenticate(String email, String digest);
-	}
+  @Service(value = TvViewer.class, locator = InjectingServiceLocator.class)
+  public interface TvViewerRequest extends RequestContext {
+    //replace with controller
+    Request<TvViewerProxy> authenticate(String email, String digest);
+  }
 }
 
