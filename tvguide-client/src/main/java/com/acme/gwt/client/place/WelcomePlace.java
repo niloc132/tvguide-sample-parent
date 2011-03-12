@@ -17,11 +17,26 @@
 package com.acme.gwt.client.place;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.place.shared.Prefix;
 
 /**
+ * 'Home' place, brings the user to the default page in the app. No prefix, no token.
+ * 
  * @author colin
  *
  */
 public class WelcomePlace extends Place {
 
+	@Prefix("")
+	public static class Tokenizer implements PlaceTokenizer<WelcomePlace> {
+		@Override
+		public WelcomePlace getPlace(String token) {
+			return new WelcomePlace();
+		}
+		@Override
+		public String getToken(WelcomePlace place) {
+			return "";
+		}
+	}
 }
