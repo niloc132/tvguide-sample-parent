@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Version;
 
+import com.acme.gwt.AuthenticatedViewerProvider;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -123,11 +124,15 @@ public class TvViewer implements HasVersionAndId {
 		this.geo = geo;
 	}
 
+
+	@Inject static Provider<EntityManager> emProvider;
+	@Inject static Provider<AuthenticatedViewerProvider> currentUserProvider;
+
 	public static TvViewer authenticate(String email, String digest) {
 		TvViewer user = findTvViewerByEmailAndDigest(email, digest);
 
-		//TODO Stick user, or a way to get the user, in the session. This code can't talk 
-		// to HttpSession, as it doesn't know about servlets
+		// Store the current user in a session scoped var
+		currentUserProvider.get().setCurrentViewer(user);
 
 		return user;
 	}
@@ -135,7 +140,7 @@ public class TvViewer implements HasVersionAndId {
 	// todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
 	//handwritten finder
-	@Inject static Provider<EntityManager> emProvider;
+
 	public static TvViewer findTvViewerByEmailAndDigest(String email, String digest) {
 		try {
 			//digest is md5'd on client

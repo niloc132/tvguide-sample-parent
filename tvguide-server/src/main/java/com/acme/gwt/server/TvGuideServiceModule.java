@@ -20,11 +20,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.acme.gwt.AuthenticatedViewerProvider;
 import com.acme.gwt.data.DataLoader;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
+import com.google.inject.servlet.ServletScopes;
 
 /**
  * @author colin
@@ -36,6 +38,9 @@ public class TvGuideServiceModule extends AbstractModule {
 	protected void configure() {
 		bind(TvGuideService.class);
 		bind(DataLoader.class);
+
+		bind(AuthenticatedViewerProvider.class).in(ServletScopes.SESSION);
+		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
 		//workaround for TvViewer which wants a static reference to a EntityManager provider
 		requestStaticInjection(TvViewer.class);
@@ -52,6 +57,4 @@ public class TvGuideServiceModule extends AbstractModule {
 	@Provides @RequestScoped EntityManager provideEntityManager(EntityManagerFactory emf) {
 		return emf.createEntityManager();
 	}
-
-
 }
