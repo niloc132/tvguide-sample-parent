@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -37,7 +37,6 @@ import com.google.inject.Singleton;
 
 /**
  * @author colin
- *
  */
 public class TvGuideClientModule extends AbstractGinModule {
 	@Override
@@ -49,22 +48,28 @@ public class TvGuideClientModule extends AbstractGinModule {
 		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
 		bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
 
-		bind(Place.class).annotatedWith(DefaultPlace.class).to(WelcomePlace.class);
+		bind(Place.class).annotatedWith(DefaultPlace.class).to(
+				WelcomePlace.class);
 
 		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
 
 	}
 
-	@Provides PlaceController providePlaceController(EventBus eventBus) {
+	@Provides
+	PlaceController providePlaceController(EventBus eventBus) {
 		return new PlaceController(eventBus);
 	}
 
-	@Provides ActivityManager provideActivityManager(ActivityMapper mapper, EventBus eventBus) {
+	@Provides
+	ActivityManager provideActivityManager(ActivityMapper mapper,
+			EventBus eventBus) {
 		return new ActivityManager(mapper, eventBus);
 	}
 
-	@Provides PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper, 
-			PlaceController placeController, EventBus eventBus, @DefaultPlace Place defaultPlace) {
+	@Provides
+	PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper,
+			PlaceController placeController, EventBus eventBus, @DefaultPlace
+			Place defaultPlace) {
 		PlaceHistoryHandler phh = new PlaceHistoryHandler(mapper);
 		phh.register(placeController, eventBus, defaultPlace);
 		return phh;

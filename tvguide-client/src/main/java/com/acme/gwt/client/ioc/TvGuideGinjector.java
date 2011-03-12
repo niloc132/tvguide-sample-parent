@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -24,15 +24,12 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 
 /**
  * @author colin
- *
  */
 @GinModules({TvGuideClientModule.class})
 public interface TvGuideGinjector extends Ginjector {
 	TvGuideAppShell getAppShell();
 
 	PlaceHistoryHandler getHistoryHandler();
-
-
 
 	void injectPresenter(WelcomePresenter place);
 }

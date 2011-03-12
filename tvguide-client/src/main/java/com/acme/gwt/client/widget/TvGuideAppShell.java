@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -30,18 +30,20 @@ import com.google.inject.Singleton;
 
 /**
  * @author colin
- *
  */
 @Singleton
 public class TvGuideAppShell extends Composite implements HasOneWidget {
-	interface TvGuideAppShellUiBinder extends UiBinder<Widget, TvGuideAppShell> {}
-	private static TvGuideAppShellUiBinder uiBinder = GWT.create(TvGuideAppShellUiBinder.class);
+	interface TvGuideAppShellUiBinder extends UiBinder<Widget, TvGuideAppShell> {
+	}
 
+	private static TvGuideAppShellUiBinder uiBinder = GWT
+			.create(TvGuideAppShellUiBinder.class);
 
 	@UiField
 	LayoutPanel display;
 
-	@Inject public TvGuideAppShell(ActivityManager activityManager) {
+	@Inject
+	public TvGuideAppShell(ActivityManager activityManager) {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		activityManager.setDisplay(this);
@@ -51,7 +53,6 @@ public class TvGuideAppShell extends Composite implements HasOneWidget {
 	public Widget getWidget() {
 		return display.getWidgetCount() == 0 ? null : display.getWidget(0);
 	}
-
 
 	@Override
 	public void setWidget(Widget widget) {

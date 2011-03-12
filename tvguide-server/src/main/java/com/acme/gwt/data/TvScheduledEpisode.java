@@ -1,9 +1,12 @@
 package com.acme.gwt.data;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 /**
@@ -13,58 +16,60 @@ import javax.persistence.Version;
  * Time: 7:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public
-@Entity
+public @Entity
 class TvScheduledEpisode implements HasVersionAndId {
 
-  private Long id;
+	private Long id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public Long getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-  private Integer version;
+	private Integer version;
 
-  @Version
-  public Integer getVersion() {
-    return version;
-  }
+	@Version
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-  private TvEpisode tvEpisode;
-  private TvChannel tvChannel;
-  private TvAirTime block;
+	private TvEpisode tvEpisode;
+	private TvChannel tvChannel;
+	private TvAirTime block;
 
-  public TvEpisode getTvEpisode() {
-    return tvEpisode;
-  }
+	@ManyToOne(cascade = CascadeType.ALL)
+	public TvEpisode getTvEpisode() {
+		return tvEpisode;
+	}
 
-  public void setTvEpisode(TvEpisode tvEpisode) {
-    this.tvEpisode = tvEpisode;
-  }
+	public void setTvEpisode(TvEpisode tvEpisode) {
+		this.tvEpisode = tvEpisode;
+	}
 
-  public TvChannel getTvChannel() {
-    return tvChannel;
-  }
+	@ManyToOne(cascade = CascadeType.ALL)
+	public TvChannel getTvChannel() {
+		return tvChannel;
+	}
 
-  public void setTvChannel(TvChannel tvChannel) {
-    this.tvChannel = tvChannel;
-  }
+	public void setTvChannel(TvChannel tvChannel) {
+		this.tvChannel = tvChannel;
+	}
 
-  public TvAirTime getBlock() {
-    return block;
-  }
+	@Embedded
+	public TvAirTime getBlock() {
+		return block;
+	}
 
-  public void setBlock(TvAirTime block) {
-    this.block = block;
-  }
+	public void setBlock(TvAirTime block) {
+		this.block = block;
+	}
 }

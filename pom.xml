@@ -1,11 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.acme.gwt</groupId>
 	<artifactId>tvguide-sample-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Sample app to get to know GWT, Guice, Gin, and Maven, which should also start with a G to fit in</name>
+	<name>Sample app to get to know GWT, Guice, Gin, and Maven, which should also
+		start with a G to fit in
+	</name>
 	<properties>
 		<java.compiler.version>1.6</java.compiler.version>
 
@@ -13,8 +16,8 @@
 		<gwt.plugin.version>2.2.0</gwt.plugin.version>
 		<guice.version>3.0-rc2</guice.version>
 
-    <!--2.2.0-SNAPSHOT is an option also-->
-    <openjpa.version>2.1.0</openjpa.version>
+		<!--2.2.0-SNAPSHOT is an option also-->
+		<openjpa.version>2.1.0</openjpa.version>
 	</properties>
 
 	<dependencies>
@@ -25,7 +28,15 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-java-formatter-plugin.googlecode.com</id>
+			<name>Maven2 Java Formatter Plugin repository</name>
+			<url>
+				http://maven-java-formatter-plugin.googlecode.com/svn/maven2-repo/
+			</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -43,6 +54,20 @@
 				<version>2.4.2</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.relativitas.maven.plugins</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<configuration>
+					<compilerSource>1.6</compilerSource>
+					<compilerCompliance>1.6</compilerCompliance>
+					<compilerTargetPlatform>1.6</compilerTargetPlatform>
+					<directories>
+						<directory>src/</directory>
+					</directories>
+					<compilerSource>1.6</compilerSource>
+					<compilerTargetPlatform>1.6</compilerTargetPlatform>
 				</configuration>
 			</plugin>
 		</plugins>

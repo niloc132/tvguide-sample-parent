@@ -18,13 +18,15 @@ import com.google.gwt.user.client.AsyncProxy.ConcreteType;
 public class GateKeeper extends Receiver<TvViewerProxy> {
 	@Override
 	public void onSuccess(TvViewerProxy response) {
-		AppProxy app = GWT.<AppProxy>create(AppProxy.class);
+		AppProxy app = GWT.<AppProxy> create(AppProxy.class);
 		app.setUser(response);
 	}
 
 	interface App {
 		void setUser(TvViewerProxy user);
 	}
+
 	@ConcreteType(TvGuideApp.class)
-	interface AppProxy extends AsyncProxy<App>, App {}
+	interface AppProxy extends AsyncProxy<App>, App {
+	}
 }

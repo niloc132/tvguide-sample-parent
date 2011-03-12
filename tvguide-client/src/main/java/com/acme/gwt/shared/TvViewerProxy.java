@@ -6,6 +6,7 @@ import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
@@ -18,9 +19,8 @@ import com.google.gwt.requestfactory.shared.Service;
  * Time: 9:31 PM
  * To change this template use File | Settings | File Templates.
  */
-@ProxyFor(value=TvViewer.class, locator=InjectingLocator.class)
+@ProxyFor(value = TvViewer.class, locator = InjectingLocator.class)
 public interface TvViewerProxy extends EntityProxy {
-
 	Long getId();
 
 	Integer getVersion();
@@ -29,9 +29,9 @@ public interface TvViewerProxy extends EntityProxy {
 
 	void setVersion(Integer version);
 
-	List<TvShowProxy> getFavoriteShows();
+	List<TvShowProxy> getFavorites();
 
-	void setFavoriteShows(List<TvShowProxy> favoriteTvShows);
+	void setFavorites(List<TvShowProxy> favorites);
 
 	String getEmail();
 
@@ -49,10 +49,11 @@ public interface TvViewerProxy extends EntityProxy {
 
 	void setGeo(Geo geo);
 
-	@Service(TvViewer.class)
+	public EntityProxyId<TvViewerProxy> stableId();
+
+	@Service(value = TvViewer.class)
 	public interface TvViewerRequest extends RequestContext {
 		//replace with controller
 		Request<TvViewerProxy> authenticate(String email, String digest);
 	}
 }
-

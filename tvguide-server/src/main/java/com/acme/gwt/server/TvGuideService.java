@@ -19,7 +19,6 @@ package com.acme.gwt.server;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
-
 import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.TvChannel;
@@ -37,17 +36,20 @@ import com.google.inject.Provider;
  * @author colin
  */
 public class TvGuideService {
-	@Inject Provider<EntityManager> emProvider;
+	@Inject
+	Provider<EntityManager> emProvider;
 
-	@Inject Provider<TvViewer> viewerProvider;
+	@Inject
+	Provider<TvViewer> viewerProvider;
 
-
-	public List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(TvShow tvShow, Date begin, Date end) {
-		return null;  //todo: call the appropriate finder
+	public List<TvScheduledEpisode> findEpisodesByShowAndDateBetween(
+			TvShow tvShow, Date begin, Date end) {
+		return null; //todo: call the appropriate finder
 	}
 
-	public List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(TvChannel tvChannel, Date begin, Date end) {
-		return null;  //todo: call the appropriate finder
+	public List<TvScheduledEpisode> findEpisodesByChannelAndDateBetween(
+			TvChannel tvChannel, Date begin, Date end) {
+		return null; //todo: call the appropriate finder
 	}
 
 	public List<TvShow> getFavoriteShows() {
@@ -55,17 +57,17 @@ public class TvGuideService {
 		try {
 			call = viewerProvider.get();
 		} catch (Exception e) {
-			e.printStackTrace();  //todo: verify for a fit
+			e.printStackTrace(); //todo: verify for a fit
 		}
-		return call.getFavoriteShows();
+		return call.getFavorites();
 	}
 
 	public void setFavoriteShows(List<TvShow> favoriteTvShows) {
 		try {
 			TvViewer call = viewerProvider.get();
-			call.setFavoriteShows(favoriteTvShows);
+			call.setFavorites(favoriteTvShows);
 		} catch (Exception e) {
-			e.printStackTrace();  //todo: verify for a fit
+			e.printStackTrace(); //todo: verify for a fit
 		}
 	}
 
@@ -75,15 +77,17 @@ public class TvGuideService {
 				public Object call() throws Exception {
 					try {
 						//todo: make current user's geo matter to this list
-						return emProvider.get().createQuery("select Channel from TvChannel Channel", TvChannel.class).getResultList();
+						return emProvider.get().createQuery(
+								"select Channel from TvChannel Channel",
+								TvChannel.class).getResultList();
 					} catch (Exception e) {
-						e.printStackTrace();  //todo: verify for a fit
+						e.printStackTrace(); //todo: verify for a fit
 					}
 					return null;
 				}
 			}.call();
 		} catch (Exception e) {
-			e.printStackTrace();  //todo: verify for a fit
+			e.printStackTrace(); //todo: verify for a fit
 		}
 		return null;
 	}

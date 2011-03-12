@@ -6,7 +6,6 @@ import com.acme.gwt.shared.TvShowProxy;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.requestfactory.shared.RequestFactory;
 
-
 /**
  * Created by IntelliJ IDEA.
  * User: jim
@@ -16,11 +15,11 @@ import com.google.gwt.requestfactory.shared.RequestFactory;
  */
 public interface MyRequestFactory extends RequestFactory {
 
-  TvGuideRequest reqGuide();
+	TvGuideRequest reqGuide();
 
-  TvChannelProxy.TvChannelRequest reqChannel();
+	TvChannelProxy.TvChannelRequest reqChannel();
 
-  TvShowProxy.TvShowRequest reqShow();
+	TvShowProxy.TvShowRequest reqShow();
 
-  TvViewerProxy.TvViewerRequest reqViewer();
+	TvViewerProxy.TvViewerRequest reqViewer();
 }

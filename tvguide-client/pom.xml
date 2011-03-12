@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>tvguide-sample-parent</artifactId>
@@ -10,9 +10,51 @@
 	<packaging>war</packaging>
 	<name>TvGuide Client: GWT code, and the servlets that allow it to get at the data</name>
 	<properties>
-		<gwt.style>OBF</gwt.style>
-		<gwt.draftCompile>false</gwt.draftCompile>
+		<gwt.style>PRETTY</gwt.style>
+		<gwt.draftCompile>true</gwt.draftCompile>
+		<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
 	</properties>
+	<profiles>
+		<profile>
+			<!-- Simplified a few of the default GWT compiler settings in an effort to speed up dev builds -->
+			<id>dev-build</id>
+			<properties>
+				<gwt.style>PRETTY</gwt.style>
+				<gwt.draftCompile>true</gwt.draftCompile>
+				<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
+			</properties>
+		</profile>
+		<profile>
+			<!-- Runs the Bootstrap script, which sets up a sample database for use in the webapp's output dir -->
+			<id>db-init</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>java</executable>
+									<arguments>
+										<argument>-classpath</argument>
+										<classpath/>
+										<argument>com.acme.gwt.server.Bootstrap</argument>
+									</arguments>
+									<workingDirectory>${project.build.directory}/${project.build.finalName}</workingDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<dependencies>
 		<!-- Google Web Toolkit -->
 		<dependency>
@@ -132,11 +174,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.5</version>
-				<configuration>
-					<excludes>
-						<exclude>**/*_Roo_*</exclude>
-					</excludes>
-				</configuration>
 				<dependencies>
 					<!-- RequestFactory Validation tests need access to this -->
 					<dependency>
@@ -154,45 +191,4 @@
 		</plugins>
 		<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
 	</build>
-	<profiles>
-		<profile>
-			<!-- Simplified a few of the default GWT compiler settings in an effort to speed up dev builds -->
-			<id>dev-build</id>
-			<properties>
-				<gwt.style>PRETTY</gwt.style>
-				<gwt.draftCompile>true</gwt.draftCompile>
-				<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
-			</properties>
-		</profile>
-		<profile>
-			<!-- Runs the Bootstrap script, which sets up a sample database for use in the webapp's output dir -->
-			<id>db-init</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<configuration>
-									<executable>java</executable>
-									<arguments>
-										<argument>-classpath</argument>
-										<classpath/>
-										<argument>com.acme.gwt.server.Bootstrap</argument>
-									</arguments>
-									<workingDirectory>${project.build.directory}/${project.build.finalName}</workingDirectory>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

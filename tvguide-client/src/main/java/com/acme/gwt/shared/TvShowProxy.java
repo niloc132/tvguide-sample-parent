@@ -16,10 +16,13 @@
  */
 package com.acme.gwt.shared;
 
+import java.util.List;
+
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.gwt.requestfactory.shared.ProxyFor;
 import com.google.gwt.requestfactory.shared.RequestContext;
 import com.google.gwt.requestfactory.shared.Service;
@@ -34,19 +37,30 @@ import com.google.gwt.requestfactory.shared.Service;
 
 @ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
 public interface TvShowProxy extends EntityProxy {
+	Long getId();
+
+	Integer getVersion();
+
+	void setId(Long id);
+
+	void setVersion(Integer version);
+
 	String getName();
 
 	void setName(String name);
 
 	String getDescription();
 
-	void setDescription(String desc);
+	void setDescription(String description);
+
+	List<TvEpisodeProxy> getEpisodes();
+
+	public EntityProxyId<TvShowProxy> stableId();
+
+	void setEpisodes(List<TvEpisodeProxy> episodes);
 
 	@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
 	public interface TvShowRequest extends RequestContext {
-		//un-implemented on the server, commenting out to stop test failures until it exists
-		//InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
 	}
 }
-

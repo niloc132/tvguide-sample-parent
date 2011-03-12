@@ -16,20 +16,19 @@
  */
 package com.acme.gwt;
 
-import static junit.framework.Assert.assertFalse;
-
 import java.util.logging.Logger;
 
-import org.junit.Test;
-
-import com.acme.gwt.shared.SetupRequest;
 import com.acme.gwt.shared.TvChannelProxy.TvChannelRequest;
 import com.acme.gwt.shared.TvGuideRequest;
+import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvShowProxy.TvShowRequest;
 import com.acme.gwt.shared.TvViewerProxy.TvViewerRequest;
 import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator;
 import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator.ClassLoaderLoader;
 import com.google.gwt.requestfactory.shared.RequestContext;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertFalse;
 
 /**
  * Basic tests to verify that the RF stuff in this project will work, given what the server
@@ -46,7 +45,7 @@ public class EntityValidatorTest {
 
 	@Test
 	public void verifySetupRequestAndEntities() {
-		assertIsValidRequestContext(SetupRequest.class);
+		assertIsValidRequestContext(TvSetupRequest.class);
 	}
 
 	@Test
@@ -64,8 +63,8 @@ public class EntityValidatorTest {
 		assertIsValidRequestContext(TvChannelRequest.class);
 	}
 
-
-	private void assertIsValidRequestContext(Class<? extends RequestContext> clazz) {
+	private void assertIsValidRequestContext(
+			Class<? extends RequestContext> clazz) {
 		Logger logger = Logger.getLogger("");
 		RequestFactoryInterfaceValidator v = new RequestFactoryInterfaceValidator(
 				logger, new ClassLoaderLoader(clazz.getClassLoader()));

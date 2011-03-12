@@ -3,12 +3,11 @@ package com.acme.gwt.server;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import org.apache.openjpa.persistence.OpenJPAEntityManager;
-
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.defs.Geo;
 import com.thoughtworks.xstream.XStream;
+import org.apache.openjpa.persistence.OpenJPAEntityManager;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,15 +24,14 @@ public class Bootstrap {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		EntityManager entityManager = Persistence.createEntityManagerFactory("tvgtest").createEntityManager();
-
+		EntityManager entityManager = Persistence.createEntityManagerFactory(
+				"tvgtest").createEntityManager();
 
 		final OpenJPAEntityManager em = (OpenJPAEntityManager) entityManager;
 		em.begin();
 		TvViewer tvViewer = null;
 		try {
 			tvViewer = new TvViewer();
-
 
 			tvViewer.setEmail("you@example.com");
 
@@ -55,7 +53,7 @@ public class Bootstrap {
 			tvShow.setDescription("the Show is #3");
 			tvShow.setName("show3");
 			em.persist(tvShow);
-			tvViewer.getFavoriteShows().add(tvShow);
+			tvViewer.getFavorites().add(tvShow);
 
 			tvShow = new TvShow();
 			tvShow.setDescription("the Show is #4");
@@ -71,7 +69,7 @@ public class Bootstrap {
 			tvShow.setDescription("the Show is #6");
 			tvShow.setName("show6");
 			em.persist(tvShow);
-			tvViewer.getFavoriteShows().add(tvShow);
+			tvViewer.getFavorites().add(tvShow);
 			em.commit();
 		} catch (Exception e) {
 			if (em.isActive()) {
@@ -89,4 +87,3 @@ public class Bootstrap {
 	}
 
 }
-

@@ -36,8 +36,7 @@ import com.google.gwt.requestfactory.shared.Service;
  *
  * @author colin
  */
-public
-@ProxyFor(value = TvChannel.class, locator = InjectingLocator.class)
+public @ProxyFor(value = TvChannel.class, locator = InjectingLocator.class)
 interface TvChannelProxy extends EntityProxy {
 	String getName();
 
@@ -51,14 +50,12 @@ interface TvChannelProxy extends EntityProxy {
 
 	void setChannelNumber(Integer channelNum);
 
-
 	public EntityProxyId<TvChannelProxy> stableId();
 
 	@Service(value = TvChannel.class, locator = InjectingServiceLocator.class)
 	public interface TvChannelRequest extends RequestContext {
 		//un-implemented on the server, commenting out to stop test failures until it exists
-		//InstanceRequest<TvChannelProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+		//InstanceRequest<TvChannelProxy, List<TvScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
 	}
 }
-

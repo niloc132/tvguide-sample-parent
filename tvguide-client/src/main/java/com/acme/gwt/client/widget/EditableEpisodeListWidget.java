@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,7 +16,7 @@
  */
 package com.acme.gwt.client.widget;
 
-import com.acme.gwt.shared.EpisodeProxy;
+import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
 import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.google.gwt.cell.client.EditTextCell;
@@ -30,22 +30,27 @@ import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author colin
- *
  */
 public class EditableEpisodeListWidget extends Composite {
 	private static Binder uiBinder = GWT.create(Binder.class);
 
-	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {}
+	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
+	}
 
-	interface EpisodeColumns extends Columns<EpisodeProxy> {
+	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
 		EditTextCell season();//erp int != String
+
 		EditTextCell episodeNumber();// int != String
 
 		EditTextCell name();
 	}
+
 	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
-	@Path("") HasDataFlushableEditor<EpisodeProxy> listEd;
-	@UiField(provided=true) CellTable<EpisodeProxy> list = new CellTable<EpisodeProxy>();
+	@Path("")
+	HasDataFlushableEditor<TvEpisodeProxy> listEd;
+	@UiField(provided = true)
+	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
+
 	public EditableEpisodeListWidget() {
 		listEd = HasDataFlushableEditor.of(list);
 

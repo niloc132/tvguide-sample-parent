@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,21 +16,20 @@
  */
 package com.acme.gwt.client;
 
-import com.acme.gwt.shared.SetupRequest;
+import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvGuideRequest;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.requestfactory.shared.RequestFactory;
 
 /**
  * RequestFactory stub for the TvGuide server calls
- * 
- * @author colin
  *
+ * @author colin
  */
 public interface TvGuideRequestFactory extends RequestFactory {
 	TvViewerProxy.TvViewerRequest makeLoginRequest();
 
 	TvGuideRequest makeGuideRequest();
 
-	SetupRequest makeSetupRequest();
+	TvSetupRequest makeSetupRequest();
 }

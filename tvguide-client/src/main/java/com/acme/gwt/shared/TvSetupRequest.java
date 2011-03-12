@@ -27,10 +27,9 @@ import com.google.gwt.requestfactory.shared.Service;
  * @author colin
  * @todo No methods yet, I am assuming we will get to this
  */
-@Service (SetupRequest.SetupReqImpl.class)
-public interface SetupRequest extends RequestContext {
+@Service(TvSetupRequest.SetupReqImpl.class)
+public interface TvSetupRequest extends RequestContext {
 
-  public class SetupReqImpl {
-
-  }
+	public class SetupReqImpl {
+	}
 }

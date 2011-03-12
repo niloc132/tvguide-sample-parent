@@ -22,7 +22,7 @@ package com.acme.gwt.data;
  * @author colin
  */
 public interface HasVersionAndId {
-  Long getId();
+	Long getId();
 
-  Integer getVersion();
+	Integer getVersion();
 }

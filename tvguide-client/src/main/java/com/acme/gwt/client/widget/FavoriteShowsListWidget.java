@@ -35,29 +35,31 @@ import com.google.gwt.user.client.ui.Widget;
  * @TODO consider pushing the basics of this to a shows list widget, and wrapping it for use for
  * Favorites
  */
-public class FavoriteShowsListWidget extends Composite implements Editor<List<TvShowProxy>> {
-  private static Binder uiBinder = GWT.create(Binder.class);
+public class FavoriteShowsListWidget extends Composite
+		implements
+			Editor<List<TvShowProxy>> {
+	private static Binder uiBinder = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {
-  }
+	interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {
+	}
 
-  interface ShowColumns extends Columns<TvShowProxy> {
-    TextCell name();
+	interface ShowColumns extends Columns<TvShowProxy> {
+		TextCell name();
 
-    TextCell description();
-  }
+		TextCell description();
+	}
 
-  private ShowColumns columns = GWT.create(ShowColumns.class);
-  @Path("")
-  HasDataFlushableEditor<TvShowProxy> listEditor;
-  @UiField(provided = true)
-  CellTable<TvShowProxy> list = new CellTable<TvShowProxy>();
+	private ShowColumns columns = GWT.create(ShowColumns.class);
+	@Path("")
+	HasDataFlushableEditor<TvShowProxy> listEditor;
+	@UiField(provided = true)
+	CellTable<TvShowProxy> list = new CellTable<TvShowProxy>();
 
-  public FavoriteShowsListWidget() {
-    listEditor = HasDataFlushableEditor.of(list);
+	public FavoriteShowsListWidget() {
+		listEditor = HasDataFlushableEditor.of(list);
 
-    columns.configure(list, listEditor);
+		columns.configure(list, listEditor);
 
-    initWidget(uiBinder.createAndBindUi(this));
-  }
+		initWidget(uiBinder.createAndBindUi(this));
+	}
 }

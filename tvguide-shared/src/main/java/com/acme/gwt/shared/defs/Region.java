@@ -8,5 +8,5 @@ package com.acme.gwt.shared.defs;
  * To change this template use File | Settings | File Templates.
  */
 public enum Region {
-  SATTELITE, CENTRAL, EAST, WEST, NORTH, SOUTH
+	SATTELITE, CENTRAL, EAST, WEST, NORTH, SOUTH
 }

@@ -38,7 +38,8 @@ public class DataLoader {
 
 	@Inject
 	Injector injector;
-	@Inject Provider<EntityManager> emProvider;
+	@Inject
+	Provider<EntityManager> emProvider;
 
 	public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
 		return injector.getInstance(clazz);

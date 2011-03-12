@@ -27,37 +27,39 @@ import com.google.inject.Inject;
  *
  * @author colin
  */
-public class InjectingLocator<T extends HasVersionAndId> extends Locator<T, Long> {
-  @Inject
-  DataLoader data;
+public class InjectingLocator<T extends HasVersionAndId>
+		extends
+			Locator<T, Long> {
+	@Inject
+	DataLoader data;
 
-  @Override
-  public T create(Class<? extends T> clazz) {
-    return data.create(clazz);
-  }
+	@Override
+	public T create(Class<? extends T> clazz) {
+		return data.create(clazz);
+	}
 
-  @Override
-  public T find(Class<? extends T> clazz, Long id) {
-    return data.find(clazz, id);
-  }
+	@Override
+	public T find(Class<? extends T> clazz, Long id) {
+		return data.find(clazz, id);
+	}
 
-  @Override
-  public Class<T> getDomainType() {
-    throw new UnsupportedOperationException();//unused, and if it becomes used, we're in trouble
-  }
+	@Override
+	public Class<T> getDomainType() {
+		throw new UnsupportedOperationException();//unused, and if it becomes used, we're in trouble
+	}
 
-  @Override
-  public Long getId(T domainObject) {
-    return domainObject.getId();
-  }
+	@Override
+	public Long getId(T domainObject) {
+		return domainObject.getId();
+	}
 
-  @Override
-  public Class<Long> getIdType() {
-    return Long.class;
-  }
+	@Override
+	public Class<Long> getIdType() {
+		return Long.class;
+	}
 
-  @Override
-  public Object getVersion(T domainObject) {
-    return domainObject.getVersion();
-  }
+	@Override
+	public Object getVersion(T domainObject) {
+		return domainObject.getVersion();
+	}
 }

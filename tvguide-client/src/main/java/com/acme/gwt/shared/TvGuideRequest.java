@@ -33,55 +33,57 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 @Service(value = TvGuideService.class, locator = InjectingServiceLocator.class)
 public interface TvGuideRequest extends RequestContext {
-  /**
-   * Gets the list of shows the user has marked as favorite.
-   *
-   * @return
-   */
-  Request<List<TvShowProxy>> getFavoriteShows();
+	/**
+	 * Gets the list of shows the user has marked as favorite.
+	 *
+	 * @return
+	 */
+	Request<List<TvShowProxy>> getFavoriteShows();
 
-  /**
-   * Informs the server that the list of favorites has changed.
-   *
-   * @param tvShows
-   * @return
-   * @TODO This should probably go away, and in its place, methods for add and remove favorites.
-   */
-  Request<Void> setFavoriteShows(List<TvShowProxy> tvShows);
+	/**
+	 * Informs the server that the list of favorites has changed.
+	 *
+	 * @param tvShows
+	 * @return
+	 * @TODO This should probably go away, and in its place, methods for add and remove favorites.
+	 */
+	Request<Void> setFavoriteShows(List<TvShowProxy> tvShows);
 
-  /**
-   * Gets all the User's channels (based on Locale,Provider, yet to be determined how we look this
-   * up).
-   *
-   * @return
-   */
-  Request<List<TvChannelProxy>> getAllChannels();
+	/**
+	 * Gets all the User's channels (based on Locale,Provider, yet to be determined how we look this
+	 * up).
+	 *
+	 * @return
+	 */
+	Request<List<TvChannelProxy>> getAllChannels();
 
-  /**
-   * Gets all of the shows schedules between the start and end date on the given tvChannel. For the
-   * general (i.e. non-favorites) case, this is the main method to actually do things.
-   * <p/>
-   * It is possible we want the tvChannel param to change to a list, but since this is a single
-   * RequestContext, more than one call to this can be batched, and the client can handle each
-   * as desired.
-   *
-   * @param startDate
-   * @param endDate
-   * @return
-   */
-  Request<List<ScheduledEpisodeProxy>> findEpisodesByChannelAndDateBetween(TvChannelProxy tvChannel, Date startDate, Date endDate);
+	/**
+	 * Gets all of the shows schedules between the start and end date on the given tvChannel. For the
+	 * general (i.e. non-favorites) case, this is the main method to actually do things.
+	 * <p/>
+	 * It is possible we want the tvChannel param to change to a list, but since this is a single
+	 * RequestContext, more than one call to this can be batched, and the client can handle each
+	 * as desired.
+	 *
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	Request<List<TvScheduledEpisodeProxy>> findEpisodesByChannelAndDateBetween(
+			TvChannelProxy tvChannel, Date startDate, Date endDate);
 
-  /**
-   * Gets all of the scheduled instances of this tvShow in the given range. For users making use of
-   * the favorites functionality, this allows them to select only shows they care about.
-   * <p/>
-   * As with the other overload of getEpisodesInRange, this can be called many times on a given
-   * request to get the data for many shows. This will probably be intended to be called over
-   * longer periods of time, and over all channels available to this user.
-   *
-   * @param startDate
-   * @param endDate
-   * @return
-   */
-  Request<List<ScheduledEpisodeProxy>> findEpisodesByShowAndDateBetween(TvShowProxy tvShow, Date startDate, Date endDate);
+	/**
+	 * Gets all of the scheduled instances of this tvShow in the given range. For users making use of
+	 * the favorites functionality, this allows them to select only shows they care about.
+	 * <p/>
+	 * As with the other overload of getEpisodesInRange, this can be called many times on a given
+	 * request to get the data for many shows. This will probably be intended to be called over
+	 * longer periods of time, and over all channels available to this user.
+	 *
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	Request<List<TvScheduledEpisodeProxy>> findEpisodesByShowAndDateBetween(
+			TvShowProxy tvShow, Date startDate, Date endDate);
 }
