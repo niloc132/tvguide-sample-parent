@@ -19,7 +19,7 @@ public class TvAirTime {
 
   private Integer duration;
 
-  @Temporal(TemporalType.DATE)
+  @Temporal(TemporalType.TIME)
   public Date getStartDate() {
     return startDate;
   }

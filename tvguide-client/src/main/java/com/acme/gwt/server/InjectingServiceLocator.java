@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -23,14 +23,15 @@ import com.google.inject.Injector;
 /**
  * Provides instances of Service types. Must be specified in the {@literal @}Service annotations
  * on RequestContext subclasses to be used.
- * 
- * @author colin
  *
+ * @author colin
  */
 public class InjectingServiceLocator implements ServiceLocator {
-	@Inject Injector injector;
-	public Object getInstance(Class<?> clazz) {
-		return injector.getInstance(clazz);
-	}
+  @Inject
+  Injector injector;
+
+  public Object getInstance(Class<?> clazz) {
+    return injector.getInstance(clazz);
+  }
 
 }

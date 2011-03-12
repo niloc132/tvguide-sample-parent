@@ -1,12 +1,21 @@
 package com.acme.gwt.data;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import com.acme.gwt.shared.defs.Geo;
+
 /**
+ * this is a local channel in a lineup of channels, this is not a network in a list of Cable networks.
+ * <p/>
  * Created by IntelliJ IDEA.
  * User: jim
  * Date: 3/10/11
@@ -68,5 +77,27 @@ class TvChannel implements HasVersionAndId {
 
   public void setChannelNumber(Integer channelNumber) {
     this.channelNumber = channelNumber;
+  }
+
+  private Geo geo;
+
+  @Enumerated(EnumType.STRING)
+  public Geo getGeo() {
+    return geo;
+  }
+
+  public void setGeo(Geo geo) {
+    this.geo = geo;
+  }
+
+  private List<TvScheduledEpisode> scheduledEpisodes;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "tvChannel")
+  public List<TvScheduledEpisode> getScheduledEpisodes() {
+    return scheduledEpisodes;
+  }
+
+  public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
+    this.scheduledEpisodes = scheduledEpisodes;
   }
 }

@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -26,24 +26,24 @@ import com.google.inject.Injector;
 
 /**
  * @author colin
- *
  */
 public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
-	@Inject Injector injector;
+  @Inject
+  Injector injector;
 
-	@Override
-	public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
-		return injector.getInstance(clazz);
-	}
+  @Override
+  public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
+    return injector.getInstance(clazz);
+  }
 
-	@Override
-	public Object createServiceInstance(Method contextMethod, Method domainMethod) {
-		// Check if the request needs a service locator
-		Class<? extends ServiceLocator> locatorType = getTop().resolveServiceLocator(contextMethod, domainMethod);
-		assert locatorType != null;
+  @Override
+  public Object createServiceInstance(Method contextMethod, Method domainMethod) {
+    // Check if the request needs a service locator
+    Class<? extends ServiceLocator> locatorType = getTop().resolveServiceLocator(contextMethod, domainMethod);
+    assert locatorType != null;
 
-		// Inject an instance of the locator itself, and then get an instance from it
-		ServiceLocator locator = injector.getInstance(locatorType);
-		return locator.getInstance(domainMethod.getDeclaringClass());
-	}
+    // Inject an instance of the locator itself, and then get an instance from it
+    ServiceLocator locator = injector.getInstance(locatorType);
+    return locator.getInstance(domainMethod.getDeclaringClass());
+  }
 }

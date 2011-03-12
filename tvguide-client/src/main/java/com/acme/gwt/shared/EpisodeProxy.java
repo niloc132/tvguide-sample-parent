@@ -28,23 +28,24 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
  * @author colin
  * @todo Do we want a Season object as well? Only utility I could see in that is to provide meta-
  * data to a List of Episodes.
+ * jn: seasons are abstract
  */
 public
-@ProxyFor(value = TvEpisode.class,locator = InjectingLocator.class)
+@ProxyFor(value = TvEpisode.class, locator = InjectingLocator.class)
 interface EpisodeProxy extends EntityProxy {
-  TvShowProxy getTvShow();
+    TvShowProxy getTvShow();
 
-  void setTvShow(TvShowProxy tvShow);
+    void setTvShow(TvShowProxy tvShow);
 
-  String getName();
+    String getName();
 
-  void setName(String name);
+    void setName(String name);
 
-  Integer getSeason();
+    Integer getSeason();
 
-  void setSeason(Integer num);
+    void setSeason(Integer num);
 
-  Integer getEpisodeNumber();
+    Integer getEpisodeNumber();
 
-  void setEpisodeNumber(Integer num);
+    void setEpisodeNumber(Integer num);
 }

@@ -1,9 +1,12 @@
 package com.acme.gwt.data;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 /**
@@ -44,6 +47,7 @@ class TvScheduledEpisode implements HasVersionAndId {
   private TvChannel tvChannel;
   private TvAirTime block;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   public TvEpisode getTvEpisode() {
     return tvEpisode;
   }
@@ -52,6 +56,7 @@ class TvScheduledEpisode implements HasVersionAndId {
     this.tvEpisode = tvEpisode;
   }
 
+  @ManyToOne(cascade = CascadeType.ALL)
   public TvChannel getTvChannel() {
     return tvChannel;
   }
@@ -60,6 +65,7 @@ class TvScheduledEpisode implements HasVersionAndId {
     this.tvChannel = tvChannel;
   }
 
+  @Embedded
   public TvAirTime getBlock() {
     return block;
   }

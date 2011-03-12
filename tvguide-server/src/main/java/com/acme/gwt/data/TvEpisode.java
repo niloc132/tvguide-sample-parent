@@ -1,9 +1,14 @@
 package com.acme.gwt.data;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Version;
 
 /**
@@ -45,6 +50,7 @@ class TvEpisode implements HasVersionAndId {
   private Integer episodeNumber;
   private String name;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   public TvShow getTvShow() {
     return tvShow;
   }
@@ -75,5 +81,17 @@ class TvEpisode implements HasVersionAndId {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  private List<TvScheduledEpisode> scheduledEpisodes;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "tvEpisode", orphanRemoval = true)
+  @OrderBy(value = "block.startDate")
+  public List<TvScheduledEpisode> getScheduledEpisodes() {
+    return scheduledEpisodes;
+  }
+
+  public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
+    this.scheduledEpisodes = scheduledEpisodes;
   }
 }

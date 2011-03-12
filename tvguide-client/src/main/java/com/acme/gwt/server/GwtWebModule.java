@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -26,27 +26,28 @@ import com.google.inject.servlet.ServletModule;
 
 /**
  * @author colin
- *
  */
 public class GwtWebModule extends ServletModule {
-	private final String requestFactoryPath;
+  private final String requestFactoryPath;
 
-	public GwtWebModule() {
-		this("/" + DefaultRequestTransport.URL);
-	}
-	public GwtWebModule(String requestFactoryPath) {
-		this.requestFactoryPath = requestFactoryPath;
-	}
+  public GwtWebModule() {
+    this("/" + DefaultRequestTransport.URL);
+  }
 
-	@Override
-	protected void configureServlets() {
-		bind(InjectableServiceLayerDecorator.class);
-		serve(requestFactoryPath).with(RequestFactoryServlet.class);
-	}
+  public GwtWebModule(String requestFactoryPath) {
+    this.requestFactoryPath = requestFactoryPath;
+  }
 
-	@Inject
-	@Singleton
-	@Provides RequestFactoryServlet provideRequestFactoryServlet(InjectableServiceLayerDecorator injectableSLD) {
-		return new RequestFactoryServlet(new DefaultExceptionHandler(), injectableSLD);
-	}
+  @Override
+  protected void configureServlets() {
+    bind(InjectableServiceLayerDecorator.class);
+    serve(requestFactoryPath).with(RequestFactoryServlet.class);
+  }
+
+  @Inject
+  @Singleton
+  @Provides
+  RequestFactoryServlet provideRequestFactoryServlet(InjectableServiceLayerDecorator injectableSLD) {
+    return new RequestFactoryServlet(new DefaultExceptionHandler(), injectableSLD);
+  }
 }
