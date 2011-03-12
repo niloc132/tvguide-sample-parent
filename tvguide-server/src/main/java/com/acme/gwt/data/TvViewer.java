@@ -131,6 +131,10 @@ public class TvViewer implements HasVersionAndId {
 	public static TvViewer authenticate(String email, String digest) {
 		TvViewer user = findTvViewerByEmailAndDigest(email, digest);
 
+		if (user == null) {
+			throw new RuntimeException("Failed login attempt.");
+		}
+
 		// Store the current user in a session scoped var
 		currentUserProvider.get().setCurrentViewer(user);
 

@@ -3,6 +3,8 @@ package com.acme.gwt.client;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.requestfactory.shared.Receiver;
+import com.google.gwt.user.client.AsyncProxy;
+import com.google.gwt.user.client.AsyncProxy.ConcreteType;
 
 /**
  * An imports barrier to minimize the initial push to client.
@@ -13,10 +15,16 @@ import com.google.gwt.requestfactory.shared.Receiver;
  * Time: 4:23 AM
  * To change this template use File | Settings | File Templates.
  */
-class GateKeeper extends Receiver<TvViewerProxy> {
-  @Override
-  public void onSuccess(TvViewerProxy response) {
-    GWT.runAsync(new TvGuideApp(response));
-  }
+public class GateKeeper extends Receiver<TvViewerProxy> {
+	@Override
+	public void onSuccess(TvViewerProxy response) {
+		AppProxy app = GWT.<AppProxy>create(AppProxy.class);
+		app.setUser(response);
+	}
 
+	interface App {
+		void setUser(TvViewerProxy user);
+	}
+	@ConcreteType(TvGuideApp.class)
+	interface AppProxy extends AsyncProxy<App>, App {}
 }

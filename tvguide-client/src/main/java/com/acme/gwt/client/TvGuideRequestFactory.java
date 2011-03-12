@@ -18,6 +18,7 @@ package com.acme.gwt.client;
 
 import com.acme.gwt.shared.SetupRequest;
 import com.acme.gwt.shared.TvGuideRequest;
+import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.requestfactory.shared.RequestFactory;
 
 /**
@@ -27,6 +28,8 @@ import com.google.gwt.requestfactory.shared.RequestFactory;
  *
  */
 public interface TvGuideRequestFactory extends RequestFactory {
+	TvViewerProxy.TvViewerRequest makeLoginRequest();
+
 	TvGuideRequest makeGuideRequest();
 
 	SetupRequest makeSetupRequest();
