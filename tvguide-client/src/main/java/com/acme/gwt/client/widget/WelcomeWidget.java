@@ -14,20 +14,22 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.place;
+package com.acme.gwt.client.widget;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
-import com.google.inject.BindingAnnotation;
+import com.acme.gwt.client.view.WelcomeView;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Used to indicate that the default {@link com.google.gwt.place.shared.Place} should be injected
  * @author colin
  *
  */
-@Retention(RetentionPolicy.RUNTIME)
-@BindingAnnotation
-public @interface DefaultPlace {
-
+public class WelcomeWidget extends Widget implements WelcomeView {
+	/**
+	 * 
+	 */
+	public WelcomeWidget() {
+		setElement(DOM.createDiv());
+		getElement().setInnerHTML("Welcome");
+	}
 }

@@ -16,22 +16,42 @@
  */
 package com.acme.gwt.server;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.acme.gwt.data.DataLoader;
+import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.servlet.RequestScoped;
 
 /**
  * @author colin
  *
  */
 public class TvGuideServiceModule extends AbstractModule {
+	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tvgtest");
 	@Override
 	protected void configure() {
-//		bind(TvGuideService.class);
-/*1) Binding points to itself.
-  at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:30)
-	*/
- /*   bind(DataLoader$.class).to(DataLoader$.class);      1) Binding points to itself.
-  at com.acme.gwt.server.TvGuideServiceModule.configure(TvGuideServiceModule.java:33)
-*/
+		bind(TvGuideService.class);
+		bind(DataLoader.class);
+
+		//workaround for TvViewer which wants a static reference to a EntityManager provider
+		requestStaticInjection(TvViewer.class);
 	}
+
+	@Provides EntityManagerFactory provideEMF() {
+		return emf;
+	}
+
+	/**
+	 * Gets an instance of a EntityManager, and will only be called once per servlet Request
+	 * @return
+	 */
+	@Provides @RequestScoped EntityManager provideEntityManager(EntityManagerFactory emf) {
+		return emf.createEntityManager();
+	}
+
 
 }

@@ -9,28 +9,8 @@
 	<groupId>com.acme.gwt</groupId>
 	<artifactId>tvguide-shared</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<dependencies>
-		<!-- RequestFactory interfaces -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<version>${gwt.version}</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<!-- Need to depend on server to get access to the services we can proxy to -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tvguide-server</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
+	<name>Common code, used by both frontend and backend</name>
+
 	<build>
 		<!-- Source must be available for GWT compiler -->
 		<resources>

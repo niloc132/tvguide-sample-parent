@@ -25,6 +25,7 @@ import com.acme.gwt.server.InjectingServiceLocator;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.InstanceRequest;
 import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.RequestContext;
 import com.google.gwt.requestfactory.shared.Service;
 
 /**
@@ -37,18 +38,18 @@ import com.google.gwt.requestfactory.shared.Service;
 
 @ProxyFor(value = TvShow.class, locator = InjectingLocator.class)
 public interface TvShowProxy extends EntityProxy {
-  String getName();
+	String getName();
 
-  void setName(String name);
+	void setName(String name);
 
-  String getDescription();
+	String getDescription();
 
-  void setDescription(String desc);
+	void setDescription(String desc);
 
-  @Service(value = TvShow.class, locator = InjectingServiceLocator.class)
-  public interface TvShowRequest {
-    InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
+	@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
+	public interface TvShowRequest extends RequestContext {
+		InstanceRequest<TvShowProxy, List<ScheduledEpisodeProxy>> findEpisodesInRange(Date startDate, Date endDate);
 
-  }
+	}
 }
 

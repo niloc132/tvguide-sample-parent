@@ -16,8 +16,11 @@
  */
 package com.acme.gwt.data;
 
+import javax.persistence.EntityManager;
+
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 
 /**
  * Simple window into the data store, whatever that is. This should be made into an interface, with
@@ -27,21 +30,21 @@ import com.google.inject.Injector;
  */
 public class DataLoader {
 
+	//  { /*one-time use of these statements to entice intellij
+	// to add maven deps, just uncomment*/
+	//    org.apache.openjpa.jdbc.sql.H2Dictionary h2;
+	//    com.mysql.jdbc.Driver mysql;
+	//  }
 
-//  { /*one-time use of these statements to entice intellij
-// to add maven deps, just uncomment*/
-//    org.apache.openjpa.jdbc.sql.H2Dictionary h2;
-//    com.mysql.jdbc.Driver mysql;
-//  }
+	@Inject
+	Injector injector;
+	@Inject Provider<EntityManager> emProvider;
 
-  @Inject
-  Injector injector;
+	public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
+		return injector.getInstance(clazz);
+	}
 
-  public <T extends HasVersionAndId> T create(Class<? extends T> clazz) {
-    return injector.getInstance(clazz);//TODO
-  }
-
-  public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
-    return null;//TODO
-  }
+	public <T extends HasVersionAndId> T find(Class<? extends T> clazz, Long id) {
+		return emProvider.get().find(clazz, id);
+	}
 }

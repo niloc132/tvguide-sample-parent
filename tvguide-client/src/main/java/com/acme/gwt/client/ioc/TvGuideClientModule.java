@@ -22,6 +22,7 @@ import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper;
 import com.acme.gwt.client.view.WelcomeView;
+import com.acme.gwt.client.widget.WelcomeWidget;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
@@ -50,7 +51,7 @@ public class TvGuideClientModule extends AbstractGinModule {
 
 		bind(Place.class).annotatedWith(DefaultPlace.class).to(WelcomePlace.class);
 
-		bind(WelcomeView.class).in(Singleton.class);
+		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
 
 	}
 

@@ -16,10 +16,15 @@
 	<!-- Make all code in the client package available to the compiler -->
 	<source path="client" />
 	
-	<!-- Reference the RF stuff in the shared project -->
-	<inherits name="com.acme.gwt.TvGuideEntities"/>
-  <inherits name="com.colinalworth.celltable.columns.ColumnsCreator"/>
+	<!-- And all the code in shared, where we have the RF stuff -->
+	<source path="shared" />
+	
+	<!-- Reference the Shared code, common to client and server
+	<inherits name="com.acme.gwt.TvGuideShared"/> -->
+	
+	<!-- celltable-tools for cleaner celltable setups -->
+	<inherits name="com.colinalworth.celltable.columns.ColumnsCreator"/>
 
-  <!-- Start the app with this EntryPoint -->
+	<!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>
 </module>

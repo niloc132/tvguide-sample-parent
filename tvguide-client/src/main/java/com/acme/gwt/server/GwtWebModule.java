@@ -41,8 +41,6 @@ public class GwtWebModule extends ServletModule {
 	@Override
 	protected void configureServlets() {
 		bind(InjectableServiceLayerDecorator.class);
-
-
 		serve(requestFactoryPath).with(RequestFactoryServlet.class);
 	}
 
