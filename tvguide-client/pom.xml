@@ -10,9 +10,8 @@
 	<packaging>war</packaging>
 	<name>TvGuide Client: GWT code, and the servlets that allow it to get at the data</name>
 	<properties>
-		<gwt.style>PRETTY</gwt.style>
-		<gwt.draftCompile>true</gwt.draftCompile>
-		<gwt.compiler.optimizationLevel>0</gwt.compiler.optimizationLevel>
+		<gwt.style>OBF</gwt.style>
+		<gwt.draftCompile>false</gwt.draftCompile>
 	</properties>
 	<profiles>
 		<profile>
