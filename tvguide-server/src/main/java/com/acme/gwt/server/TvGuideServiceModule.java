@@ -16,10 +16,8 @@
  */
 package com.acme.gwt.server;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
 
-import com.acme.gwt.AuthenticatedViewerProvider;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
 
@@ -27,11 +25,20 @@ import com.google.inject.AbstractModule;
  * @author colin
  */
 public class TvGuideServiceModule extends AbstractModule {
-	private static final EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("tvgtest");
 
 	@Override
 	protected void configure() {
+		// TvViewers will be handed out by this, depending on how auth is scoped
 		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
+
+		// Ensure that something has session stuff ready
+		requireBinding(AuthenticatedViewerProvider.class);
+
+		// Ensure that something is bringing a EntityManager to the party
+		requireBinding(EntityManager.class);
+
+		// TvViewer must be statically injected, otherwise it has no access to the great 
+		// Guicy world of data
+		requestStaticInjection(TvViewer.class);
 	}
 }

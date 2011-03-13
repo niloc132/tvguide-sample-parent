@@ -31,6 +31,13 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Inject
 	Injector injector;
 
+	/**
+	 * call tiny bootstrap's init before data is used
+	 */
+	@Inject
+	public void setBootstrap(TinyBootstrap bootstrap) {
+		bootstrap.go();
+	}
 	@Override
 	public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
 		return injector.getInstance(clazz);

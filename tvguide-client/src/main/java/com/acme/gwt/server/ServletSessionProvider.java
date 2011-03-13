@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- *
+ * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -17,16 +17,22 @@
 package com.acme.gwt.server;
 
 import com.acme.gwt.server.AuthenticatedViewerProvider.SessionProvider;
-import com.google.inject.AbstractModule;
+import com.google.inject.servlet.SessionScoped;
 
 /**
  * @author colin
+ *
  */
-public class TvGuideWebServiceModule extends AbstractModule {
+@SessionScoped
+public class ServletSessionProvider implements SessionProvider {
+	private Long id;
 	@Override
-	protected void configure() {
-		// Make a session provider available - this will be session scoped, and available
-		// for the duration of the user's session
-		bind(SessionProvider.class).to(ServletSessionProvider.class);
+	public Long get() {
+		return id;
+	}
+
+	@Override
+	public void setActiveViewerId(Long viewerId) {
+		id = viewerId;
 	}
 }

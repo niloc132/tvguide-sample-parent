@@ -14,28 +14,28 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.data;
+package com.acme.gwt.server.simple;
 
-import com.acme.gwt.server.JpaBootstrap;
-import com.acme.gwt.server.TvGuideServiceModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.junit.Test;
+import com.acme.gwt.server.AuthenticatedViewerProvider.SessionProvider;
+import com.google.inject.Singleton;
 
 /**
- * Tests that the JpaBootstrap script can do something. In the event that we have the persistence.xml
- * set to hand out something other than h2:mem, this will need to find a way to hand off an
- * EntityManager that can be tested.
+ * Dirt simple {@link SessionProvider} impl, suitable for testing or batched records only.
  * 
  * @author colin
  *
  */
-public class BootstrapDataTest {
-	private static final Injector i = Guice
-			.createInjector(new TvGuideServiceModule());
+@Singleton
+public class SingletonSessionProvider implements SessionProvider {
+	private Long id;
+	@Override
+	public Long get() {
+		// TODO Auto-generated method stub
+		return id;
+	}
 
-	@Test
-	public void bootstrapTest() {
-		i.getInstance(JpaBootstrap.class);
+	@Override
+	public void setActiveViewerId(Long viewerId) {
+		id = viewerId;
 	}
 }

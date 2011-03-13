@@ -2,6 +2,7 @@ package com.acme.gwt.data;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +17,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Version;
 
-import com.acme.gwt.AuthenticatedViewerProvider;
+import com.acme.gwt.server.AuthenticatedViewerProvider;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
+ * Due to details in how this type is injected when code asks for the current user, this cannot
+ * be created by calling injector.getInstance(TvViewer.class), but must be constructed the old
+ * fashioned way. A 'create profile' method or the like would be the appropriate place to do this.
+ * 
  * Created by IntelliJ IDEA.
  * User: jim
  * Date: 3/10/11
@@ -138,7 +143,7 @@ public class TvViewer implements HasVersionAndId {
 							TvViewer.class).setParameter("email", email)
 					.setParameter("digest", digest).getSingleResult();
 		} catch (Exception e) {
-			//            e.printStackTrace();  //todo: verify for a fit
+			e.printStackTrace(); //todo: verify for a fit
 		} finally {
 		}
 		return singleResult;

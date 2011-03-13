@@ -1,4 +1,4 @@
-package com.acme.gwt.server;
+package com.acme.gwt.server.simple;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.PersistService;

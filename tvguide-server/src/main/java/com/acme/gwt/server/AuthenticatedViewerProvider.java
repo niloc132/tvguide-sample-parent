@@ -14,9 +14,12 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt;
+package com.acme.gwt.server;
+
+import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.TvViewer;
+import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
@@ -27,16 +30,35 @@ import com.google.inject.Provider;
  * code here too, or at least let this class deal with it, so that something like OpenID can be
  * wired in easily.
  * 
+ * As it is now, this MUST be correctly scoped in whatever container it is used in.
+ * 
  * @author colin
  *
  */
 public class AuthenticatedViewerProvider implements Provider<TvViewer> {
-	private TvViewer viewer;
+	private Provider<EntityManager> emProvider;
+
+	// instead of this, ask for generic session provider, where the session just holds an ID
+	// with which to find the current viewer. Servlet impl will just be session scoped
+	private Provider<SessionProvider> session;
+
+	@Inject
+	public AuthenticatedViewerProvider(Provider<EntityManager> emp,
+			Provider<SessionProvider> sessionProvider) {
+		this.emProvider = emp;
+		this.session = sessionProvider;
+	}
+
 	@Override
 	public TvViewer get() {
-		return viewer;
+		return session.get().get() == null ? null : emProvider.get().find(
+				TvViewer.class, session.get().get());
 	}
 	public void setCurrentViewer(TvViewer viewer) {
-		this.viewer = viewer;
+		session.get().setActiveViewerId(viewer.getId());
+	}
+
+	public interface SessionProvider extends Provider<Long> {
+		void setActiveViewerId(Long viewerId);
 	}
 }

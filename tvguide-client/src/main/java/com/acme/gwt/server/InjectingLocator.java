@@ -16,10 +16,13 @@
  */
 package com.acme.gwt.server;
 
-import com.acme.gwt.data.DataLoader;
+import javax.persistence.EntityManager;
+
 import com.acme.gwt.data.HasVersionAndId;
 import com.google.gwt.requestfactory.shared.Locator;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Provider;
 
 /**
  * Simple Locator for entity types, with basic data creation and finding pass along to another
@@ -31,16 +34,19 @@ public class InjectingLocator<T extends HasVersionAndId>
 		extends
 			Locator<T, Long> {
 	@Inject
-	DataLoader data;
+	Provider<EntityManager> data;
+
+	@Inject
+	Injector injector;
 
 	@Override
 	public T create(Class<? extends T> clazz) {
-		return data.create(clazz);
+		return injector.getInstance(clazz);
 	}
 
 	@Override
 	public T find(Class<? extends T> clazz, Long id) {
-		return data.find(clazz, id);
+		return data.get().find(clazz, id);
 	}
 
 	@Override

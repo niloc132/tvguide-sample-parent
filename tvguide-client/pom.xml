@@ -44,7 +44,7 @@
 									<arguments>
 										<argument>-classpath</argument>
 										<classpath/>
-										<argument>com.acme.gwt.server.JpaBootstrap</argument>
+										<argument>com.acme.gwt.server.simple.JpaBootstrap</argument>
 									</arguments>
 									<workingDirectory>${project.build.directory}/${project.build.finalName}</workingDirectory>
 								</configuration>

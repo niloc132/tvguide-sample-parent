@@ -23,7 +23,6 @@ import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.persist.PersistFilter;
-import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 
 /**
@@ -31,7 +30,6 @@ import com.google.inject.servlet.ServletModule;
  */
 public class GwtWebModule extends ServletModule {
 	private final String requestFactoryPath;
-	private boolean scopingIsABetterSolutionThanThisFlag = false;
 
 	public GwtWebModule() {
 		this("/" + DefaultRequestTransport.URL);
@@ -44,9 +42,7 @@ public class GwtWebModule extends ServletModule {
 	@Override
 	protected void configureServlets() {
 		serve(requestFactoryPath).with(RequestFactoryServlet.class);
-		install(new JpaPersistModule("tvgtest")); // like we saw earlier.
 		filter("/*").through(PersistFilter.class);
-
 	}
 
 	@Inject
@@ -54,22 +50,6 @@ public class GwtWebModule extends ServletModule {
 	@Provides
 	RequestFactoryServlet provideRequestFactoryServlet(
 			InjectableServiceLayerDecorator injectableSLD) {
-
-		//the goal here was to find some injected method and put a one-time
-		// bootstrap call with a sync guard because im unclear on the lifecycle
-		// spot best suited.
-
-		//@Inject static BootStrap forgetMeAfterUse;
-		// would also work, sort of.
-
-		/*
-		   if (!scopingIsABetterSolutionThanThisFlag)
-		    synchronized (getClass()) {
-		       if (!scopingIsABetterSolutionThanThisFlag) {
-		         scopingIsABetterSolutionThanThisFlag = true;
-		         injectableSLD.injector.getInstance(JpaBootstrap.class);
-		       }
-		     }*/
 		return new RequestFactoryServlet(new DefaultExceptionHandler(),
 				injectableSLD);
 	}
