@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>niloc132/tvguide-sample-parent @ GitHub</title>
+
+  <style type="text/css">
+    body {
+      margin-top: 1.0em;
+      background-color: #d6d1ae;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 3.8em; color: #292e51; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #292e51; }
+    h3 { text-align: center; color: #292e51; }
+    a { color: #292e51; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+  </style>
+</head>
+
+<body>
+  <a href="http://github.com/niloc132/tvguide-sample-parent"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/niloc132/tvguide-sample-parent/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/niloc132/tvguide-sample-parent/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/niloc132/tvguide-sample-parent">tvguide-sample-parent</a>
+      <span class="small">by <a href="http://github.com/niloc132">niloc132</a></span></h1>
+
+    <div class="description">
+      Sample app to get to know GWT, Guice, Gin, and Maven
+    </div>
+
+    <p>Sample app to get to know GWT, Guice, Gin, and Maven (and doesn't it seem like Maven should start with G to fit in?). RequestFactory is used on the client to get data from JPA on the server, from an H2 database. For the most part, we've tried to use fairly standard tools to make it clear how one can start a less-than-trivial project, but here and there we have embellished.
+
+In an effort to get the page loading as quickly as possible, we're using a GWT split point to let part of the app load, then start asking the server for information about the user, if they are logged in, what we know about them, etc. If they are not logged in, either we let them read the data (as a guest user), or allow them to log in or create an account.
+
+Data is loaded as needed, and is not yet cached on the client. In theory, the ProxySerializer of RequestFactory can be used to keep a local cache of data the server has provided in the past, but there is no obvious way to invalidate entries in the cache in response to feedback from the server (Operation.DELETE, Operation.UPDATE).
+
+(This will probably be replaced with maven site info in the near future, or deleted outright.)</p><h2>Dependencies</h2>
+<p>celltable-tools, gwt, guice, guice-servlet, guice-persist, javax.servlet</p>
+<h2>Authors</h2>
+<p>Andrew Hughes (ahhughes@gmail.com)<br/>Colin Alworth (niloc132@gmail.com)<br/>Jim Northrup (northrup.james@gmail.com)<br/><br/>      </p>
+<h2>Contact</h2>
+<p>Colin Alworth (niloc132@gmail.com)<br/>      </p>
+
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="http://github.com/niloc132/tvguide-sample-parent/zipball/master">zip</a> or
+      <a href="http://github.com/niloc132/tvguide-sample-parent/tarball/master">tar</a> formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/niloc132/tvguide-sample-parent</pre>
+    </p>
+
+    <div class="footer">
+      get the source code on GitHub : <a href="http://github.com/niloc132/tvguide-sample-parent">niloc132/tvguide-sample-parent</a>
+    </div>
+
+  </div>
+
+  
+</body>
+</html>
