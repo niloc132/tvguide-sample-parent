@@ -8,7 +8,11 @@
 	</parent>
 	<artifactId>tvguide-client</artifactId>
 	<packaging>war</packaging>
-	<name>TvGuide Client: GWT code, and the servlets that allow it to get at the data</name>
+	<name>TvGuide Client</name>
+	<description>
+		The server code that allow access to data servlet support, and the GWT code that defines
+		how to get data, how to display it, and how to decide what the user is asking for next.
+	</description>
 	<properties>
 		<gwt.style>OBF</gwt.style>
 		<gwt.draftCompile>false</gwt.draftCompile>
@@ -76,14 +80,21 @@
 			<version>${guice.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-servlet</artifactId>
-			<version>${guice.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
 			<version>1.5.0</version>
+		</dependency>
+		
+		<!-- Guice Servlet and JPA modules -->
+		<dependency>
+			<groupId>org.sonatype.sisu.inject</groupId>
+			<artifactId>guice-persist</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>${guice.version}</version>
 		</dependency>
 
 		<!-- Server and shared details -->
