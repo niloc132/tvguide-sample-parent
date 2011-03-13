@@ -25,7 +25,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<!-- Runs the Bootstrap script, which sets up a sample database for use in the webapp's output dir -->
+			<!-- Runs the JpaBootstrap script, which sets up a sample database for use in the webapp's output dir -->
 			<id>db-init</id>
 			<build>
 				<plugins>
@@ -44,7 +44,7 @@
 									<arguments>
 										<argument>-classpath</argument>
 										<classpath/>
-										<argument>com.acme.gwt.server.Bootstrap</argument>
+										<argument>com.acme.gwt.server.JpaBootstrap</argument>
 									</arguments>
 									<workingDirectory>${project.build.directory}/${project.build.finalName}</workingDirectory>
 								</configuration>

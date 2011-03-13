@@ -16,15 +16,14 @@
  */
 package com.acme.gwt.data;
 
-import org.junit.Test;
-
-import com.acme.gwt.server.Bootstrap;
+import com.acme.gwt.server.JpaBootstrap;
 import com.acme.gwt.server.TvGuideServiceModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.junit.Test;
 
 /**
- * Tests that the Bootstrap script can do something. In the event that we have the persistence.xml
+ * Tests that the JpaBootstrap script can do something. In the event that we have the persistence.xml
  * set to hand out something other than h2:mem, this will need to find a way to hand off an
  * EntityManager that can be tested.
  * 
@@ -37,6 +36,6 @@ public class BootstrapDataTest {
 
 	@Test
 	public void bootstrapTest() {
-		i.getInstance(Bootstrap.class).init();
+		i.getInstance(JpaBootstrap.class);
 	}
 }

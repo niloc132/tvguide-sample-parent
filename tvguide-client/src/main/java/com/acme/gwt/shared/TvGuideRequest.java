@@ -33,6 +33,7 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 @Service(value = TvGuideService.class, locator = InjectingServiceLocator.class)
 public interface TvGuideRequest extends RequestContext {
+
 	/**
 	 * Gets the list of shows the user has marked as favorite.
 	 *
