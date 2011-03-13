@@ -8,8 +8,13 @@
 	</parent>
 	<artifactId>tvguide-server</artifactId>
 	<packaging>jar</packaging>
-	<name>TvGuide Core Server project, detailing how to store and serve data</name>
-
+	<name>TvGuide Core Server</name>
+	<description>
+		Details what data there is, how to store and get it, and the API used to read and write
+		from external interfaces. The tvguide-client project is one such interface, and provides
+		remaining important features like session support, and a particular implementation of
+		Jpa support.
+	</description>
 	<dependencies>
 		<!-- Server Dependency Injection -->
 		<dependency>

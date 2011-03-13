@@ -6,9 +6,14 @@
 	<artifactId>tvguide-sample-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Sample app to get to know GWT, Guice, Gin, and Maven, which should also
-		start with a G to fit in
+	<name>Sample app to get to know GWT, Guice, Gin, and Maven
 	</name>
+	<description></description>
+	<scm>
+		<connection>scm:git:ssh://github.com/niloc132/tvguide-sample-parent.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/niloc132/tvguide-sample-parent.git</developerConnection>
+		<url>https://github.com/niloc132/tvguide-sample-parent/</url>
+	</scm>
 	<properties>
 		<java.compiler.version>1.6</java.compiler.version>
 
