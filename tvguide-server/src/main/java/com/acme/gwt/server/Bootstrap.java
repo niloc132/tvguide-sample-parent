@@ -1,13 +1,17 @@
 package com.acme.gwt.server;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
 
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.defs.Geo;
+import com.acme.gwt.shared.util.Md5;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Provider;
 import com.thoughtworks.xstream.XStream;
-import org.apache.openjpa.persistence.OpenJPAEntityManager;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,18 +28,35 @@ public class Bootstrap {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		EntityManager entityManager = Persistence.createEntityManagerFactory(
-				"tvgtest").createEntityManager();
 
-		final OpenJPAEntityManager em = (OpenJPAEntityManager) entityManager;
-		em.begin();
+		Injector i = Guice.createInjector(new TvGuideServiceModule());
+
+		try {
+			Bootstrap b = i.getInstance(Bootstrap.class);
+			TvViewer tvViewer = b.init();
+
+			XStream xStream = new XStream();
+			xStream.autodetectAnnotations(true);
+			xStream.toXML(tvViewer, System.err);
+		} finally {
+			i.getInstance(EntityManagerFactory.class).close();
+		}
+
+	}
+
+	@Inject
+	Provider<EntityManager> emProvider;
+
+	public TvViewer init() {
+		EntityManager em = emProvider.get();
+		em.getTransaction().begin();
 		TvViewer tvViewer = null;
 		try {
 			tvViewer = new TvViewer();
 
 			tvViewer.setEmail("you@example.com");
 
-			tvViewer.setDigest(com.acme.gwt.shared.util.Md5.md5Hex("sa"));
+			tvViewer.setDigest(Md5.md5Hex("sa"));
 			tvViewer.setSalt("unused");
 			tvViewer.setGeo(Geo.CALIFORNIA);
 
@@ -70,20 +91,15 @@ public class Bootstrap {
 			tvShow.setName("show6");
 			em.persist(tvShow);
 			tvViewer.getFavorites().add(tvShow);
-			em.commit();
+			em.getTransaction().commit();
 		} catch (Exception e) {
-			if (em.isActive()) {
-				em.rollback();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
 			}
 			e.printStackTrace();
-		} finally {
-			entityManager.close();
 		}
 
-		XStream xStream = new XStream();
-		xStream.autodetectAnnotations(true);
-		xStream.toXML(tvViewer, System.err);
-
+		return tvViewer;
 	}
 
 }

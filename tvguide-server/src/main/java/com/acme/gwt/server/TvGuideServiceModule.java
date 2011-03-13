@@ -16,25 +16,27 @@
  */
 package com.acme.gwt.server;
 
+import static com.google.inject.matcher.Matchers.annotatedWith;
+import static com.google.inject.matcher.Matchers.any;
+import static com.google.inject.matcher.Matchers.not;
+import static com.google.inject.matcher.Matchers.subclassesOf;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
 import com.acme.gwt.AuthenticatedViewerProvider;
-import com.acme.gwt.data.DataLoader;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.persist.Transactional;
 import com.google.inject.persist.finder.Finder;
-import com.google.inject.servlet.RequestScoped;
-import com.google.inject.servlet.ServletScopes;
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
-
-import static com.google.inject.matcher.Matchers.*;
 
 /**
  * @author colin
@@ -45,10 +47,6 @@ public class TvGuideServiceModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(TvGuideService.class); //todo: intellij calls these pointless
-		bind(DataLoader.class);
-
-		bind(AuthenticatedViewerProvider.class).in(ServletScopes.SESSION);
 		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
 		//workaround for TvViewer which wants a static reference to a EntityManager provider
@@ -117,8 +115,12 @@ public class TvGuideServiceModule extends AbstractModule {
 	 * @return
 	 */
 	@Provides
-	@RequestScoped
 	EntityManager provideEntityManager(EntityManagerFactory emf) {
 		return emf.createEntityManager();
+	}
+	public interface UnscopedEntityManagerProvider
+			extends
+				Provider<EntityManager> {
+
 	}
 }

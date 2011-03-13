@@ -1,6 +1,6 @@
 /**
  *  Copyright 2011 Colin Alworth
- *
+ * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -14,20 +14,29 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.server;
+package com.acme.gwt.data;
 
+import org.junit.Test;
+
+import com.acme.gwt.server.Bootstrap;
+import com.acme.gwt.server.TvGuideServiceModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
 
 /**
+ * Tests that the Bootstrap script can do something. In the event that we have the persistence.xml
+ * set to hand out something other than h2:mem, this will need to find a way to hand off an
+ * EntityManager that can be tested.
+ * 
  * @author colin
+ *
  */
-public class TvGuideInjectorProvider extends GuiceServletContextListener {
-	@Override
-	protected Injector getInjector() {
-		return Guice.createInjector(new GwtWebModule(),
-				new TvGuideWebServiceModule());
-	}
+public class BootstrapDataTest {
+	private static final Injector i = Guice
+			.createInjector(new TvGuideServiceModule());
 
+	@Test
+	public void bootstrapTest() {
+		i.getInstance(Bootstrap.class).init();
+	}
 }

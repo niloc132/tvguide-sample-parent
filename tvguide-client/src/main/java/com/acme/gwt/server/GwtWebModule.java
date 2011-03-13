@@ -40,8 +40,7 @@ public class GwtWebModule extends ServletModule {
 
 	@Override
 	protected void configureServlets() {
-		/**todo: intellij calls this a pointless binding.*/
-		bind(InjectableServiceLayerDecorator.class);
+		filter("/*").through(EMBootstrapFilter.class);
 		serve(requestFactoryPath).with(RequestFactoryServlet.class);
 	}
 
