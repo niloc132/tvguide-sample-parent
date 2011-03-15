@@ -18,7 +18,6 @@ import javax.persistence.Version;
 import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import com.google.inject.assistedinject.AssistedInject;
 
 /**
  * Created by IntelliJ IDEA.
@@ -104,25 +103,16 @@ class TvEpisode implements HasVersionAndId {
 	}
 
 	public static class EpisodeRangeCallable implements EpisodesDateCall {
-		private Date startDate;
-		private Date endDate;
-		private TvChannel channel;
-		private TvShow show;
+		@Assisted("startDate") Date startDate;
+		@Assisted("endDate") Date endDate;
+		@Assisted TvChannel channel;
+		@Assisted TvShow show;
 
+		//very locally scoped, no need for provider
 		@Inject EntityManager em;
-
-		@AssistedInject public EpisodeRangeCallable(@Assisted TvShow show, @Assisted Date startDate, @Assisted Date endDate) {
-			this.show = show;
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
-		@AssistedInject public EpisodeRangeCallable(@Assisted TvChannel channel, @Assisted Date startDate, @Assisted Date endDate) {
-			this.channel = channel;
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
 		@Override
 		public List<TvScheduledEpisode> call() throws Exception {
+			em.clear();
 			return new ArrayList<TvScheduledEpisode>();
 		}
 	}

@@ -20,6 +20,10 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import com.acme.gwt.data.TvGuideCallFactory;
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.server.GwtWebModule;
@@ -27,18 +31,28 @@ import com.acme.gwt.server.TvGuideServiceModule;
 import com.acme.gwt.server.TvGuideWebServiceModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
 
 /**
  * @author colin
  *
  */
-public class CallableTest extends TestCase {
+public class CallableTest {
 	public static final Injector i = Guice.createInjector(new TvGuideServiceModule(), new TvGuideWebServiceModule(),new JpaPersistModule("tvgtest"), new GwtWebModule());
 
+	@Before public void setup() {
+		i.getInstance(PersistService.class).start();
+	}
+	@Test
 	public void testEpisodesCall() throws Exception {
+
 		TvGuideCallFactory factory = i.getInstance(TvGuideCallFactory.class);
 
-		assertEquals(0, factory.findEpisodesByShowAndDateBetween(new TvShow(), new Date(), new Date()).call().size());
+		TestCase.assertEquals(0, factory.findEpisodesByShowAndDateBetween(new TvShow(), new Date(), new Date()).call().size());
+	}
+
+	@After public void teardown() {
+		i.getInstance(PersistService.class).stop();
 	}
 }

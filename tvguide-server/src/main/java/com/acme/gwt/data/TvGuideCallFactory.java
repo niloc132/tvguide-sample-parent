@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author colin
  *
@@ -29,8 +31,8 @@ public interface TvGuideCallFactory {
 	//FavoritesSetCall setFavoriteShows(List<TvShow> shows);
 	//...
 
-	EpisodesDateCall findEpisodesByChannelAndDateBetween(TvChannel tvChan, Date start, Date end);
-	EpisodesDateCall findEpisodesByShowAndDateBetween(TvShow show, Date start, Date end);
+	EpisodesDateCall findEpisodesByChannelAndDateBetween(TvChannel tvChan, @Assisted("startDate") Date start, @Assisted("endDate") Date end);
+	EpisodesDateCall findEpisodesByShowAndDateBetween(TvShow show, @Assisted("startDate") Date start, @Assisted("endDate") Date end);
 
 
 	public interface FavoritesGetCall extends Callable<List<TvShow>> {}
