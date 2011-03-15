@@ -85,7 +85,7 @@
 			<version>1.5.0</version>
 		</dependency>
 		
-		<!-- Guice Servlet and JPA modules -->
+		<!-- Guice Servlet, JPA, and assisted inject modules -->
 		<dependency>
 			<groupId>org.sonatype.sisu.inject</groupId>
 			<artifactId>guice-persist</artifactId>
@@ -94,6 +94,11 @@
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-servlet</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
 

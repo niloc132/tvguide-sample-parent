@@ -1,6 +1,8 @@
 package com.acme.gwt.data;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import com.acme.gwt.data.TvGuideCallFactory.FavoritesGetCall;
 import com.acme.gwt.shared.defs.Geo;
 
 /**
@@ -96,5 +99,13 @@ class TvChannel implements HasVersionAndId {
 
 	public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
 		this.scheduledEpisodes = scheduledEpisodes;
+	}
+
+	public static class FavoritesChannelCallable implements FavoritesGetCall {
+		@Override
+		public List<TvShow> call() throws Exception {
+			return new ArrayList<TvShow>();
+		}
+
 	}
 }

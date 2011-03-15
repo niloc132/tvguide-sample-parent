@@ -18,8 +18,14 @@ package com.acme.gwt.server;
 
 import javax.persistence.EntityManager;
 
+import com.acme.gwt.data.TvChannel.FavoritesChannelCallable;
+import com.acme.gwt.data.TvEpisode.EpisodeRangeCallable;
+import com.acme.gwt.data.TvGuideCallFactory;
+import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
+import com.acme.gwt.data.TvGuideCallFactory.FavoritesGetCall;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
  * @author colin
@@ -31,6 +37,13 @@ public class TvGuideServiceModule extends AbstractModule {
 		// TvViewers will be handed out by this, depending on how auth is scoped
 		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
+		// Make the CallFactory available for injection so it can build call instances
+		install(new FactoryModuleBuilder()
+		.implement(EpisodesDateCall.class, EpisodeRangeCallable.class)
+		.implement(FavoritesGetCall.class, FavoritesChannelCallable.class)
+		.build(TvGuideCallFactory.class));
+
+		//bind(EpisodesDateCall.class).to(EpisodeRangeCallable.class);
 		// Ensure that something has session stuff ready
 		requireBinding(AuthenticatedViewerProvider.class);
 

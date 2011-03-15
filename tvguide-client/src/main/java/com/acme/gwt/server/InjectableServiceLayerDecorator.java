@@ -17,6 +17,7 @@
 package com.acme.gwt.server;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
 
 import com.google.gwt.requestfactory.server.ServiceLayerDecorator;
 import com.google.gwt.requestfactory.shared.Locator;
@@ -48,11 +49,20 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 			Method domainMethod) {
 		// Check if the request needs a service locator
 		Class<? extends ServiceLocator> locatorType = getTop()
-				.resolveServiceLocator(contextMethod, domainMethod);
+		.resolveServiceLocator(contextMethod, domainMethod);
 		assert locatorType != null;
 
 		// Inject an instance of the locator itself, and then get an instance from it
 		ServiceLocator locator = injector.getInstance(locatorType);
 		return locator.getInstance(domainMethod.getDeclaringClass());
+	}
+
+	@Override
+	public Object invoke(Method domainMethod, Object... args) {
+		try {
+			return ((Callable<?>)super.invoke(domainMethod, args)).call();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
