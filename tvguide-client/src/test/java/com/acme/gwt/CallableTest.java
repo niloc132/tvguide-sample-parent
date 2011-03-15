@@ -39,9 +39,12 @@ import com.google.inject.persist.jpa.JpaPersistModule;
  *
  */
 public class CallableTest {
-	public static final Injector i = Guice.createInjector(new TvGuideServiceModule(), new TvGuideWebServiceModule(),new JpaPersistModule("tvgtest"), new GwtWebModule());
+	public static final Injector i = Guice.createInjector(
+			new TvGuideServiceModule(), new TvGuideWebServiceModule(),
+			new JpaPersistModule("tvgtest"), new GwtWebModule());
 
-	@Before public void setup() {
+	@Before
+	public void setup() {
 		i.getInstance(PersistService.class).start();
 	}
 	@Test
@@ -49,10 +52,12 @@ public class CallableTest {
 
 		TvGuideCallFactory factory = i.getInstance(TvGuideCallFactory.class);
 
-		TestCase.assertEquals(0, factory.findEpisodesByShowAndDateBetween(new TvShow(), new Date(), new Date()).call().size());
+		TestCase.assertEquals(0, factory.findEpisodesByShowAndDateBetween(
+				new TvShow(), new Date(), new Date()).call().size());
 	}
 
-	@After public void teardown() {
+	@After
+	public void teardown() {
 		i.getInstance(PersistService.class).stop();
 	}
 }

@@ -31,14 +31,24 @@ public interface TvGuideCallFactory {
 	//FavoritesSetCall setFavoriteShows(List<TvShow> shows);
 	//...
 
-	EpisodesDateCall findEpisodesByChannelAndDateBetween(TvChannel tvChan, @Assisted("startDate") Date start, @Assisted("endDate") Date end);
-	EpisodesDateCall findEpisodesByShowAndDateBetween(TvShow show, @Assisted("startDate") Date start, @Assisted("endDate") Date end);
+	EpisodesDateCall findEpisodesByChannelAndDateBetween(TvChannel tvChan,
+			@Assisted("startDate")
+			Date start, @Assisted("endDate")
+			Date end);
+	EpisodesDateCall findEpisodesByShowAndDateBetween(TvShow show,
+			@Assisted("startDate")
+			Date start, @Assisted("endDate")
+			Date end);
 
-
-	public interface FavoritesGetCall extends Callable<List<TvShow>> {}
-	public interface FavoritesSetCall extends Callable<Void> {}
+	public interface FavoritesGetCall extends Callable<List<TvShow>> {
+	}
+	public interface FavoritesSetCall extends Callable<Void> {
+	}
 
 	//...
 
-	public interface EpisodesDateCall extends Callable<List<TvScheduledEpisode>> {}
+	public interface EpisodesDateCall
+			extends
+				Callable<List<TvScheduledEpisode>> {
+	}
 }

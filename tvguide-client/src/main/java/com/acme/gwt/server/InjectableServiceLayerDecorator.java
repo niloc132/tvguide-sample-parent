@@ -49,7 +49,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 			Method domainMethod) {
 		// Check if the request needs a service locator
 		Class<? extends ServiceLocator> locatorType = getTop()
-		.resolveServiceLocator(contextMethod, domainMethod);
+				.resolveServiceLocator(contextMethod, domainMethod);
 		assert locatorType != null;
 
 		// Inject an instance of the locator itself, and then get an instance from it
@@ -60,7 +60,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Override
 	public Object invoke(Method domainMethod, Object... args) {
 		try {
-			return ((Callable<?>)super.invoke(domainMethod, args)).call();
+			return ((Callable<?>) super.invoke(domainMethod, args)).call();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

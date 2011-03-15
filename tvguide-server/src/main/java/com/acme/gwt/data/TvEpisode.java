@@ -103,13 +103,18 @@ class TvEpisode implements HasVersionAndId {
 	}
 
 	public static class EpisodeRangeCallable implements EpisodesDateCall {
-		@Assisted("startDate") Date startDate;
-		@Assisted("endDate") Date endDate;
-		@Assisted TvChannel channel;
-		@Assisted TvShow show;
+		@Assisted("startDate")
+		Date startDate;
+		@Assisted("endDate")
+		Date endDate;
+		@Assisted
+		TvChannel channel;
+		@Assisted
+		TvShow show;
 
 		//very locally scoped, no need for provider
-		@Inject EntityManager em;
+		@Inject
+		EntityManager em;
 		@Override
 		public List<TvScheduledEpisode> call() throws Exception {
 			em.clear();
