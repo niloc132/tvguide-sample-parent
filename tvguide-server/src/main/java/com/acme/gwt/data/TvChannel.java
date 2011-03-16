@@ -106,8 +106,10 @@ class TvChannel implements HasVersionAndId {
 	}
 
 	public static class FavoritesChannelCallable implements UserFavoritesCall {
-		@Assisted List<TvShow> newShowList;
-		@Inject TvViewer viewer;
+		@Assisted
+		List<TvShow> newShowList;
+		@Inject
+		TvViewer viewer;
 		@Override
 		public List<TvShow> call() throws Exception {
 			if (newShowList == null) {
@@ -118,10 +120,12 @@ class TvChannel implements HasVersionAndId {
 
 	}
 	public static class ChannelListCallable implements ChannelListCall {
-		@Inject EntityManager em;
+		@Inject
+		EntityManager em;
 		@Override
 		public List<TvChannel> call() throws Exception {
-			CriteriaQuery<TvChannel> q = em.getCriteriaBuilder().createQuery(TvChannel.class);
+			CriteriaQuery<TvChannel> q = em.getCriteriaBuilder().createQuery(
+					TvChannel.class);
 			q.from(TvChannel.class);
 			//TODO where clause
 			return em.createQuery(q).getResultList();

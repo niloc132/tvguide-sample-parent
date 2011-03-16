@@ -40,11 +40,11 @@ public class TvGuideServiceModule extends AbstractModule {
 		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
 		// Make the CallFactory available for injection so it can build call instances
-		install(new FactoryModuleBuilder()
-		.implement(EpisodesDateCall.class,EpisodeRangeCallable.class)
-		.implement(UserFavoritesCall.class,FavoritesChannelCallable.class)
-		.implement(ChannelListCall.class, ChannelListCallable.class)
-		.build(TvGuideCallFactory.class));
+		install(new FactoryModuleBuilder().implement(EpisodesDateCall.class,
+				EpisodeRangeCallable.class).implement(UserFavoritesCall.class,
+				FavoritesChannelCallable.class).implement(
+				ChannelListCall.class, ChannelListCallable.class).build(
+				TvGuideCallFactory.class));
 
 		//bind(EpisodesDateCall.class).to(EpisodeRangeCallable.class);
 		// Ensure that something has session stuff ready
