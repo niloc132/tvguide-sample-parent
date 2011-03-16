@@ -1,10 +1,10 @@
 package com.acme.gwt.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,9 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+import javax.persistence.criteria.CriteriaQuery;
 
-import com.acme.gwt.data.TvGuideCallFactory.FavoritesGetCall;
+import com.acme.gwt.data.TvGuideCallFactory.ChannelListCall;
+import com.acme.gwt.data.TvGuideCallFactory.UserFavoritesCall;
 import com.acme.gwt.shared.defs.Geo;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * this is a local channel in a lineup of channels, this is not a network in a list of Cable networks.
@@ -101,11 +105,26 @@ class TvChannel implements HasVersionAndId {
 		this.scheduledEpisodes = scheduledEpisodes;
 	}
 
-	public static class FavoritesChannelCallable implements FavoritesGetCall {
+	public static class FavoritesChannelCallable implements UserFavoritesCall {
+		@Assisted List<TvShow> newShowList;
+		@Inject TvViewer viewer;
 		@Override
 		public List<TvShow> call() throws Exception {
-			return new ArrayList<TvShow>();
+			if (newShowList == null) {
+				newShowList = viewer.getFavorites();
+			}
+			return newShowList;
 		}
 
+	}
+	public static class ChannelListCallable implements ChannelListCall {
+		@Inject EntityManager em;
+		@Override
+		public List<TvChannel> call() throws Exception {
+			CriteriaQuery<TvChannel> q = em.getCriteriaBuilder().createQuery(TvChannel.class);
+			q.from(TvChannel.class);
+			//TODO where clause
+			return em.createQuery(q).getResultList();
+		}
 	}
 }

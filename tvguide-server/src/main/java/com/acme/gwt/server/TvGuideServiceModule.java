@@ -18,11 +18,13 @@ package com.acme.gwt.server;
 
 import javax.persistence.EntityManager;
 
+import com.acme.gwt.data.TvChannel.ChannelListCallable;
 import com.acme.gwt.data.TvChannel.FavoritesChannelCallable;
 import com.acme.gwt.data.TvEpisode.EpisodeRangeCallable;
 import com.acme.gwt.data.TvGuideCallFactory;
+import com.acme.gwt.data.TvGuideCallFactory.ChannelListCall;
 import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
-import com.acme.gwt.data.TvGuideCallFactory.FavoritesGetCall;
+import com.acme.gwt.data.TvGuideCallFactory.UserFavoritesCall;
 import com.acme.gwt.data.TvViewer;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
@@ -38,9 +40,11 @@ public class TvGuideServiceModule extends AbstractModule {
 		bind(TvViewer.class).toProvider(AuthenticatedViewerProvider.class);
 
 		// Make the CallFactory available for injection so it can build call instances
-		install(new FactoryModuleBuilder().implement(EpisodesDateCall.class,
-				EpisodeRangeCallable.class).implement(FavoritesGetCall.class,
-				FavoritesChannelCallable.class).build(TvGuideCallFactory.class));
+		install(new FactoryModuleBuilder()
+		.implement(EpisodesDateCall.class,EpisodeRangeCallable.class)
+		.implement(UserFavoritesCall.class,FavoritesChannelCallable.class)
+		.implement(ChannelListCall.class, ChannelListCallable.class)
+		.build(TvGuideCallFactory.class));
 
 		//bind(EpisodesDateCall.class).to(EpisodeRangeCallable.class);
 		// Ensure that something has session stuff ready

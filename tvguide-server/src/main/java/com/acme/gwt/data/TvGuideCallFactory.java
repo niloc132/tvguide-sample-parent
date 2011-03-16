@@ -27,9 +27,10 @@ import com.google.inject.assistedinject.Assisted;
  *
  */
 public interface TvGuideCallFactory {
-	FavoritesGetCall getFavoriteShows();
-	//FavoritesSetCall setFavoriteShows(List<TvShow> shows);
-	//...
+	UserFavoritesCall getFavoriteShows();
+	UserFavoritesCall setFavoriteShows(List<TvShow> shows);
+
+	ChannelListCall getAllChannels();
 
 	EpisodesDateCall findEpisodesByChannelAndDateBetween(TvChannel tvChan,
 			@Assisted("startDate")
@@ -40,15 +41,11 @@ public interface TvGuideCallFactory {
 			Date start, @Assisted("endDate")
 			Date end);
 
-	public interface FavoritesGetCall extends Callable<List<TvShow>> {
-	}
-	public interface FavoritesSetCall extends Callable<Void> {
-	}
+	public interface UserFavoritesCall extends Callable<List<TvShow>> {}
 
-	//...
+	public interface ChannelListCall extends Callable<List<TvChannel>> {}
 
 	public interface EpisodesDateCall
-			extends
-				Callable<List<TvScheduledEpisode>> {
-	}
+	extends
+	Callable<List<TvScheduledEpisode>> {}
 }

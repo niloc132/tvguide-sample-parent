@@ -117,7 +117,6 @@ class TvEpisode implements HasVersionAndId {
 		EntityManager em;
 		@Override
 		public List<TvScheduledEpisode> call() throws Exception {
-			em.clear();
 			return new ArrayList<TvScheduledEpisode>();
 		}
 	}
