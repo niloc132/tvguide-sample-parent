@@ -16,12 +16,19 @@
  */
 package com.acme.gwt.data;
 
+import java.util.concurrent.Callable;
+
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author colin
  *
  */
 public interface AuthenticationCallFactory {
-	void authenticate(String email, String digest);
-	void deauth();
-	public interface AuthenticationCall implements Callable<TvViewer> {}
+	AuthenticationCall authenticate(@Assisted("email")
+	String email, @Assisted("digest")
+	String digest);
+	AuthenticationCall deauth();
+	public interface AuthenticationCall extends Callable<TvViewer> {
+	}
 }

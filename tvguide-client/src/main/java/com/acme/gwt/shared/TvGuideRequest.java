@@ -19,8 +19,8 @@ package com.acme.gwt.shared;
 import java.util.Date;
 import java.util.List;
 
+import com.acme.gwt.data.TvGuideCallFactory;
 import com.acme.gwt.server.InjectingServiceLocator;
-import com.acme.gwt.server.TvGuideService;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
 import com.google.gwt.requestfactory.shared.Service;
@@ -31,7 +31,7 @@ import com.google.gwt.requestfactory.shared.Service;
  *
  * @author colin
  */
-@Service(value = TvGuideService.class, locator = InjectingServiceLocator.class)
+@Service(value = TvGuideCallFactory.class, locator = InjectingServiceLocator.class)
 public interface TvGuideRequest extends RequestContext {
 
 	/**
