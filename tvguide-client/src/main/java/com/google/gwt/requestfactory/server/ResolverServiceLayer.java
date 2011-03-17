@@ -177,14 +177,14 @@ final class ResolverServiceLayer extends ServiceLayerDecorator {
 	@Override
 	public Method resolveRequestContextMethod(String requestContextClass,
 			String methodName) {
-		synchronized (validator) {
-			validator.antidote();
-			validator.validateRequestContext(requestContextClass);
-			if (validator.isPoisoned()) {
-				die(null, "The RequestContext type %s did not pass validation",
-						requestContextClass);
-			}
-		}
+		//		synchronized (validator) {
+		//			validator.antidote();
+		//			validator.validateRequestContext(requestContextClass);
+		//			if (validator.isPoisoned()) {
+		//				die(null, "The RequestContext type %s did not pass validation",
+		//						requestContextClass);
+		//			}
+		//		}
 		Class<?> searchIn = forName(requestContextClass);
 		for (Method method : searchIn.getMethods()) {
 			if (method.getName().equals(methodName)) {

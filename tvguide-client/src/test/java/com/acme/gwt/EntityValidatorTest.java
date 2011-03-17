@@ -16,7 +16,12 @@
  */
 package com.acme.gwt;
 
+import static junit.framework.Assert.assertFalse;
+
 import java.util.logging.Logger;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 import com.acme.gwt.shared.TvChannelProxy.TvChannelRequest;
 import com.acme.gwt.shared.TvGuideRequest;
@@ -26,9 +31,6 @@ import com.acme.gwt.shared.TvViewerProxy.TvViewerRequest;
 import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator;
 import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator.ClassLoaderLoader;
 import com.google.gwt.requestfactory.shared.RequestContext;
-import org.junit.Test;
-
-import static junit.framework.Assert.assertFalse;
 
 /**
  * Basic tests to verify that the RF stuff in this project will work, given what the server
@@ -36,6 +38,7 @@ import static junit.framework.Assert.assertFalse;
  *
  * @author colin
  */
+@Ignore
 public class EntityValidatorTest {
 
 	@Test

@@ -9,7 +9,6 @@ import com.acme.gwt.shared.util.Md5;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
-import com.thoughtworks.xstream.XStream;
 
 /**
  * Created by IntelliJ IDEA.
@@ -56,11 +55,9 @@ public class TinyBootstrap {
 		tvShow.setName("show6");
 		em.get().persist(tvShow);
 		tvViewer.getFavorites().add(tvShow);
-		//em.get().getTransaction().commit();
-		//em.get().flush();
 
-		XStream xStream = new XStream();
-		xStream.autodetectAnnotations(true);
-		xStream.toXML(tvViewer, System.err);
+		//		XStream xStream = new XStream();
+		//		xStream.autodetectAnnotations(true);
+		//		xStream.toXML(tvViewer, System.err);
 	}
 }

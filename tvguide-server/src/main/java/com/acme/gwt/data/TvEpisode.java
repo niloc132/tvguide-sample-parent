@@ -1,8 +1,12 @@
 package com.acme.gwt.data;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Version;
+
+import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * Created by IntelliJ IDEA.
@@ -92,5 +100,24 @@ class TvEpisode implements HasVersionAndId {
 
 	public void setScheduledEpisodes(List<TvScheduledEpisode> scheduledEpisodes) {
 		this.scheduledEpisodes = scheduledEpisodes;
+	}
+
+	public static class EpisodeRangeCallable implements EpisodesDateCall {
+		@Assisted("startDate")
+		Date startDate;
+		@Assisted("endDate")
+		Date endDate;
+		@Assisted
+		TvChannel channel;
+		@Assisted
+		TvShow show;
+
+		//very locally scoped, no need for provider
+		@Inject
+		EntityManager em;
+		@Override
+		public List<TvScheduledEpisode> call() throws Exception {
+			return new ArrayList<TvScheduledEpisode>();
+		}
 	}
 }

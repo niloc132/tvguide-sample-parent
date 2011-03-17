@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
  * Time: 4:24 AM
  * To change this template use File | Settings | File Templates.
  */
-class TvGuideApp implements GateKeeper.App {
+public class TvGuideApp implements GateKeeper.App {
 
 	@Override
 	public void setUser(TvViewerProxy user) {

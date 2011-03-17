@@ -17,10 +17,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Version;
 
+import com.acme.gwt.data.AuthenticationCallFactory.AuthenticationCall;
 import com.acme.gwt.server.AuthenticatedViewerProvider;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 
 /**
  * Due to details in how this type is injected when code asks for the current user, this cannot
@@ -114,20 +117,6 @@ public class TvViewer implements HasVersionAndId {
 
 	@Inject
 	static Provider<EntityManager> emProvider;
-	@Inject
-	static Provider<AuthenticatedViewerProvider> currentUserProvider;
-
-	public static TvViewer authenticate(String email, String digest) {
-		TvViewer user = null;
-		try {
-			user = findTvViewerByEmailAndDigest(email, digest);
-			String email1 = user.getEmail();//throw NPE here if possible
-			currentUserProvider.get().setCurrentViewer(user);
-			return user;
-		} catch (Throwable e) {
-			throw new RuntimeException("Failed login attempt.");
-		}
-	}
 
 	// todo: @Finder (namedQuery = SIMPLE_AUTH)static TvViewer findTvViewerByEmailAndDigest(String email,String digest){}
 
@@ -147,5 +136,45 @@ public class TvViewer implements HasVersionAndId {
 		} finally {
 		}
 		return singleResult;
+	}
+
+	public static class AuthCallable implements AuthenticationCall {
+		@Assisted("email")
+		String email;
+		@Assisted("digest")
+		String digest;
+		@Inject
+		Provider<AuthenticatedViewerProvider> currentUserProvider;
+		@AssistedInject
+		public AuthCallable() {
+			// TODO Auto-generated constructor stub
+		}
+		@AssistedInject
+		public AuthCallable(@Assisted("email")
+		String email, @Assisted("digest")
+		String digest) {
+			this.email = email;
+			this.digest = digest;
+		}
+		@Override
+		public TvViewer call() throws Exception {
+			TvViewer currentUser;
+			if (email == null) {//deauth call
+				currentUser = null;
+			} else {
+				currentUser = findTvViewerByEmailAndDigest(email, digest);
+			}
+			//save the current user
+			currentUserProvider.get().setCurrentViewer(currentUser);
+
+			// if an email was provided, but no user was found, blow an error
+			if (email != null && currentUser == null) {
+				//lookup failed, throw ex
+				//TODO consider just returning null and letting client interpret that as failure
+				throw new RuntimeException("Failed login attempt.");
+			}
+			return currentUser;
+		}
+
 	}
 }
