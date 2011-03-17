@@ -71,15 +71,16 @@
 			<plugin>
 				<groupId>com.relativitas.maven.plugins</groupId>
 				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.1.0</version>
 				<configuration>
-					<compilerSource>1.6</compilerSource>
-					<compilerCompliance>1.6</compilerCompliance>
-					<compilerTargetPlatform>1.6</compilerTargetPlatform>
+					<compilerSource>${java.compiler.version}</compilerSource>
+					<compilerCompliance>${java.compiler.version}</compilerCompliance>
+					<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
 					<directories>
 						<directory>src/</directory>
 					</directories>
-					<compilerSource>1.6</compilerSource>
-					<compilerTargetPlatform>1.6</compilerTargetPlatform>
+					<compilerSource>${java.compiler.version}</compilerSource>
+					<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
 				</configuration>
 			</plugin>
 		</plugins>
