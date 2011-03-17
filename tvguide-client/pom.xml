@@ -110,19 +110,13 @@
 		</dependency>
 
 		<!-- CellTable Tools -->
+		<!-- 
 		<dependency>
 			<groupId>com.colinalworth</groupId>
 			<artifactId>celltable-tools</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
-		<!-- Google Web Toolkit - may not be needed -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
-			<scope>compile</scope>
-		</dependency>
+		-->
 
 		<!-- Bean Validation for GWT's Request Factory -->
 		<dependency>
@@ -175,7 +169,7 @@
 				<!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
 					documentation at codehaus.org -->
 				<configuration>
-					<!--<runTarget>tvguide.html</runTarget> -->
+					<runTarget>tvguide.html</runTarget>
 					<!--<hostedWebapp>${webappDirectory}</hostedWebapp> -->
 					<!-- i18nMessagesBundle>com.acme.gwt.client.Messages</i18nMessagesBundle -->
 				</configuration>
