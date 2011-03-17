@@ -55,7 +55,7 @@ public class AuthenticatedViewerProvider implements Provider<TvViewer> {
 				TvViewer.class, session.get().get());
 	}
 	public void setCurrentViewer(TvViewer viewer) {
-		session.get().setActiveViewerId(viewer.getId());
+		session.get().setActiveViewerId(viewer == null ? null : viewer.getId());
 	}
 
 	public interface SessionProvider extends Provider<Long> {

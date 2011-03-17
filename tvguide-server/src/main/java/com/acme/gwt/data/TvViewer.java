@@ -23,6 +23,7 @@ import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 
 /**
  * Due to details in how this type is injected when code asks for the current user, this cannot
@@ -144,6 +145,17 @@ public class TvViewer implements HasVersionAndId {
 		String digest;
 		@Inject
 		Provider<AuthenticatedViewerProvider> currentUserProvider;
+		@AssistedInject
+		public AuthCallable() {
+			// TODO Auto-generated constructor stub
+		}
+		@AssistedInject
+		public AuthCallable(@Assisted("email")
+		String email, @Assisted("digest")
+		String digest) {
+			this.email = email;
+			this.digest = digest;
+		}
 		@Override
 		public TvViewer call() throws Exception {
 			TvViewer currentUser;
@@ -152,9 +164,11 @@ public class TvViewer implements HasVersionAndId {
 			} else {
 				currentUser = findTvViewerByEmailAndDigest(email, digest);
 			}
-
+			//save the current user
 			currentUserProvider.get().setCurrentViewer(currentUser);
-			if (email != null) {
+
+			// if an email was provided, but no user was found, blow an error
+			if (email != null && currentUser == null) {
 				//lookup failed, throw ex
 				//TODO consider just returning null and letting client interpret that as failure
 				throw new RuntimeException("Failed login attempt.");

@@ -18,16 +18,20 @@ package com.acme.gwt.data;
 
 import javax.persistence.EntityManager;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.acme.gwt.server.AuthenticatedViewerProvider;
 import com.acme.gwt.server.AuthenticatedViewerProvider.SessionProvider;
 import com.acme.gwt.server.TinyBootstrap;
 import com.acme.gwt.server.TvGuideServiceModule;
 import com.acme.gwt.server.simple.SingletonSessionProvider;
+import com.acme.gwt.shared.util.Md5;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -35,36 +39,74 @@ import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
 
 /**
- * Tests that the JpaBootstrap script can do something. In the event that we have the persistence.xml
- * set to hand out something other than h2:mem, this will need to find a way to hand off an
- * EntityManager that can be tested.
- * 
  * @author colin
  *
  */
-public class BootstrapDataTest {
+public class AuthCallTest {
 	private static final Injector i = Guice.createInjector(
 			new TvGuideServiceModule(), new TestModule(), new JpaPersistModule(
 					"tvgtest"));
 	static class TestModule extends AbstractModule {
 		@Override
 		protected void configure() {
-			bind(SessionProvider.class).to(SingletonSessionProvider.class);
+			bind(SessionProvider.class).to(SingletonSessionProvider.class)
+					.asEagerSingleton();
 		}
 	}
 	@BeforeClass
 	public static void setup() {
 		i.getInstance(PersistService.class).start();
 	}
-
 	@Before
 	public void startWorkUnit() {
 		i.getInstance(EntityManager.class).getTransaction().begin();
+		i.getInstance(TinyBootstrap.class).go();
 	}
 
 	@Test
-	public void bootstrapTest() {
-		i.getInstance(TinyBootstrap.class).go();
+	public void testValidAuth() throws Exception {
+		AuthenticationCallFactory factory = i
+				.getInstance(AuthenticationCallFactory.class);
+		Assert.assertNotNull(factory.authenticate("you@example.com",
+				Md5.md5Hex("sa")).call());
+
+		Assert.assertNotNull(i.getInstance(AuthenticatedViewerProvider.class)
+				.get());
+	}
+
+	@Test
+	public void testInvalidAuth() throws Exception {
+		AuthenticationCallFactory factory = i
+				.getInstance(AuthenticationCallFactory.class);
+		try {
+			factory.authenticate("you@example.com", Md5.md5Hex("asdfdsfa"))
+					.call();
+			Assert.fail("Login error should have occured");
+		} catch (Exception ex) {
+			Assert.assertNull(i.getInstance(AuthenticatedViewerProvider.class)
+					.get());
+		}
+
+		try {
+			factory.authenticate("you@fdsfd", Md5.md5Hex("sa")).call();
+			Assert.fail("Login error should have occured");
+		} catch (Exception ex) {
+			Assert.assertNull(i.getInstance(AuthenticatedViewerProvider.class)
+					.get());
+		}
+	}
+
+	@Test
+	public void testDeauth() throws Exception {
+		//first, log in
+		AuthenticationCallFactory factory = i
+				.getInstance(AuthenticationCallFactory.class);
+		Assert.assertNotNull(factory.authenticate("you@example.com",
+				Md5.md5Hex("sa")).call());
+
+		//then, try deauth, from a new factory (not that this should matter...)
+		factory = i.getInstance(AuthenticationCallFactory.class);
+		factory.deauth().call();
 	}
 
 	@After
