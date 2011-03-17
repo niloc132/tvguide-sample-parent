@@ -21,9 +21,6 @@
 	
 	<!-- Reference the Shared code, common to client and server
 	<inherits name="com.acme.gwt.TvGuideShared"/> -->
-	
-	<!-- celltable-tools for cleaner celltable setups -->
-	<inherits name="com.colinalworth.celltable.columns.ColumnsCreator"/>
 
 	<!-- Start the app with this EntryPoint -->
 	<entry-point class="com.acme.gwt.client.TvGuide"/>

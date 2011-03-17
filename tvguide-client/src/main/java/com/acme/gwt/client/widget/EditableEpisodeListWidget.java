@@ -17,8 +17,8 @@
 package com.acme.gwt.client.widget;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
-import com.colinalworth.celltable.columns.client.Columns;
-import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
+//import com.colinalworth.celltable.columns.client.Columns;
+//import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
@@ -37,24 +37,26 @@ public class EditableEpisodeListWidget extends Composite {
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
 	}
 
-	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
-		EditTextCell season();//erp int != String
+//	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
+//		EditTextCell season();//erp int != String
+//
+//		EditTextCell episodeNumber();// int != String
+//
+//		EditTextCell name();
+//	}
 
-		EditTextCell episodeNumber();// int != String
-
-		EditTextCell name();
-	}
-
-	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
-	@Path("")
-	HasDataFlushableEditor<TvEpisodeProxy> listEd;
+	//private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
+	
+	//@Path("")
+	//HasDataFlushableEditor<TvEpisodeProxy> listEd;
+	
 	@UiField(provided = true)
 	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
 
 	public EditableEpisodeListWidget() {
-		listEd = HasDataFlushableEditor.of(list);
+		//listEd = HasDataFlushableEditor.of(list);
 
-		columns.configure(list, listEd);
+		//columns.configure(list, listEd);
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
