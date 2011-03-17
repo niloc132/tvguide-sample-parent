@@ -198,4 +198,20 @@
 		</plugins>
 		<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
 	</build>
+	<reporting>
+		<plugins>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>gwt-maven-plugin</artifactId>
+			<version>2.2.0</version>
+			<reportSets>
+				<reportSet>
+					<reports>
+						<report>compile-report</report>
+					</reports>
+				</reportSet>
+			</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
