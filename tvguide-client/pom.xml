@@ -16,6 +16,8 @@
 	<properties>
 		<gwt.style>OBF</gwt.style>
 		<gwt.draftCompile>false</gwt.draftCompile>
+		<!--  there is too much genreated code in gwt for pmd to produce an accurate report -->
+		<pmd.skip>true</pmd.skip>
 	</properties>
 	<profiles>
 		<profile>
