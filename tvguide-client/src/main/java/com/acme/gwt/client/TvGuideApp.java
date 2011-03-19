@@ -12,7 +12,8 @@ import com.google.inject.Inject;
  * first to provide an injector instance.
  */
 public interface TvGuideApp {
-	@Inject void setInjector(TvGuideGinjector injector);
+	@Inject
+	void setInjector(TvGuideGinjector injector);
 
 	void onSuccess(TvViewerProxy response);
 	void setUser(TvViewerProxy user);

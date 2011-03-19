@@ -44,8 +44,9 @@ public class TvGuide implements EntryPoint {
 	 */
 	@ConcreteType(LoginControllerImpl.class)
 	interface LoginControllerProxy
-	extends LoginController,
-	AsyncProxy<LoginController> {
+			extends
+				LoginController,
+				AsyncProxy<LoginController> {
 	}
 
 	/**
@@ -53,7 +54,9 @@ public class TvGuide implements EntryPoint {
 	 * @author colin
 	 *
 	 */
-	static final class LoginControllerImpl extends Receiver<TvViewerProxy> implements LoginController {
+	static final class LoginControllerImpl extends Receiver<TvViewerProxy>
+			implements
+				LoginController {
 		private AuthRF rf;
 		private TvGuideApp app;
 
@@ -67,12 +70,14 @@ public class TvGuide implements EntryPoint {
 
 		@Override
 		public void login(String email, String password) {
-			rf.authReq().authenticate(email, Md5.md5Hex(password)).with("geo", "name").fire(this);
+			rf.authReq().authenticate(email, Md5.md5Hex(password)).with("geo",
+					"name").fire(this);
 		}
 
 		@Override
 		public void register(String email, String password) {
-			rf.authReq().register(email, Md5.md5Hex(password)).with("geo", "name").fire(this);
+			rf.authReq().register(email, Md5.md5Hex(password)).with("geo",
+					"name").fire(this);
 		}
 		@Override
 		public void onSuccess(TvViewerProxy response) {

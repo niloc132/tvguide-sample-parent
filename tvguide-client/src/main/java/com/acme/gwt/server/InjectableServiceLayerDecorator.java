@@ -49,7 +49,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 			Method domainMethod) {
 		// Check if the request needs a service locator
 		Class<? extends ServiceLocator> locatorType = getTop()
-		.resolveServiceLocator(contextMethod, domainMethod);
+				.resolveServiceLocator(contextMethod, domainMethod);
 		assert locatorType != null;
 
 		// Inject an instance of the locator itself, and then get an instance from it
@@ -67,12 +67,13 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	}
 
 	@Override
-	public Method resolveRequestContextMethod(String requestContextClass, String methodName) {
+	public Method resolveRequestContextMethod(String requestContextClass,
+			String methodName) {
 		try {
-			for (Method method : Class.forName(requestContextClass, false, Thread.currentThread().getContextClassLoader()).getMethods()) {
+			for (Method method : Class.forName(requestContextClass, false,
+					Thread.currentThread().getContextClassLoader())
+					.getMethods()) {
 				if (method.getName().equals(methodName)) {
-
-
 
 					return method;
 				}
@@ -81,6 +82,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 			//...
 		}
 
-		return super.resolveRequestContextMethod(requestContextClass, methodName);
+		return super.resolveRequestContextMethod(requestContextClass,
+				methodName);
 	}
 }

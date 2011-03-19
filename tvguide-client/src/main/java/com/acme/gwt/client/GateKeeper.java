@@ -36,7 +36,6 @@ public class GateKeeper extends Receiver<TvViewerProxy> implements TvGuideApp {
 		injector.getHistoryHandler().handleCurrentHistory();
 	}
 
-
 	@ConcreteType(GateKeeper.class)
 	public interface Proxy extends AsyncProxy<TvGuideApp>, TvGuideApp {
 	}

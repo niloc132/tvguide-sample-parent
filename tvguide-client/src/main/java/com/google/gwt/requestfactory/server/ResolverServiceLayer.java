@@ -76,7 +76,7 @@ final class ResolverServiceLayer extends ServiceLayerDecorator {
 		String domainName = domainClass.getName();
 		if (domainName.contains("openjpa.enhance")) {
 			domainName = domainName.replace("org.apache.openjpa.enhance.", "")
-			.replace("$", ".").replace(".pcsubclass", "");
+					.replace("$", ".").replace(".pcsubclass", "");
 			domainClass = forName(domainName);
 		}
 
@@ -144,7 +144,7 @@ final class ResolverServiceLayer extends ServiceLayerDecorator {
 		if (searchIn == null) {
 			die(null, "The %s type %s did not specify a service type",
 					RequestContext.class.getSimpleName(), enclosing
-					.getCanonicalName());
+							.getCanonicalName());
 		}
 
 		Class<?>[] parameterTypes = requestContextMethod.getParameterTypes();
@@ -155,9 +155,9 @@ final class ResolverServiceLayer extends ServiceLayerDecorator {
 						parameterTypes[i].asSubclass(BaseProxy.class));
 			} else if (EntityProxyId.class.isAssignableFrom(parameterTypes[i])) {
 				domainArgs[i] = TypeUtils
-				.ensureBaseType(TypeUtils.getSingleParameterization(
-						EntityProxyId.class, requestContextMethod
-						.getGenericParameterTypes()[i]));
+						.ensureBaseType(TypeUtils.getSingleParameterization(
+								EntityProxyId.class, requestContextMethod
+										.getGenericParameterTypes()[i]));
 			} else {
 				domainArgs[i] = parameterTypes[i];
 			}

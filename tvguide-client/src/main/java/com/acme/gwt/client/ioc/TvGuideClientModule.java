@@ -51,7 +51,6 @@ public class TvGuideClientModule extends AbstractGinModule {
 		// Provide an instance of the app to start things up, wire it to a proxy instance
 		bind(TvGuideApp.class).to(GateKeeper.Proxy.class);
 
-
 		// Provide Activies/Places, and the wiring to get it hooked to history
 		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
 		bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
@@ -66,7 +65,7 @@ public class TvGuideClientModule extends AbstractGinModule {
 	}
 
 	@Singleton
-	@Provides 
+	@Provides
 	AuthRF provideAuthRequestFactory(EventBus eventBus) {
 		AuthRF rf = GWT.create(AuthRF.class);
 		rf.initialize(eventBus);
