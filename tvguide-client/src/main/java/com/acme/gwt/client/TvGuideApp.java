@@ -2,29 +2,18 @@ package com.acme.gwt.client;
 
 import com.acme.gwt.client.ioc.TvGuideGinjector;
 import com.acme.gwt.shared.TvViewerProxy;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.inject.Inject;
 
 /**
- * all the crap that needs big java imports begins polluting the heap here.
- * <p/>
- * Created by IntelliJ IDEA.
- * User: jim
- * Date: 3/11/11
- * Time: 4:24 AM
- * To change this template use File | Settings | File Templates.
+ * Basic interface to get the app going. Wow, we need to rename some of this stuff.
+ * 
+ * This can be called as a {@link com.google.gwt.requestfactory.shared.Receiver} for
+ * TvViewerProxy objects, or setUser can be called directly. setInjector must be called
+ * first to provide an injector instance.
  */
-public class TvGuideApp implements GateKeeper.App {
+public interface TvGuideApp {
+	@Inject void setInjector(TvGuideGinjector injector);
 
-	@Override
-	public void setUser(TvViewerProxy user) {
-		// Make the ginjector
-		TvGuideGinjector injector = GWT.create(TvGuideGinjector.class);
-
-		// Attach the root view to the page
-		RootLayoutPanel.get().add(injector.getAppShell());
-
-		// Go! Fire the current history token
-		injector.getHistoryHandler().handleCurrentHistory();
-	}
+	void onSuccess(TvViewerProxy response);
+	void setUser(TvViewerProxy user);
 }

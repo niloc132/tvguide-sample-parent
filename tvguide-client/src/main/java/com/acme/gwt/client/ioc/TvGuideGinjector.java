@@ -16,6 +16,8 @@
  */
 package com.acme.gwt.client.ioc;
 
+import com.acme.gwt.client.TvGuide.AuthRF;
+import com.acme.gwt.client.TvGuideApp;
 import com.acme.gwt.client.presenter.WelcomePresenter;
 import com.acme.gwt.client.widget.TvGuideAppShell;
 import com.google.gwt.inject.client.GinModules;
@@ -27,9 +29,13 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
  */
 @GinModules({TvGuideClientModule.class})
 public interface TvGuideGinjector extends Ginjector {
+	TvGuideApp app();
+
 	TvGuideAppShell getAppShell();
 
 	PlaceHistoryHandler getHistoryHandler();
 
 	void injectPresenter(WelcomePresenter place);
+
+	AuthRF authRF();
 }

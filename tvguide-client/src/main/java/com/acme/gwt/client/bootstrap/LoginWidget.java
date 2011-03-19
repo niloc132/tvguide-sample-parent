@@ -69,6 +69,7 @@ public class LoginWidget extends Widget implements ClickHandler {
 		}
 	}
 
+	// kick this outta here
 	public interface Presenter {
 		void setView(LoginWidget w);
 		void login(String email, String password);

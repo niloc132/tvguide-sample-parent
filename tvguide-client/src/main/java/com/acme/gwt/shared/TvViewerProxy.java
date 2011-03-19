@@ -1,7 +1,5 @@
 package com.acme.gwt.shared;
 
-import java.util.List;
-
 import com.acme.gwt.data.AuthenticationCallFactory;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingLocator;
@@ -26,14 +24,9 @@ public interface TvViewerProxy extends EntityProxy {
 	Long getId();
 
 	Integer getVersion();
+	//List<TvShowProxy> getFavorites();
 
-	void setId(Long id);
-
-	void setVersion(Integer version);
-
-	List<TvShowProxy> getFavorites();
-
-	void setFavorites(List<TvShowProxy> favorites);
+	//void setFavorites(List<TvShowProxy> favorites);
 
 	String getEmail();
 
