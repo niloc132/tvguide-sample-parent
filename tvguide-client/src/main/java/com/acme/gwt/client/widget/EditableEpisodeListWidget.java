@@ -18,10 +18,10 @@ package com.acme.gwt.client.widget;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
-import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
+import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -29,6 +29,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
+ * Facilitates editing episode info inline, not requiring any list, focus, edit, save, list cycle.
+ * Also shows off the CellTable-Tools, for better or worse.
+ * 
+ * 
  * @author colin
  */
 public class EditableEpisodeListWidget extends Composite {
@@ -47,14 +51,14 @@ public class EditableEpisodeListWidget extends Composite {
 
 	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
 	@Path("")
-	HasDataFlushableEditor<TvEpisodeProxy> listEd;
+	HasDataEditor<TvEpisodeProxy> listEd;
 	@UiField(provided = true)
 	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
 
 	public EditableEpisodeListWidget() {
-		listEd = HasDataFlushableEditor.of(list);
+		listEd = HasDataEditor.of(list);
 
-		columns.configure(list, listEd);
+		columns.configure(list);
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}

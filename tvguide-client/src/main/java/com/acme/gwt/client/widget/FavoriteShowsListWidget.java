@@ -20,10 +20,10 @@ import java.util.List;
 
 import com.acme.gwt.shared.TvShowProxy;
 import com.colinalworth.celltable.columns.client.Columns;
-import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -51,14 +51,14 @@ public class FavoriteShowsListWidget extends Composite
 
 	private ShowColumns columns = GWT.create(ShowColumns.class);
 	@Path("")
-	HasDataFlushableEditor<TvShowProxy> listEditor;
+	HasDataEditor<TvShowProxy> listEditor;
 	@UiField(provided = true)
 	CellTable<TvShowProxy> list = new CellTable<TvShowProxy>();
 
 	public FavoriteShowsListWidget() {
-		listEditor = HasDataFlushableEditor.of(list);
+		listEditor = HasDataEditor.of(list);
 
-		columns.configure(list, listEditor);
+		columns.configure(list);
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
