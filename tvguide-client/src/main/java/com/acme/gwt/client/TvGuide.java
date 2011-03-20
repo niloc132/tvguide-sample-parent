@@ -16,25 +16,37 @@
  */
 package com.acme.gwt.client;
 
-import com.acme.gwt.client.bootstrap.LoginWidget;
+import com.acme.gwt.client.ioc.TvGuideGinjector;
+import com.acme.gwt.client.presenter.LoginPresenter;
+import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.shared.TvViewerProxy;
-import com.acme.gwt.shared.util.Md5;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.requestfactory.shared.Receiver;
-import com.google.gwt.requestfactory.shared.RequestFactory;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.inject.client.AsyncProvider;
 import com.google.gwt.user.client.AsyncProxy;
 import com.google.gwt.user.client.AsyncProxy.ConcreteType;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
+ * EntryPoint for the TvGuide sample GWT application. Decides if the user is already logged
+ * in, and draws the app or the login. 
+ * 
  * @author colin
  */
 public class TvGuide implements EntryPoint {
+	@Inject
+	AsyncProvider<TvGuideApp> appProvider;
+	@Inject
+	Provider<LoginView> login;
 
 	/**
-	 * Async Proxy to load the MD5+RF+Proxy after the view is up and running.
+	 * Async Proxy to load the MD5+RF+Proxy after the view is up and running. Only needed if 
+	 * we don't use an AsyncProvider for the login stuff
 	 * 
 	 * @author colin
 	 *
@@ -42,56 +54,58 @@ public class TvGuide implements EntryPoint {
 	@ConcreteType(LoginPresenter.class)
 	interface LoginPresenterProxy
 			extends
-				AsyncProxy<LoginWidget.Presenter>,
-				LoginWidget.Presenter {
+				AsyncProxy<LoginView.Presenter>,
+				LoginView.Presenter {
 	}
 
-	/**
-	 * Actual presenter impl for the Login widget, loaded when the first call comes in to it
-	 * @author colin
-	 *
-	 */
-	static final class LoginPresenter implements LoginWidget.Presenter {
-		private AuthRF rf = GWT.create(AuthRF.class);
-		{
-			rf.initialize(new SimpleEventBus());
-		}
-
-		private LoginWidget loginWidget;
-		private final Receiver<Void> hideReceiver = new Receiver<Void>() {
-			@Override
-			public void onSuccess(Void response) {
-				loginWidget.removeFromParent();
-			}
-		};
-		@Override
-		public void login(String email, String password) {
-			rf.authReq().authenticate(email, Md5.md5Hex(password)).with("geo",
-					"name", "favoriteShows.name", "favoriteShows.description")
-					.to(new GateKeeper()).fire(hideReceiver);
-		}
-
-		@Override
-		public void register(String email, String password) {
-			rf.authReq().register(email, Md5.md5Hex(password)).with("geo",
-					"name", "favoriteShows.name", "favoriteShows.description")
-					.to(new GateKeeper()).fire(hideReceiver);
-		}
-
-		@Override
-		public void setView(LoginWidget w) {
-			this.loginWidget = w;
-		}
-	}
-	interface AuthRF extends RequestFactory {
-		TvViewerProxy.TvViewerRequest authReq();
-	}
 	public void onModuleLoad() {
-		//TODO what do do if login is not required, and session is already going
+		final TvGuideGinjector injector = GWT.create(TvGuideGinjector.class);
+		injector.inject(this);
 
-		//Create a presenter proxy, and pass it to the login widget
-		LoginWidget.Presenter presenter = GWT.create(LoginPresenterProxy.class);
-		RootPanel.get().add(new LoginWidget(presenter));
+		//
+		if (!"".equals("")) {//if logged in already (read from page vars or some such)
+			// start the page
+			appProvider.get(new AsyncCallback<TvGuideApp>() {
+				@Override
+				public void onSuccess(TvGuideApp result) {
+					TvViewerProxy user = null;
+					result.setUser(user);
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					//TODO say something like 'an error occurred loading the page...'
+				}
+			});
+		} else {//not logged in
+			// show login (or allow unauthenticated access?)
+			final LoginView w = login.get();
+			// Give the login dialog a proxy to the LoginPresenter, which will manage its traffic once it has loaded.
+			final LoginPresenterProxy presenter = GWT
+					.create(LoginPresenterProxy.class);
+			w.setPresenter(presenter);
+			RootPanel.get().add(w);
+
+			// tell the presenter about the view, so it can hide it
+			// two ways in my mind about doing this, first, wait until the UI is up and going so the user can interact while it loads
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+				@Override
+				public void execute() {
+					presenter.setView(w);
+				}
+			});
+			presenter
+					.setProxyCallback(new AsyncProxy.ProxyCallback<LoginView.Presenter>() {
+						@Override
+						public void onInit(LoginView.Presenter instance) {
+							injector.inject((LoginPresenter) instance);
+						}
+					});
+
+			//Otherwise, flip this around, and get an AsyncProvider for the login presenter,
+			//and wire it all up when the view is done and shown, and find another way to
+			//worry about telling the view about the presenter.
+		}
 	}
 
 }

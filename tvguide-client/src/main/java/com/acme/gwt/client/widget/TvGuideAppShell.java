@@ -16,6 +16,7 @@
  */
 package com.acme.gwt.client.widget;
 
+import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -29,21 +30,21 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
+ * Visual wrapper for the rest of the running app. 
+ * 
  * @author colin
  */
 @Singleton
 public class TvGuideAppShell extends Composite implements HasOneWidget {
-	interface TvGuideAppShellUiBinder extends UiBinder<Widget, TvGuideAppShell> {
+	interface Binder extends UiBinder<Widget, TvGuideAppShell> {
 	}
-
-	private static TvGuideAppShellUiBinder uiBinder = GWT
-			.create(TvGuideAppShellUiBinder.class);
+	private Binder uiBinder = GWT.create(Binder.class);
 
 	@UiField
 	LayoutPanel display;
 
 	@Inject
-	public TvGuideAppShell(ActivityManager activityManager) {
+	public TvGuideAppShell(ActivityManager activityManager, TvViewerProxy user) {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		activityManager.setDisplay(this);

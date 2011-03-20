@@ -16,20 +16,59 @@
  */
 package com.acme.gwt.client.widget;
 
+import java.util.List;
+
+import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.client.view.WelcomeView;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.Widget;
+import com.acme.gwt.shared.TvShowProxy;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.RequiresResize;
+import com.google.inject.Inject;
 
 /**
  * @author colin
  *
  */
-public class WelcomeWidget extends Widget implements WelcomeView {
-	/**
-	 * 
-	 */
-	public WelcomeWidget() {
-		setElement(DOM.createDiv());
-		getElement().setInnerHTML("Welcome");
+public class WelcomeWidget extends Composite
+		implements
+			RequiresResize,
+			WelcomeView {
+	interface FavoritesDriver
+			extends
+				RequestFactoryEditorDriver<List<TvShowProxy>, FavoriteShowsListWidget> {
+	}
+
+	FavoritesDriver driver = GWT.create(FavoritesDriver.class);
+	@Inject
+	public WelcomeWidget(TvGuideRequestFactory rf) {
+		LayoutPanel panel = new LayoutPanel();
+		initWidget(panel);
+
+		panel
+				.add(new Label(
+						"Welcome, rest of app will be here soon. (Delivery in 4-6 weeks)"));
+		FavoriteShowsListWidget ed = new FavoriteShowsListWidget();
+		panel.add(ed);
+		//BAD: all layout done by hand, and quick, without UiBinder's help or CssResource
+		panel.setWidgetTopHeight(ed, 0, Unit.PX, 100, Unit.PCT);
+		ed.getElement().setAttribute("margin-top", "25px");
+
+		// Attach the data - easy way to bind a views editor to something accessible from a presenter
+		driver.initialize(rf, ed);
+	}
+
+	public RequestFactoryEditorDriver<List<TvShowProxy>, ?> getDriver() {
+		return driver;
+	}
+
+	@Override
+	public void onResize() {
+		// TODO Auto-generated method stub
+
 	}
 }

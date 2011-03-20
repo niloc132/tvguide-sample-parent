@@ -16,6 +16,7 @@
  */
 package com.acme.gwt.client.bootstrap;
 
+import com.acme.gwt.client.view.LoginView;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
@@ -31,7 +32,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author colin
  *
  */
-public class LoginWidget extends Widget implements ClickHandler {
+public class LoginWidget extends Widget implements ClickHandler, LoginView {
 	interface Binder extends UiBinder<Element, LoginWidget> {
 	}
 	private Binder uiBinder = GWT.create(Binder.class);
@@ -44,18 +45,13 @@ public class LoginWidget extends Widget implements ClickHandler {
 	ButtonElement login;
 	@UiField
 	ButtonElement register;
-	private final Presenter presenter;
+	private Presenter presenter;
 
-	public LoginWidget(Presenter presenter) {
+	public LoginWidget() {
 		setElement(uiBinder.createAndBindUi(this));
 
 		// Listen to all dom elts for clicks, handler function will deal with the useful ones
 		this.addDomHandler(this, ClickEvent.getType());
-
-		// Keep a reference to the presenter, and make them aware of the widget
-		// this will allow the presenter to hide the login widget
-		this.presenter = presenter;
-		presenter.setView(this);
 	}
 
 	@Override
@@ -69,9 +65,8 @@ public class LoginWidget extends Widget implements ClickHandler {
 		}
 	}
 
-	public interface Presenter {
-		void setView(LoginWidget w);
-		void login(String email, String password);
-		void register(String email, String password);
+	@Override
+	public void setPresenter(LoginView.Presenter presenter) {
+		this.presenter = presenter;
 	}
 }

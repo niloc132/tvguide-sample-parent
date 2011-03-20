@@ -14,24 +14,25 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.view;
+package com.acme.gwt.client.ioc;
 
-import java.util.List;
-
-import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
-import com.google.gwt.user.client.ui.IsWidget;
+import com.acme.gwt.shared.TvViewerProxy;
+import com.google.inject.Provider;
 
 /**
  * @author colin
  *
  */
-public interface WelcomeView extends IsWidget {
-
-	//for now...
-	RequestFactoryEditorDriver<List<TvShowProxy>, ?> getDriver();
-
-	public interface Presenter {
-
+public class TvViewerProvider implements Provider<TvViewerProxy> {
+	private TvViewerProxy viewer;
+	@Override
+	public TvViewerProxy get() {
+		return viewer;
+	}
+	/**
+	 * @param viewer the viewer to set
+	 */
+	public void setViewer(TvViewerProxy viewer) {
+		this.viewer = viewer;
 	}
 }

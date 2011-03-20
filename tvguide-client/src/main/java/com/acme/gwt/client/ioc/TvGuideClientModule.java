@@ -17,14 +17,18 @@
 package com.acme.gwt.client.ioc;
 
 import com.acme.gwt.client.TvGuideRequestFactory;
+import com.acme.gwt.client.bootstrap.LoginWidget;
 import com.acme.gwt.client.place.DefaultPlace;
 import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper;
+import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.client.view.WelcomeView;
 import com.acme.gwt.client.widget.WelcomeWidget;
+import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -41,18 +45,32 @@ import com.google.inject.Singleton;
 public class TvGuideClientModule extends AbstractGinModule {
 	@Override
 	protected void configure() {
+		// Events
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 
-		bind(TvGuideRequestFactory.class).in(Singleton.class);
+		// Access to the current user
+		bind(TvViewerProxy.class).toProvider(TvViewerProvider.class).in(
+				Singleton.class);
 
+		// A/P, history mapping
 		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
 		bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
 
+		// Default place to let the app start without history
 		bind(Place.class).annotatedWith(DefaultPlace.class).to(
 				WelcomePlace.class);
 
+		// View interfaces to their singleton Widgets
 		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
+		bind(LoginView.class).to(LoginWidget.class);//not singleton, since it should only be loaded once
+	}
 
+	@Singleton
+	@Provides
+	TvGuideRequestFactory provideRequestFactory(EventBus eventBus) {
+		TvGuideRequestFactory rf = GWT.create(TvGuideRequestFactory.class);
+		rf.initialize(eventBus);
+		return rf;
 	}
 
 	@Provides

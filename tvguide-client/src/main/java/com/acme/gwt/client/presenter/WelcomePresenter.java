@@ -16,10 +16,15 @@
  */
 package com.acme.gwt.client.presenter;
 
+import java.util.List;
+
+import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.view.WelcomeView;
+import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
@@ -31,13 +36,21 @@ public class WelcomePresenter extends AbstractActivity
 			WelcomeView.Presenter {
 	@Inject
 	WelcomeView view;
+	@Inject
+	TvGuideRequestFactory rf;
 
 	public WelcomePresenter(WelcomePlace place) {
 		//place is meaningless, this is just a simple view to show
 	}
 
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(view);
+	public void start(final AcceptsOneWidget panel, EventBus eventBus) {
+		rf.makeGuideRequest().getFavoriteShows().fire(
+				new Receiver<List<TvShowProxy>>() {
+					@Override
+					public void onSuccess(List<TvShowProxy> response) {
+						view.getDriver().display(response);
+						panel.setWidget(view);
+					}
+				});
 	}
-
 }
