@@ -30,10 +30,10 @@
 <a class="jxr_linenumber" name="20" href="#20">20</a>  
 <a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> com.acme.gwt.shared.TvShowProxy;
 <a class="jxr_linenumber" name="22" href="#22">22</a>  <strong class="jxr_keyword">import</strong> com.colinalworth.celltable.columns.client.Columns;
-<a class="jxr_linenumber" name="23" href="#23">23</a>  <strong class="jxr_keyword">import</strong> com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
-<a class="jxr_linenumber" name="24" href="#24">24</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.cell.client.TextCell;
-<a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.core.client.GWT;
-<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.editor.client.Editor;
+<a class="jxr_linenumber" name="23" href="#23">23</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.cell.client.TextCell;
+<a class="jxr_linenumber" name="24" href="#24">24</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.core.client.GWT;
+<a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.editor.client.Editor;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.editor.client.adapters.HasDataEditor;
 <a class="jxr_linenumber" name="27" href="#27">27</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.uibinder.client.UiBinder;
 <a class="jxr_linenumber" name="28" href="#28">28</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.uibinder.client.UiField;
 <a class="jxr_linenumber" name="29" href="#29">29</a>  <strong class="jxr_keyword">import</strong> com.google.gwt.user.cellview.client.CellTable;
@@ -61,14 +61,14 @@
 <a class="jxr_linenumber" name="51" href="#51">51</a>  
 <a class="jxr_linenumber" name="52" href="#52">52</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../com/acme/gwt/client/widget/FavoriteShowsListWidget.html">ShowColumns</a> columns = GWT.create(ShowColumns.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="53" href="#53">53</a>  	@Path(<span class="jxr_string">""</span>)
-<a class="jxr_linenumber" name="54" href="#54">54</a>  	HasDataFlushableEditor&lt;TvShowProxy&gt; listEditor;
+<a class="jxr_linenumber" name="54" href="#54">54</a>  	HasDataEditor&lt;TvShowProxy&gt; listEditor;
 <a class="jxr_linenumber" name="55" href="#55">55</a>  	@UiField(provided = <strong class="jxr_keyword">true</strong>)
 <a class="jxr_linenumber" name="56" href="#56">56</a>  	CellTable&lt;TvShowProxy&gt; list = <strong class="jxr_keyword">new</strong> CellTable&lt;TvShowProxy&gt;();
 <a class="jxr_linenumber" name="57" href="#57">57</a>  
 <a class="jxr_linenumber" name="58" href="#58">58</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../com/acme/gwt/client/widget/FavoriteShowsListWidget.html">FavoriteShowsListWidget</a>() {
-<a class="jxr_linenumber" name="59" href="#59">59</a>  		listEditor = HasDataFlushableEditor.of(list);
+<a class="jxr_linenumber" name="59" href="#59">59</a>  		listEditor = HasDataEditor.of(list);
 <a class="jxr_linenumber" name="60" href="#60">60</a>  
-<a class="jxr_linenumber" name="61" href="#61">61</a>  		columns.configure(list, listEditor);
+<a class="jxr_linenumber" name="61" href="#61">61</a>  		columns.configure(list);
 <a class="jxr_linenumber" name="62" href="#62">62</a>  
 <a class="jxr_linenumber" name="63" href="#63">63</a>  		initWidget(uiBinder.createAndBindUi(<strong class="jxr_keyword">this</strong>));
 <a class="jxr_linenumber" name="64" href="#64">64</a>  	}
