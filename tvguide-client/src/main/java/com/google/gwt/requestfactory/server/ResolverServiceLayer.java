@@ -82,6 +82,8 @@ final class ResolverServiceLayer extends ServiceLayerDecorator {
 
 		String name;
 		synchronized (validator) {
+			validator.validateProxy(clientClass.getName());
+			validator.antidote();
 			name = validator.getEntityProxyTypeName(domainClass.getName(),
 					clientClass.getName());
 		}
