@@ -1,7 +1,5 @@
 package com.acme.gwt.shared;
 
-import java.util.List;
-
 import com.acme.gwt.data.AuthenticationCallFactory;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingLocator;
@@ -23,35 +21,22 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 @ProxyFor(value = TvViewer.class, locator = InjectingLocator.class)
 public interface TvViewerProxy extends EntityProxy {
-	Long getId();
-
-	Integer getVersion();
-
-	void setId(Long id);
-
-	void setVersion(Integer version);
-
-	List<TvShowProxy> getFavorites();
-
-	void setFavorites(List<TvShowProxy> favorites);
-
 	String getEmail();
 
 	void setEmail(String email);
 
-	String getDigest();
-
+	/** auth data can be saved, but cannot be retrieved from the server */
 	void setDigest(String digest);
 
+	//do we need either of these, given the present impl?
 	String getSalt();
-
 	void setSalt(String salt);
 
 	Geo getGeo();
 
 	void setGeo(Geo geo);
 
-	public EntityProxyId<TvViewerProxy> stableId();
+	EntityProxyId<TvViewerProxy> stableId();
 
 	@Service(value = AuthenticationCallFactory.class, locator = InjectingServiceLocator.class)
 	public interface TvViewerRequest extends RequestContext {
