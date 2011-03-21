@@ -29,6 +29,6 @@ public interface LoginView extends IsWidget {
 		void setView(LoginView view);
 		void login(String email, String password);
 		void register(String email, String password);
-		void about();
+		void goToAboutPlace();
 	}
 }

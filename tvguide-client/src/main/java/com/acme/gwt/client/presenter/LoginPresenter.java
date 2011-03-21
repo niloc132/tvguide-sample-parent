@@ -19,6 +19,7 @@ package com.acme.gwt.client.presenter;
 import com.acme.gwt.client.TvGuideApp;
 import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.client.place.AboutPlace;
+import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.acme.gwt.shared.util.Md5;
@@ -84,11 +85,10 @@ public class LoginPresenter extends Receiver<TvViewerProxy>
 	}
 
 	@Override
-	public void about() {
+	public void goToAboutPlace() {
 		GWT.log("Trying to goTo--->AboutPlace");
 		placeController.goTo(new AboutPlace());
 		GWT.log("Trying to goTo--->AboutPlace COMPLETE!");
-		//Window.alert("TODO, how can LoginPresenter send the app to the 'AboutPlace'? see LoginPresenter.about()");
 	}
 
 }

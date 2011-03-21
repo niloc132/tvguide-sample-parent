@@ -18,10 +18,11 @@ package com.acme.gwt.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.place.shared.Prefix;
 
 public class AboutPlace extends Place {
 
-	
+	@Prefix("about-place")
 	public static class Tokenizer implements PlaceTokenizer<AboutPlace> {
 		@Override
 		public AboutPlace getPlace(String token) {
