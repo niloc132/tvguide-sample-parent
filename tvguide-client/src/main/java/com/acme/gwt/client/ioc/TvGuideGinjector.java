@@ -17,6 +17,7 @@
 package com.acme.gwt.client.ioc;
 
 import com.acme.gwt.client.TvGuide;
+import com.acme.gwt.client.place.AboutPlace;
 import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.AboutPresenter;
@@ -46,5 +47,7 @@ public interface TvGuideGinjector extends Ginjector {
 	// List the tokenizers that are available for history. Another way to solve this?
 	WelcomePlace.Tokenizer welcomeTokenizer();
 	ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
+	AboutPlace.Tokenizer aboutTokenizer();
+	
 
 }

@@ -22,6 +22,7 @@ import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
@@ -29,10 +30,12 @@ import com.google.inject.Inject;
  * @author colin
  */
 public class TvGuideActivityMapper implements ActivityMapper {
+	
 	@Inject
 	TvGuideGinjector injector;
 
 	public Activity getActivity(Place place) {
+		GWT.log("getActivity(place) has been called....");
 		if (place instanceof WelcomePlace) {
 			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
 			injector.injectPresenter(p);
