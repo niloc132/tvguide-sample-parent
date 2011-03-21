@@ -17,6 +17,8 @@
 package com.acme.gwt.client.presenter;
 
 import com.acme.gwt.client.ioc.TvGuideGinjector;
+import com.acme.gwt.client.place.AboutPlace;
+import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -33,6 +35,17 @@ public class TvGuideActivityMapper implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		if (place instanceof WelcomePlace) {
 			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
+			injector.injectPresenter(p);
+			return p;
+		}
+		if (place instanceof ShowDetailPlace) {
+			ShowDetailPresenter p = new ShowDetailPresenter(
+					(ShowDetailPlace) place);
+			injector.injectPresenter(p);
+			return p;
+		}
+		if (place instanceof AboutPlace) {
+			AboutPresenter p = new AboutPresenter();
 			injector.injectPresenter(p);
 			return p;
 		}

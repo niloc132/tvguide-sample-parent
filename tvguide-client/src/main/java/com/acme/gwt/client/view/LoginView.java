@@ -16,22 +16,19 @@
  */
 package com.acme.gwt.client.view;
 
-import java.util.List;
-
-import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
 import com.google.gwt.user.client.ui.IsWidget;
 
 /**
  * @author colin
  *
  */
-public interface WelcomeView extends IsWidget {
-
-	//for now...
-	RequestFactoryEditorDriver<List<TvShowProxy>, ?> getDriver();
+public interface LoginView extends IsWidget {
+	void setPresenter(Presenter presenter);
 
 	public interface Presenter {
-
+		void setView(LoginView view);
+		void login(String email, String password);
+		void register(String email, String password);
+		void about();
 	}
 }

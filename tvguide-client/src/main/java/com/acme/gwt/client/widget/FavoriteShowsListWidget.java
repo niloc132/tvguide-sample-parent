@@ -19,11 +19,17 @@ package com.acme.gwt.client.widget;
 import java.util.List;
 
 import com.acme.gwt.shared.TvShowProxy;
+//<<<<<<< HEAD
+////import com.colinalworth.celltable.columns.client.Columns;
+////import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
+////import com.google.gwt.cell.client.TextCell;
+//=======
 //import com.colinalworth.celltable.columns.client.Columns;
-//import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
-//import com.google.gwt.cell.client.TextCell;
+import com.google.gwt.cell.client.TextCell;
+//>>>>>>> eca62aed5f6c10a8a84d523e74d86ea7584f51ec
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -49,16 +55,31 @@ public class FavoriteShowsListWidget extends Composite
 //		TextCell description();
 //	}
 
+//<<<<<<< HEAD
 //	private ShowColumns columns = GWT.create(ShowColumns.class);
 //	@Path("")
 //	HasDataFlushableEditor<TvShowProxy> listEditor;
+//=======
+//		TextCell description();
+//	}
+
+//	private ShowColumns columns = GWT.create(ShowColumns.class);
+	@Path("")
+	HasDataEditor<TvShowProxy> listEditor;
+//>>>>>>> eca62aed5f6c10a8a84d523e74d86ea7584f51ec
 	@UiField(provided = true)
 	CellTable<TvShowProxy> list = new CellTable<TvShowProxy>();
 
 	public FavoriteShowsListWidget() {
+//<<<<<<< HEAD
 //		listEditor = HasDataFlushableEditor.of(list);
 //
 //		columns.configure(list, listEditor);
+//=======
+		listEditor = HasDataEditor.of(list);
+
+//		columns.configure(list);
+//>>>>>>> eca62aed5f6c10a8a84d523e74d86ea7584f51ec
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}

@@ -16,20 +16,35 @@
  */
 package com.acme.gwt.client.ioc;
 
+import com.acme.gwt.client.TvGuide;
+import com.acme.gwt.client.place.ShowDetailPlace;
+import com.acme.gwt.client.place.WelcomePlace;
+import com.acme.gwt.client.presenter.AboutPresenter;
+import com.acme.gwt.client.presenter.LoginPresenter;
+import com.acme.gwt.client.presenter.ShowDetailPresenter;
 import com.acme.gwt.client.presenter.WelcomePresenter;
-import com.acme.gwt.client.widget.TvGuideAppShell;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
 
 /**
  * @author colin
  */
 @GinModules({TvGuideClientModule.class})
 public interface TvGuideGinjector extends Ginjector {
-	TvGuideAppShell getAppShell();
+	/** Provide injection for the entrypoint */
+	void inject(TvGuide tvGuide);
 
-	PlaceHistoryHandler getHistoryHandler();
+	/** Inject stuff into proxied instance - we need this to have access to the RF, app, etc */
+	void inject(LoginPresenter proxiedInstance);
 
-	void injectPresenter(WelcomePresenter place);
+	// Provide injection for each Presenter. Consider replacing this mess with assisted inject
+	void injectPresenter(WelcomePresenter presenter);
+	void injectPresenter(ShowDetailPresenter presenter);
+	void injectPresenter(AboutPresenter presenter);
+	//...
+
+	// List the tokenizers that are available for history. Another way to solve this?
+	WelcomePlace.Tokenizer welcomeTokenizer();
+	ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
+
 }
