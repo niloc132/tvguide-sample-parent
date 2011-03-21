@@ -66,7 +66,7 @@ public class LoginWidget extends Widget implements ClickHandler, LoginView {
 		} if (register.isOrHasChild(target)) {
 			presenter.register(email.getValue(), password.getValue());
 		} else if (about.isOrHasChild(target)) {
-			presenter.about();
+			presenter.goToAboutPlace();
 		}
 	}
 

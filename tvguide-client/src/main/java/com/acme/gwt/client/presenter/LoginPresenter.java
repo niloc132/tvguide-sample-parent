@@ -19,7 +19,6 @@ package com.acme.gwt.client.presenter;
 import com.acme.gwt.client.TvGuideApp;
 import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.client.place.AboutPlace;
-import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.acme.gwt.shared.util.Md5;
