@@ -26,7 +26,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AsyncProvider;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.requestfactory.shared.Receiver;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.Inject;
@@ -44,7 +43,6 @@ public class LoginPresenter extends Receiver<TvViewerProxy>
 	TvGuideRequestFactory rf;
 	@Inject
 	AsyncProvider<TvGuideApp> appProvider;
-	
 	@Inject
 	PlaceController placeController;	
 

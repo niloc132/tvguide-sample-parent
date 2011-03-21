@@ -66,6 +66,7 @@ public class TvGuideClientModule extends AbstractGinModule {
 		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
 		bind(LoginView.class).to(LoginWidget.class);//not singleton, since it should only be loaded once
 		bind(AboutView.class).to(AboutWidget.class).in(Singleton.class);
+
 	}
 
 	@Singleton

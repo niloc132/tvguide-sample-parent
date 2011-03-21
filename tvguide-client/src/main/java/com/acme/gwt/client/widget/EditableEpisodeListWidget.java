@@ -17,13 +17,6 @@
 package com.acme.gwt.client.widget;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
-//<<<<<<< HEAD
-////import com.colinalworth.celltable.columns.client.Columns;
-////import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
-//=======
-//import com.colinalworth.celltable.columns.client.Columns;
-//>>>>>>> eca62aed5f6c10a8a84d523e74d86ea7584f51ec
-import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
 import com.google.gwt.editor.client.adapters.HasDataEditor;

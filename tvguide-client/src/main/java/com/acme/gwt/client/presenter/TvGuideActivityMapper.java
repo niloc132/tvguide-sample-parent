@@ -44,6 +44,7 @@ public class TvGuideActivityMapper implements ActivityMapper {
 			injector.injectPresenter(p);
 			return p;
 		}
+
 		if (place instanceof AboutPlace) {
 			AboutPresenter p = new AboutPresenter();
 			injector.injectPresenter(p);
