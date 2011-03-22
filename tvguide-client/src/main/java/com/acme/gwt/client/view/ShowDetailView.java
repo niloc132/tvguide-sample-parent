@@ -17,14 +17,18 @@
 package com.acme.gwt.client.view;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
+import com.acme.gwt.shared.TvShowProxy;
+import com.google.gwt.editor.client.Editor;
+import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
 import com.google.gwt.user.client.ui.IsWidget;
 
 /**
  * @author colin
  *
  */
-public interface ShowDetailView extends IsWidget {
+public interface ShowDetailView extends IsWidget, Editor<TvShowProxy> {
 	void setPresenter(Presenter presenter);
+	RequestFactoryEditorDriver<TvShowProxy, ?> getEditor();
 
 	public interface Presenter {
 		void focusEpisode(TvEpisodeProxy episode);
