@@ -49,10 +49,17 @@ public class FavoriteShowsListWidget extends Composite
 	interface Binder extends UiBinder<Widget, FavoriteShowsListWidget> {
 	}
 
-	interface ShowColumns extends Columns<TvShowProxy> {
+	interface ShowColumns
+			extends
+				ColumnsWithFactory<TvShowProxy, FavoriteShowsListWidget> {
+		@Header("Show")
 		TextCell name();
 
+		@Header("Description")
 		TextCell description();
+
+		@Path("")
+		ActionCell<TvShowProxy> display();
 	}
 
 	private ShowColumns columns = GWT.create(ShowColumns.class);
