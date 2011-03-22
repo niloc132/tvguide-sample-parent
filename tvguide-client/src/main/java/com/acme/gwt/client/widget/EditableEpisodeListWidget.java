@@ -19,6 +19,7 @@ package com.acme.gwt.client.widget;
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
 import com.google.gwt.cell.client.EditTextCell;
+import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
 import com.google.gwt.editor.client.adapters.HasDataEditor;
@@ -42,9 +43,9 @@ public class EditableEpisodeListWidget extends Composite {
 	}
 
 	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
-		EditTextCell season();//erp int != String
+		NumberCell season();//erp int != String
 
-		EditTextCell episodeNumber();// int != String
+		NumberCell episodeNumber();// int != String
 
 		EditTextCell name();
 	}
