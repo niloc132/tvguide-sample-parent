@@ -56,23 +56,29 @@ com.acme.gwt.client.bootstrap.LoginWidget.Binder
 com.acme.gwt.client.bootstrap.LoginWidget_BinderImpl_GenBundle
 com.acme.gwt.client.ioc.TvGuideGinjector
 com.acme.gwt.client.place.DefaultPlace
-com.acme.gwt.client.place.ShowDetailPlace
 com.acme.gwt.client.place.ShowDetailPlace.Tokenizer
 com.acme.gwt.client.place.TvGuidePlaceHistoryMapper
+com.acme.gwt.client.place.TvGuidePlaceHistoryMapper.TvGuidePlaceTokenizers
 com.acme.gwt.client.place.WelcomePlace.Tokenizer
-com.acme.gwt.client.presenter.ShowDetailPresenter
+com.acme.gwt.client.view.FavoriteShowsListView
+com.acme.gwt.client.view.FavoriteShowsListView.Presenter
 com.acme.gwt.client.view.LoginView
 com.acme.gwt.client.view.LoginView.Presenter
 com.acme.gwt.client.view.ShowDetailView
 com.acme.gwt.client.view.ShowDetailView.Presenter
 com.acme.gwt.client.view.WelcomeView
 com.acme.gwt.client.view.WelcomeView.Presenter
-com.acme.gwt.client.widget.EditableEpisodeListWidget
 com.acme.gwt.client.widget.EditableEpisodeListWidget.Binder
 com.acme.gwt.client.widget.EditableEpisodeListWidget.EpisodeColumns
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenBundle
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenCss_style
 com.acme.gwt.client.widget.FavoriteShowsListWidget.Binder
 com.acme.gwt.client.widget.FavoriteShowsListWidget.ShowColumns
 com.acme.gwt.client.widget.FavoriteShowsListWidget_BinderImpl_GenBundle
+com.acme.gwt.client.widget.ShowDetailWidget.Binder
+com.acme.gwt.client.widget.ShowDetailWidget.Driver
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenBundle
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenCss_style
 com.acme.gwt.client.widget.TvGuideAppShell.Binder
 com.acme.gwt.client.widget.TvGuideAppShell_BinderImpl_GenBundle
 com.acme.gwt.client.widget.TvGuideAppShell_BinderImpl_GenCss_style
@@ -159,9 +165,7 @@ com.google.gwt.canvas.dom.client.FillStrokeStyle
 com.google.gwt.canvas.dom.client.ImageData
 com.google.gwt.canvas.dom.client.TextMetrics
 com.google.gwt.canvas.dom.client.package-info
-com.google.gwt.cell.client.AbstractEditableCell
 com.google.gwt.cell.client.AbstractInputCell
-com.google.gwt.cell.client.ActionCell
 com.google.gwt.cell.client.ActionCell.Delegate
 com.google.gwt.cell.client.ButtonCell
 com.google.gwt.cell.client.Cell
@@ -171,7 +175,6 @@ com.google.gwt.cell.client.ClickableTextCell
 com.google.gwt.cell.client.CompositeCell
 com.google.gwt.cell.client.DateCell
 com.google.gwt.cell.client.DatePickerCell
-com.google.gwt.cell.client.EditTextCell
 com.google.gwt.cell.client.EditTextCell.Template
 com.google.gwt.cell.client.EditTextCell.ViewData
 com.google.gwt.cell.client.FieldUpdater
@@ -185,7 +188,6 @@ com.google.gwt.cell.client.ImageLoadingCell.Renderers
 com.google.gwt.cell.client.ImageLoadingCell.Resources
 com.google.gwt.cell.client.ImageLoadingCell.Template
 com.google.gwt.cell.client.ImageResourceCell
-com.google.gwt.cell.client.NumberCell
 com.google.gwt.cell.client.SelectionCell
 com.google.gwt.cell.client.SelectionCell.Template
 com.google.gwt.cell.client.TextInputCell
@@ -332,6 +334,7 @@ com.google.gwt.editor.client.HasEditorDelegate
 com.google.gwt.editor.client.HasEditorErrors
 com.google.gwt.editor.client.IsEditor
 com.google.gwt.editor.client.LeafValueEditor
+com.google.gwt.editor.client.LeafValueEditor_java_lang_String_RequestFactoryEditorDelegate
 com.google.gwt.editor.client.SimpleBeanEditorDriver
 com.google.gwt.editor.client.ValueAwareEditor
 com.google.gwt.editor.client.adapters.HasDataEditor.HasDataEditorSource
@@ -355,7 +358,6 @@ com.google.gwt.editor.client.testing.MockSimpleBeanEditorDriver
 com.google.gwt.editor.client.testing.package-info
 com.google.gwt.editor.ui.client.ValueBoxEditorDecorator
 com.google.gwt.editor.ui.client.ValueBoxEditorDecorator.Binder
-com.google.gwt.editor.ui.client.adapters.HasTextEditor
 com.google.gwt.editor.ui.client.adapters.ValueBoxEditor
 com.google.gwt.editor.ui.client.adapters.package-info
 com.google.gwt.editor.ui.client.package-info
@@ -511,7 +513,6 @@ com.google.gwt.i18n.client.Constants.DefaultStringMapValue
 com.google.gwt.i18n.client.Constants.DefaultStringValue
 com.google.gwt.i18n.client.ConstantsWithLookup
 com.google.gwt.i18n.client.CurrencyData
-com.google.gwt.i18n.client.CurrencyList
 com.google.gwt.i18n.client.CurrencyList.CurrencyListInstance
 com.google.gwt.i18n.client.CustomDateTimeFormat
 com.google.gwt.i18n.client.CustomDateTimeFormat.Pattern
@@ -528,7 +529,6 @@ com.google.gwt.i18n.client.DefaultLocalizedNamesBase
 com.google.gwt.i18n.client.Dictionary
 com.google.gwt.i18n.client.HasDirection
 com.google.gwt.i18n.client.HasDirection.Direction
-com.google.gwt.i18n.client.LocaleInfo
 com.google.gwt.i18n.client.Localizable
 com.google.gwt.i18n.client.LocalizableResource
 com.google.gwt.i18n.client.LocalizableResource.DefaultLocale
@@ -548,7 +548,6 @@ com.google.gwt.i18n.client.Messages.Optional
 com.google.gwt.i18n.client.Messages.PluralCount
 com.google.gwt.i18n.client.Messages.PluralText
 com.google.gwt.i18n.client.Messages.Select
-com.google.gwt.i18n.client.NumberFormat
 com.google.gwt.i18n.client.PluralRule
 com.google.gwt.i18n.client.PluralRule.PluralForm
 com.google.gwt.i18n.client.TimeZone
@@ -559,14 +558,12 @@ com.google.gwt.i18n.client.constants.DateTimeConstantsImpl
 com.google.gwt.i18n.client.constants.LocaleConstants
 com.google.gwt.i18n.client.constants.NumberConstants
 com.google.gwt.i18n.client.constants.NumberConstantsImpl
-com.google.gwt.i18n.client.constants.NumberConstantsImpl_
 com.google.gwt.i18n.client.constants.TimeZoneConstants
 com.google.gwt.i18n.client.constants.package-info
 com.google.gwt.i18n.client.impl.CldrImpl
 com.google.gwt.i18n.client.impl.ConstantMap
 com.google.gwt.i18n.client.impl.ConstantMap.EntryImpl
 com.google.gwt.i18n.client.impl.CurrencyDataImpl
-com.google.gwt.i18n.client.impl.CurrencyDataJso
 com.google.gwt.i18n.client.impl.DateRecord
 com.google.gwt.i18n.client.impl.LocaleInfoImpl
 com.google.gwt.i18n.client.impl.LocaleInfoImpl_
@@ -1386,7 +1383,6 @@ com.google.gwt.requestfactory.shared.impl.AbstractRequestContext.MyViolation
 com.google.gwt.requestfactory.shared.impl.Constants
 com.google.gwt.requestfactory.shared.impl.EntityCodex.EntitySource
 com.google.gwt.requestfactory.shared.impl.FindRequest
-com.google.gwt.requestfactory.shared.impl.IdUtil
 com.google.gwt.requestfactory.shared.impl.MessageFactoryHolder
 com.google.gwt.requestfactory.shared.impl.Poser
 com.google.gwt.requestfactory.shared.impl.ProxySerializerImpl
@@ -1707,8 +1703,6 @@ com.google.gwt.user.client.ui.Accessibility
 com.google.gwt.user.client.ui.Anchor
 com.google.gwt.user.client.ui.AnimatedLayout
 com.google.gwt.user.client.ui.AttachDetachException.Command
-com.google.gwt.user.client.ui.Button
-com.google.gwt.user.client.ui.ButtonBase
 com.google.gwt.user.client.ui.CaptionPanel
 com.google.gwt.user.client.ui.CaptionPanel.CaptionPanelImpl
 com.google.gwt.user.client.ui.CaptionPanel.CaptionPanelImplMozilla
@@ -1772,7 +1766,6 @@ com.google.gwt.user.client.ui.FocusListener
 com.google.gwt.user.client.ui.FocusListenerAdapter
 com.google.gwt.user.client.ui.FocusListenerCollection
 com.google.gwt.user.client.ui.FocusPanel
-com.google.gwt.user.client.ui.FocusWidget
 com.google.gwt.user.client.ui.Focusable
 com.google.gwt.user.client.ui.FormHandler
 com.google.gwt.user.client.ui.FormHandlerCollection
@@ -1912,9 +1905,7 @@ com.google.gwt.user.client.ui.RichTextArea.Justification
 com.google.gwt.user.client.ui.RootPanel.DefaultRootPanel
 com.google.gwt.user.client.ui.ScrollListener
 com.google.gwt.user.client.ui.ScrollListenerCollection
-com.google.gwt.user.client.ui.ScrollPanel
 com.google.gwt.user.client.ui.SimpleCheckBox
-com.google.gwt.user.client.ui.SimplePanel
 com.google.gwt.user.client.ui.SimpleRadioButton
 com.google.gwt.user.client.ui.SourcesChangeEvents
 com.google.gwt.user.client.ui.SourcesClickEvents
@@ -1928,7 +1919,6 @@ com.google.gwt.user.client.ui.SourcesScrollEvents
 com.google.gwt.user.client.ui.SourcesTabEvents
 com.google.gwt.user.client.ui.SourcesTableEvents
 com.google.gwt.user.client.ui.SourcesTreeEvents
-com.google.gwt.user.client.ui.SplitLayoutPanel
 com.google.gwt.user.client.ui.SplitLayoutPanel.HSplitter
 com.google.gwt.user.client.ui.SplitLayoutPanel.Splitter
 com.google.gwt.user.client.ui.SplitLayoutPanel.VSplitter
@@ -1997,7 +1987,6 @@ com.google.gwt.user.client.ui.VerticalSplitPanel.Resources
 com.google.gwt.user.client.ui.VerticalSplitPanelImages
 com.google.gwt.user.client.ui.WidgetCollection.WidgetIterator
 com.google.gwt.user.client.ui.WidgetIterators
-com.google.gwt.user.client.ui.impl.FocusImpl
 com.google.gwt.user.client.ui.impl.FocusImplIE6
 com.google.gwt.user.client.ui.impl.FocusImplSafari
 com.google.gwt.user.client.ui.impl.FocusImplStandard
@@ -2123,7 +2112,6 @@ java.lang.annotation.Inherited
 java.lang.annotation.Retention
 java.lang.annotation.RetentionPolicy
 java.lang.annotation.Target
-java.math.Division
 java.math.Logical
 java.math.MathContext
 java.math.Primality

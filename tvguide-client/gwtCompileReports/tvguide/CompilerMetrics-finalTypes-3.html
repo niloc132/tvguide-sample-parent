@@ -71,6 +71,7 @@ com.acme.gwt.client.place.DefaultPlace
 com.acme.gwt.client.place.ShowDetailPlace
 com.acme.gwt.client.place.ShowDetailPlace.Tokenizer
 com.acme.gwt.client.place.TvGuidePlaceHistoryMapper
+com.acme.gwt.client.place.TvGuidePlaceHistoryMapper.TvGuidePlaceTokenizers
 com.acme.gwt.client.place.TvGuidePlaceHistoryMapperImpl
 com.acme.gwt.client.place.WelcomePlace
 com.acme.gwt.client.place.WelcomePlace.Tokenizer
@@ -78,6 +79,8 @@ com.acme.gwt.client.presenter.LoginPresenter
 com.acme.gwt.client.presenter.ShowDetailPresenter
 com.acme.gwt.client.presenter.TvGuideActivityMapper
 com.acme.gwt.client.presenter.WelcomePresenter
+com.acme.gwt.client.view.FavoriteShowsListView
+com.acme.gwt.client.view.FavoriteShowsListView.Presenter
 com.acme.gwt.client.view.LoginView
 com.acme.gwt.client.view.LoginView.Presenter
 com.acme.gwt.client.view.ShowDetailView
@@ -87,6 +90,12 @@ com.acme.gwt.client.view.WelcomeView.Presenter
 com.acme.gwt.client.widget.EditableEpisodeListWidget
 com.acme.gwt.client.widget.EditableEpisodeListWidget.Binder
 com.acme.gwt.client.widget.EditableEpisodeListWidget.EpisodeColumns
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenBundle
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenBundle_default_InlineClientBundleGenerator
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenBundle_default_StaticClientBundleGenerator
+com.acme.gwt.client.widget.EditableEpisodeListWidget_BinderImpl_GenCss_style
+com.acme.gwt.client.widget.EditableEpisodeListWidget_EpisodeColumns_Impl
 com.acme.gwt.client.widget.FavoriteShowsListWidget
 com.acme.gwt.client.widget.FavoriteShowsListWidget.Binder
 com.acme.gwt.client.widget.FavoriteShowsListWidget.ShowColumns
@@ -96,6 +105,16 @@ com.acme.gwt.client.widget.FavoriteShowsListWidget_BinderImpl_GenBundle_default_
 com.acme.gwt.client.widget.FavoriteShowsListWidget_BinderImpl_GenBundle_default_StaticClientBundleGenerator
 com.acme.gwt.client.widget.FavoriteShowsListWidget_RequestFactoryEditorDelegate
 com.acme.gwt.client.widget.FavoriteShowsListWidget_ShowColumns_Impl
+com.acme.gwt.client.widget.ShowDetailWidget
+com.acme.gwt.client.widget.ShowDetailWidget.Binder
+com.acme.gwt.client.widget.ShowDetailWidget.Driver
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenBundle
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenBundle_default_InlineClientBundleGenerator
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenBundle_default_StaticClientBundleGenerator
+com.acme.gwt.client.widget.ShowDetailWidget_BinderImpl_GenCss_style
+com.acme.gwt.client.widget.ShowDetailWidget_DriverImpl
+com.acme.gwt.client.widget.ShowDetailWidget_RequestFactoryEditorDelegate
 com.acme.gwt.client.widget.TvGuideAppShell
 com.acme.gwt.client.widget.TvGuideAppShell.Binder
 com.acme.gwt.client.widget.TvGuideAppShell_BinderImpl
@@ -227,6 +246,7 @@ com.google.gwt.cell.client.DatePickerCell
 com.google.gwt.cell.client.EditTextCell
 com.google.gwt.cell.client.EditTextCell.Template
 com.google.gwt.cell.client.EditTextCell.ViewData
+com.google.gwt.cell.client.EditTextCell_TemplateImpl
 com.google.gwt.cell.client.FieldUpdater
 com.google.gwt.cell.client.HasCell
 com.google.gwt.cell.client.IconCellDecorator
@@ -434,6 +454,7 @@ com.google.gwt.editor.client.HasEditorErrors
 com.google.gwt.editor.client.IsEditor
 com.google.gwt.editor.client.LeafValueEditor
 com.google.gwt.editor.client.LeafValueEditor_com_acme_gwt_shared_TvShowProxy_RequestFactoryEditorDelegate
+com.google.gwt.editor.client.LeafValueEditor_java_lang_String_RequestFactoryEditorDelegate
 com.google.gwt.editor.client.SimpleBeanEditorDriver
 com.google.gwt.editor.client.ValueAwareEditor
 com.google.gwt.editor.client.adapters.EditorSource
@@ -644,6 +665,7 @@ com.google.gwt.i18n.client.ConstantsWithLookup
 com.google.gwt.i18n.client.CurrencyData
 com.google.gwt.i18n.client.CurrencyList
 com.google.gwt.i18n.client.CurrencyList.CurrencyListInstance
+com.google.gwt.i18n.client.CurrencyList_
 com.google.gwt.i18n.client.CustomDateTimeFormat
 com.google.gwt.i18n.client.CustomDateTimeFormat.Pattern
 com.google.gwt.i18n.client.DateTimeConstantsAdapter
