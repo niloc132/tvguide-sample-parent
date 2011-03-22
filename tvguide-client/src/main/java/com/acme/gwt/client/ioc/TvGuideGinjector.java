@@ -17,8 +17,7 @@
 package com.acme.gwt.client.ioc;
 
 import com.acme.gwt.client.TvGuide;
-import com.acme.gwt.client.place.ShowDetailPlace;
-import com.acme.gwt.client.place.WelcomePlace;
+import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper.TvGuidePlaceTokenizers;
 import com.acme.gwt.client.presenter.LoginPresenter;
 import com.acme.gwt.client.presenter.ShowDetailPresenter;
 import com.acme.gwt.client.presenter.WelcomePresenter;
@@ -29,7 +28,7 @@ import com.google.gwt.inject.client.Ginjector;
  * @author colin
  */
 @GinModules({TvGuideClientModule.class})
-public interface TvGuideGinjector extends Ginjector {
+public interface TvGuideGinjector extends Ginjector, TvGuidePlaceTokenizers {
 	/** Provide injection for the entrypoint */
 	void inject(TvGuide tvGuide);
 
@@ -40,9 +39,4 @@ public interface TvGuideGinjector extends Ginjector {
 	void injectPresenter(WelcomePresenter presenter);
 	void injectPresenter(ShowDetailPresenter presenter);
 	//...
-
-	// List the tokenizers that are available for history. Another way to solve this?
-	WelcomePlace.Tokenizer welcomeTokenizer();
-	ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
-
 }
