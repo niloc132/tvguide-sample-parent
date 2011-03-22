@@ -64,6 +64,6 @@ public class TvGuideAppShell extends Composite implements HasOneWidget {
 	}
 
 	public void setWidget(IsWidget w) {
-		setWidget(w.asWidget());
+		setWidget(w == null ? null : w.asWidget());
 	}
 }
