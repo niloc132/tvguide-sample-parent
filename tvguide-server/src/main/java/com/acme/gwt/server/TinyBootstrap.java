@@ -1,7 +1,10 @@
 package com.acme.gwt.server;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 
+import com.acme.gwt.data.TvEpisode;
 import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.defs.Geo;
@@ -29,6 +32,11 @@ public class TinyBootstrap {
 		tvViewer.setSalt("unused");
 		tvViewer.setGeo(Geo.CALIFORNIA);
 		em.get().persist(tvViewer);
+
+		TvShow show = createShow();
+		tvViewer.getFavorites().add(show);
+		em.get().persist(show);
+
 		TvShow tvShow = new TvShow();
 		tvShow.setDescription("the Show is #1");
 		tvShow.setName("show1");
@@ -59,5 +67,22 @@ public class TinyBootstrap {
 		//		XStream xStream = new XStream();
 		//		xStream.autodetectAnnotations(true);
 		//		xStream.toXML(tvViewer, System.err);
+	}
+	public TvShow createShow() {
+		TvShow show = new TvShow();
+		show.setName("Blah");
+		show.setDescription("blah blah blah");
+		show.setEpisodes(new ArrayList<TvEpisode>());
+
+		TvEpisode pilot = new TvEpisode();
+		pilot.setEpisodeNumber(1);
+		pilot.setName("blah begins");
+		pilot.setTvShow(show);
+		pilot.setSeason(1);
+
+		show.getEpisodes().add(pilot);
+
+
+		return show;
 	}
 }
