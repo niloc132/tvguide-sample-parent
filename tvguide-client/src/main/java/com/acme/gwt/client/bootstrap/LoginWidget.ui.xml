@@ -5,6 +5,5 @@
 		Password: <input ui:field="password" type="password" /><br />
 		<button ui:field="login">Login</button>
 		<button ui:field="register">Register</button>
-		<button ui:field="about">About</button>
 	</div>
 </ui:UiBinder>

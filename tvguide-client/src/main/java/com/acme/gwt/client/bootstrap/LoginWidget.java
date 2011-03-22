@@ -45,9 +45,7 @@ public class LoginWidget extends Widget implements ClickHandler, LoginView {
 	ButtonElement login;
 	@UiField
 	ButtonElement register;
-	@UiField
-	ButtonElement about;
-	
+
 	private Presenter presenter;
 
 	public LoginWidget() {
@@ -65,8 +63,6 @@ public class LoginWidget extends Widget implements ClickHandler, LoginView {
 			presenter.login(email.getValue(), password.getValue());
 		} if (register.isOrHasChild(target)) {
 			presenter.register(email.getValue(), password.getValue());
-		} else if (about.isOrHasChild(target)) {
-			presenter.goToAboutPlace();
 		}
 	}
 

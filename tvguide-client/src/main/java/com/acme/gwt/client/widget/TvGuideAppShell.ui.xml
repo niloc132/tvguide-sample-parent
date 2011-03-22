@@ -7,7 +7,7 @@
 	<g:DockLayoutPanel unit="PX">
 		<g:north size="25">
 			<g:HTMLPanel>
-				TvGuide Sample GWT App | profile | logout | help
+				TvGuide Sample GWT App | <a href="#about-place">about</a> | profile | logout | help
 			</g:HTMLPanel>
 		</g:north>
 		<g:center>
