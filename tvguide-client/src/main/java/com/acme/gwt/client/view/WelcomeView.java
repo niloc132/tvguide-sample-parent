@@ -30,8 +30,8 @@ public interface WelcomeView extends IsWidget {
 
 	//for now...
 	RequestFactoryEditorDriver<List<TvShowProxy>, ?> getDriver();
+	void setPresenter(Presenter p);
 
 	public interface Presenter {
-
 	}
 }

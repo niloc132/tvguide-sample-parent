@@ -14,27 +14,18 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.ioc;
+package com.acme.gwt.client.view;
 
-import com.acme.gwt.shared.TvViewerProxy;
-import com.google.inject.Provider;
-import com.google.inject.Singleton;
+import com.acme.gwt.shared.TvShowProxy;
+import com.google.gwt.user.client.ui.IsWidget;
 
 /**
  * @author colin
  *
  */
-@Singleton
-public class TvViewerProvider implements Provider<TvViewerProxy> {
-	private TvViewerProxy viewer;
-	@Override
-	public TvViewerProxy get() {
-		return viewer;
-	}
-	/**
-	 * @param viewer the viewer to set
-	 */
-	public void setViewer(TvViewerProxy viewer) {
-		this.viewer = viewer;
+public interface FavoriteShowsListView extends IsWidget {
+	void setPresenter(Presenter p);
+	public interface Presenter {
+		void showDetail(TvShowProxy show);
 	}
 }

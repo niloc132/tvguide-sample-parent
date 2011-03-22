@@ -29,11 +29,13 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 /**
  * @author colin
  *
  */
+@Singleton
 public class WelcomeWidget extends Composite
 		implements
 			RequiresResize,
@@ -45,21 +47,21 @@ public class WelcomeWidget extends Composite
 
 	FavoritesDriver driver = GWT.create(FavoritesDriver.class);
 	@Inject
-	public WelcomeWidget(TvGuideRequestFactory rf) {
+	public WelcomeWidget(TvGuideRequestFactory rf,
+			FavoriteShowsListWidget listView) {
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
 
 		panel
 				.add(new Label(
 						"Welcome, rest of app will be here soon. (Delivery in 4-6 weeks)"));
-		FavoriteShowsListWidget ed = new FavoriteShowsListWidget();
-		panel.add(ed);
+		panel.add(listView);
 		//BAD: all layout done by hand, and quick, without UiBinder's help or CssResource
-		panel.setWidgetTopHeight(ed, 0, Unit.PX, 100, Unit.PCT);
-		ed.getElement().setAttribute("margin-top", "25px");
+		panel.setWidgetTopHeight(listView, 0, Unit.PX, 100, Unit.PCT);
+		listView.getElement().setAttribute("margin-top", "25px");
 
 		// Attach the data - easy way to bind a views editor to something accessible from a presenter
-		driver.initialize(rf, ed);
+		driver.initialize(rf, listView);
 	}
 
 	public RequestFactoryEditorDriver<List<TvShowProxy>, ?> getDriver() {
@@ -68,7 +70,11 @@ public class WelcomeWidget extends Composite
 
 	@Override
 	public void onResize() {
-		// TODO Auto-generated method stub
+		//?
+	}
 
+	@Override
+	public void setPresenter(Presenter p) {
+		// useless, ignore it
 	}
 }

@@ -22,8 +22,12 @@ import com.acme.gwt.client.place.DefaultPlace;
 import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper;
+import com.acme.gwt.client.view.FavoriteShowsListView;
 import com.acme.gwt.client.view.LoginView;
+import com.acme.gwt.client.view.ShowDetailView;
 import com.acme.gwt.client.view.WelcomeView;
+import com.acme.gwt.client.widget.FavoriteShowsListWidget;
+import com.acme.gwt.client.widget.ShowDetailWidget;
 import com.acme.gwt.client.widget.WelcomeWidget;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -49,8 +53,7 @@ public class TvGuideClientModule extends AbstractGinModule {
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 
 		// Access to the current user
-		bind(TvViewerProxy.class).toProvider(TvViewerProvider.class).in(
-				Singleton.class);
+		bind(TvViewerProxy.class).toProvider(TvViewerProvider.class);
 
 		// A/P, history mapping
 		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
@@ -61,7 +64,11 @@ public class TvGuideClientModule extends AbstractGinModule {
 				WelcomePlace.class);
 
 		// View interfaces to their singleton Widgets
-		bind(WelcomeView.class).to(WelcomeWidget.class).in(Singleton.class);
+		// the Widgets themselves are set as singletons
+		bind(WelcomeView.class).to(WelcomeWidget.class);
+		bind(ShowDetailView.class).to(ShowDetailWidget.class);
+		bind(FavoriteShowsListView.class).to(FavoriteShowsListWidget.class);
+
 		bind(LoginView.class).to(LoginWidget.class);//not singleton, since it should only be loaded once
 	}
 
