@@ -80,17 +80,20 @@ public class TvGuideClientModule extends AbstractGinModule {
 		return rf;
 	}
 
+	@Singleton
 	@Provides
 	PlaceController providePlaceController(EventBus eventBus) {
 		return new PlaceController(eventBus);
 	}
 
+	@Singleton
 	@Provides
 	ActivityManager provideActivityManager(ActivityMapper mapper,
 			EventBus eventBus) {
 		return new ActivityManager(mapper, eventBus);
 	}
 
+	@Singleton
 	@Provides
 	PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper,
 			PlaceController placeController, EventBus eventBus, @DefaultPlace
