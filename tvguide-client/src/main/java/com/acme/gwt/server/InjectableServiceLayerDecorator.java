@@ -59,8 +59,13 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 
 	@Override
 	public Object invoke(Method domainMethod, Object... args) {
+		Object response = super.invoke(domainMethod, args);
 		try {
-			return ((Callable<?>) super.invoke(domainMethod, args)).call();
+			if (response instanceof Callable) {
+				return ((Callable<?>) response).call();
+			} else {
+				return response;
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
