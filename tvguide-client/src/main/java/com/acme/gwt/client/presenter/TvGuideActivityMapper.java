@@ -17,12 +17,15 @@
 package com.acme.gwt.client.presenter;
 
 import com.acme.gwt.client.ioc.TvGuideGinjector;
+import com.acme.gwt.client.place.AboutPlace;
 import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
  * @author colin
@@ -30,8 +33,12 @@ import com.google.inject.Inject;
 public class TvGuideActivityMapper implements ActivityMapper {
 	@Inject
 	TvGuideGinjector injector;
+	
+	@Inject
+	Provider<AboutPresenter> aboutPresenterProvider;
 
 	public Activity getActivity(Place place) {
+		GWT.log("TvGuideActivityMapper.getActivity(place) invoked with argument type "+place.getClass().getName());
 		if (place instanceof WelcomePlace) {
 			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
 			injector.injectPresenter(p);
@@ -41,6 +48,11 @@ public class TvGuideActivityMapper implements ActivityMapper {
 			ShowDetailPresenter p = new ShowDetailPresenter(
 					(ShowDetailPlace) place);
 			injector.injectPresenter(p);
+			return p;
+		}
+		if (place instanceof AboutPlace) {
+			final AboutPresenter p = aboutPresenterProvider.get();
+//			injector.injectPresenter(p);
 			return p;
 		}
 

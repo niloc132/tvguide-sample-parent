@@ -18,6 +18,7 @@ package com.acme.gwt.client.ioc;
 
 import com.acme.gwt.client.TvGuide;
 import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper.TvGuidePlaceTokenizers;
+import com.acme.gwt.client.presenter.AboutPresenter;
 import com.acme.gwt.client.presenter.LoginPresenter;
 import com.acme.gwt.client.presenter.ShowDetailPresenter;
 import com.acme.gwt.client.presenter.WelcomePresenter;
@@ -38,5 +39,6 @@ public interface TvGuideGinjector extends Ginjector, TvGuidePlaceTokenizers {
 	// Provide injection for each Presenter. Consider replacing this mess with assisted inject
 	void injectPresenter(WelcomePresenter presenter);
 	void injectPresenter(ShowDetailPresenter presenter);
+
 	//...
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
 	<div>
-		Email: <input ui:field="email" /> <br />
+		Email: <input ui:field="email" value="you@example.com"/> <br />
 		Password: <input ui:field="password" type="password" /><br />
 		<button ui:field="login">Login</button>
 		<button ui:field="register">Register</button>

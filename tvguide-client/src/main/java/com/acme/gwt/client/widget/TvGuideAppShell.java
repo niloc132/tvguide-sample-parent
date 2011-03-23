@@ -16,15 +16,19 @@
  */
 package com.acme.gwt.client.widget;
 
+import com.acme.gwt.client.place.AboutPlace;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -42,12 +46,20 @@ public class TvGuideAppShell extends Composite implements HasOneWidget {
 
 	@UiField
 	LayoutPanel display;
+	@UiField
+	MenuItem about;
 
 	@Inject
-	public TvGuideAppShell(ActivityManager activityManager, TvViewerProxy user) {
+	public TvGuideAppShell(ActivityManager activityManager, TvViewerProxy user, final PlaceController placeController) {
 		initWidget(uiBinder.createAndBindUi(this));
-
 		activityManager.setDisplay(this);
+		//add menu commands
+		about.setCommand(new Command() {
+			@Override
+			public void execute() {
+				placeController.goTo(new AboutPlace());
+			}
+		});
 	}
 
 	@Override

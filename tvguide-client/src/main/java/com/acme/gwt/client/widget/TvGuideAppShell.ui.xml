@@ -6,8 +6,15 @@
 	</ui:style>
 	<g:DockLayoutPanel unit="PX">
 		<g:north size="25">
+			<g:MenuBar>
+				<g:MenuItem>Profile</g:MenuItem>
+				<g:MenuItem ui:field="about">About</g:MenuItem>
+				<g:MenuItem>Help</g:MenuItem>
+			</g:MenuBar>
+		</g:north>
+		<g:north size="25">
 			<g:HTMLPanel>
-				TvGuide Sample GWT App | profile | logout | help
+				TvGuide Sample GWT App
 			</g:HTMLPanel>
 		</g:north>
 		<g:center>
