@@ -21,6 +21,7 @@ import com.google.gwt.requestfactory.shared.Service;
  */
 @ProxyFor(value = TvViewer.class, locator = InjectingLocator.class)
 public interface TvViewerProxy extends EntityProxy {
+	public static final String STORE_KEY = "init_auth";
 	String getEmail();
 
 	void setEmail(String email);

@@ -19,7 +19,6 @@ package com.acme.gwt.client;
 import com.acme.gwt.client.ioc.TvGuideGinjector;
 import com.acme.gwt.client.presenter.LoginPresenter;
 import com.acme.gwt.client.view.LoginView;
-import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -62,14 +61,13 @@ public class TvGuide implements EntryPoint {
 		final TvGuideGinjector injector = GWT.create(TvGuideGinjector.class);
 		injector.inject(this);
 
-		//
-		if (!"".equals("")) {//if logged in already (read from page vars or some such)
+		final String proxyStoreData = getStoreData();
+		if (proxyStoreData != null && !proxyStoreData.equals("")) {//if logged in already (read from page vars or some such)
 			// start the page
 			appProvider.get(new AsyncCallback<TvGuideApp>() {
 				@Override
 				public void onSuccess(TvGuideApp result) {
-					TvViewerProxy user = null;
-					result.setUser(user);
+					result.setStoreData(proxyStoreData);
 				}
 
 				@Override
@@ -107,5 +105,8 @@ public class TvGuide implements EntryPoint {
 			//worry about telling the view about the presenter.
 		}
 	}
+	private native String getStoreData() /*-{
+		return $wnd.store;
+	}-*/;
 
 }

@@ -42,6 +42,7 @@ public class GwtWebModule extends ServletModule {
 	@Override
 	protected void configureServlets() {
 		serve(requestFactoryPath).with(RequestFactoryServlet.class);
+		serve("/").with(HomepageServlet.class);
 		filter("/*").through(PersistFilter.class);
 	}
 

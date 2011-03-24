@@ -82,7 +82,6 @@ public class TinyBootstrap {
 
 		show.getEpisodes().add(pilot);
 
-
 		return show;
 	}
 }

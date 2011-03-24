@@ -24,10 +24,12 @@ import com.google.gwt.requestfactory.shared.Locator;
 import com.google.gwt.requestfactory.shared.ServiceLocator;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 
 /**
  * @author colin
  */
+@Singleton
 public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Inject
 	Injector injector;
@@ -39,6 +41,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	public void setBootstrap(TinyBootstrap bootstrap) {
 		bootstrap.go();
 	}
+
 	@Override
 	public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
 		return injector.getInstance(clazz);
