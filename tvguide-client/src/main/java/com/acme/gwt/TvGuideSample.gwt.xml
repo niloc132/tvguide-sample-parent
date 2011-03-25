@@ -19,9 +19,6 @@
 	<!-- And all the code in shared, where we have the RF stuff -->
 	<source path="shared" />
 	
-	<!-- Reference the Shared code, common to client and server
-	<inherits name="com.acme.gwt.TvGuideShared"/> -->
-	
 	<!-- celltable-tools for cleaner celltable setups -->
 	<inherits name="com.colinalworth.celltable.columns.ColumnsCreator"/>
 

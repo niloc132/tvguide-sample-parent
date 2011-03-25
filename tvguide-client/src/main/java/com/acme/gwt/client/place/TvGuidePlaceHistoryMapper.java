@@ -17,7 +17,9 @@
 package com.acme.gwt.client.place;
 
 import com.acme.gwt.client.ioc.TvGuideGinjector;
+import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper.TvGuidePlaceTokenizers;
 import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
+import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
 
 /**
@@ -25,11 +27,12 @@ import com.google.inject.Inject;
  */
 public interface TvGuidePlaceHistoryMapper
 		extends
-			PlaceHistoryMapperWithFactory<TvGuideGinjector> {
+			PlaceHistoryMapperWithFactory<TvGuidePlaceTokenizers> {
 	@Inject
 	@Override
-	public void setFactory(TvGuideGinjector factory);
+	public void setFactory(TvGuidePlaceTokenizers factory);
 
+	@ImplementedBy(TvGuideGinjector.class)
 	public interface TvGuidePlaceTokenizers {
 		WelcomePlace.Tokenizer welcomeTokenizer();
 		ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
