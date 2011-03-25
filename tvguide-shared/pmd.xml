@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-03-24T21:35:50.643">
+<file name="/opt/tomcat-7.0.8/.jenkins/jobs/tv-guide-sample site/workspace/tvguide-shared/src/main/java/com/acme/gwt/shared/util/Md5.java">
+<violation beginline="37" endline="37" begincolumn="25" endcolumn="43" rule="AvoidPrintStackTrace" ruleset="Java Logging Rules" package="com.acme.gwt.shared.util" class="Md5" method="md5Hex" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#AvoidPrintStackTrace" priority="3">
+Avoid printStackTrace(); use a logger call instead.
+</violation>
+</file>
+</pmd>
