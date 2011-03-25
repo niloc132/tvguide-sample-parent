@@ -30,6 +30,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * @author colin
@@ -47,7 +48,9 @@ public class WelcomePresenter extends AbstractActivity
 	@Inject
 	PlaceController placeController;
 
-	public WelcomePresenter(WelcomePlace place) {
+	@Inject
+	public WelcomePresenter(@Assisted
+	WelcomePlace place) {
 		//place is meaningless, this is just a simple view to show
 	}
 

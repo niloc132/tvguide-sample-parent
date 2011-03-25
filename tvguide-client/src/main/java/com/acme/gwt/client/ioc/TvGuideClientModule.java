@@ -22,6 +22,7 @@ import com.acme.gwt.client.place.DefaultPlace;
 import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper;
+import com.acme.gwt.client.presenter.TvGuideActivityMapper.ActivityFactory;
 import com.acme.gwt.client.view.FavoriteShowsListView;
 import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.client.view.ShowDetailView;
@@ -36,6 +37,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
@@ -44,6 +46,10 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
 /**
+ * Compile-time dependency injection for the TvGuide app. Note that the configure() method need
+ * not be translatable, as it is run by the generators, and the compiled code is based then off
+ * of what Gin learns when it is run.
+ * 
  * @author colin
  */
 public class TvGuideClientModule extends AbstractGinModule {
@@ -58,6 +64,9 @@ public class TvGuideClientModule extends AbstractGinModule {
 		// A/P, history mapping
 		bind(ActivityMapper.class).to(TvGuideActivityMapper.class);
 		bind(PlaceHistoryMapper.class).to(TvGuidePlaceHistoryMapper.class);
+
+		// Place to Activity assisted injection
+		install(new GinFactoryModuleBuilder().build(ActivityFactory.class));
 
 		// Default place to let the app start without history
 		bind(Place.class).annotatedWith(DefaultPlace.class).to(

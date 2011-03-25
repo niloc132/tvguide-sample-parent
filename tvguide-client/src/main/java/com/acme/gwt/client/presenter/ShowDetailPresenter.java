@@ -28,6 +28,7 @@ import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * @author colin
@@ -46,7 +47,9 @@ public class ShowDetailPresenter extends AbstractActivity
 	PlaceController placeController;
 
 	private final ShowDetailPlace place;
-	public ShowDetailPresenter(ShowDetailPlace place) {
+	@Inject
+	public ShowDetailPresenter(@Assisted
+	ShowDetailPlace place) {
 		this.place = place;
 	}
 

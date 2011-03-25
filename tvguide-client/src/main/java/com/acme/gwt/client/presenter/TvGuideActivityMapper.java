@@ -16,7 +16,6 @@
  */
 package com.acme.gwt.client.presenter;
 
-import com.acme.gwt.client.ioc.TvGuideGinjector;
 import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.google.gwt.activity.shared.Activity;
@@ -29,22 +28,24 @@ import com.google.inject.Inject;
  */
 public class TvGuideActivityMapper implements ActivityMapper {
 	@Inject
-	TvGuideGinjector injector;
+	ActivityFactory factory;
 
 	public Activity getActivity(Place place) {
 		if (place instanceof WelcomePlace) {
-			WelcomePresenter p = new WelcomePresenter((WelcomePlace) place);
-			injector.injectPresenter(p);
-			return p;
+			return factory.createWelcomePresenter((WelcomePlace) place);
 		}
 		if (place instanceof ShowDetailPlace) {
-			ShowDetailPresenter p = new ShowDetailPresenter(
-					(ShowDetailPlace) place);
-			injector.injectPresenter(p);
-			return p;
+			return factory.createShowDetailPresenter((ShowDetailPlace) place);
 		}
 
 		return null;
 	}
-
+	/**
+	 * Methods capable of creating presenters given the place that is passed in
+	 *
+	 */
+	public interface ActivityFactory {
+		WelcomePresenter createWelcomePresenter(WelcomePlace place);
+		ShowDetailPresenter createShowDetailPresenter(ShowDetailPlace place);
+	}
 }
