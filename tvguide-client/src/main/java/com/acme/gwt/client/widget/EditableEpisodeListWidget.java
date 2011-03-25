@@ -22,6 +22,7 @@ import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
+import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -36,7 +37,9 @@ import com.google.gwt.user.client.ui.Widget;
  * 
  * @author colin
  */
-public class EditableEpisodeListWidget extends Composite {
+public class EditableEpisodeListWidget extends Composite
+		implements
+			IsEditor<HasDataEditor<TvEpisodeProxy>> {
 	private static Binder uiBinder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
@@ -64,4 +67,8 @@ public class EditableEpisodeListWidget extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
+	@Override
+	public HasDataEditor<TvEpisodeProxy> asEditor() {
+		return listEd;
+	}
 }

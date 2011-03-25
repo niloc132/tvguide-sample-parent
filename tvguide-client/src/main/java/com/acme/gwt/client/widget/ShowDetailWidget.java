@@ -55,6 +55,9 @@ public class ShowDetailWidget extends Composite implements ShowDetailView {
 	@UiField
 	ScrollPanel details;
 
+	@UiField
+	EditableEpisodeListWidget episodes;
+
 	private Presenter p;
 	public ShowDetailWidget() {
 		initWidget(uiBinder.createAndBindUi(this));

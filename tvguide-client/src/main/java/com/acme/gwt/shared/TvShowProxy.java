@@ -55,9 +55,9 @@ public interface TvShowProxy extends EntityProxy {
 
 	List<TvEpisodeProxy> getEpisodes();
 
-	public EntityProxyId<TvShowProxy> stableId();
-
 	void setEpisodes(List<TvEpisodeProxy> episodes);
+
+	public EntityProxyId<TvShowProxy> stableId();
 
 	@Service(value = TvShow.class, locator = InjectingServiceLocator.class)
 	public interface TvShowRequest extends RequestContext {
