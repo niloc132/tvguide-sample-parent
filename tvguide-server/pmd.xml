@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-03-24T21:36:18.356">
+<pmd version="4.2.5" timestamp="2011-03-25T00:20:58.279">
 <file name="/opt/tomcat-7.0.8/.jenkins/jobs/tv-guide-sample site/workspace/tvguide-server/src/main/java/com/acme/gwt/data/TvChannel.java">
 <violation beginline="110" endline="110" begincolumn="30" endcolumn="40" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="com.acme.gwt.data" class="TvChannel$FavoritesChannelCallable" variable="newShowList" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
 Found non-transient, non-static member. Please mark as transient or provide accessors.
