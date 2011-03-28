@@ -18,12 +18,13 @@ package com.acme.gwt.client.presenter;
 
 import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.client.place.ShowDetailPlace;
+import com.acme.gwt.client.view.EditableEpisodeListView;
 import com.acme.gwt.client.view.ShowDetailView;
 import com.acme.gwt.shared.TvEpisodeProxy;
+import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -35,34 +36,38 @@ import com.google.inject.assistedinject.Assisted;
  *
  */
 public class ShowDetailPresenter extends AbstractActivity
-		implements
-			ShowDetailView.Presenter {
+implements
+ShowDetailView.Presenter, EditableEpisodeListView.Presenter {
 	@Inject
 	ShowDetailView view;
+
+	//This (and the Presenter) need to be removed if we deny the ability to edit from here
+	@Inject EditableEpisodeListView episodeSubView;
 
 	@Inject
 	TvGuideRequestFactory rf;
 
-	@Inject
-	PlaceController placeController;
-
 	private final ShowDetailPlace place;
+
+	private TvSetupRequest activeRequest;
 	@Inject
 	public ShowDetailPresenter(@Assisted
-	ShowDetailPlace place) {
+			ShowDetailPlace place) {
 		this.place = place;
 	}
 
 	@Override
 	public void start(final AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
+		episodeSubView.setPresenter(this);
+		activeRequest = rf.makeSetupRequest();
 		//load it and show it
 		rf.find(place.getId()).with(view.getEditor().getPaths()).to(
 				new Receiver<TvShowProxy>() {
 					@Override
 					public void onSuccess(TvShowProxy response) {
 						//deal with data, wire into view
-						view.getEditor().display(response);
+						view.getEditor().edit(response, activeRequest);
 
 						//show view
 						panel.setWidget(view);
@@ -76,8 +81,22 @@ public class ShowDetailPresenter extends AbstractActivity
 		//placeController.goTo(...);
 	}
 
+	public void addEpisode() {
+		// Create a new episode object in the current request
+		TvEpisodeProxy newEp = activeRequest.create(TvEpisodeProxy.class);
+		newEp.setName("");//null name seems to break stuff - is there a better way to address this?
+		episodeSubView.getList().add(newEp);
+	}
+
+	public void removeEpisode(TvEpisodeProxy episode) {
+		episodeSubView.getList().remove(episode);
+	}
+
 	@Override
 	public void back() {
+		// is this a good way to return? It makes sure we go back to where we were last, 
+		// without knowing where that was, but it requires talking to the history 
+		// instead of to the place controller
 		History.back();
 	}
 }

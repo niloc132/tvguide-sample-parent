@@ -28,6 +28,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
@@ -39,8 +40,8 @@ public class ShowDetailWidget extends Composite implements ShowDetailView {
 	interface Binder extends UiBinder<Widget, ShowDetailWidget> {
 	}
 	interface Driver
-			extends
-				RequestFactoryEditorDriver<TvShowProxy, ShowDetailWidget> {
+	extends
+	RequestFactoryEditorDriver<TvShowProxy, ShowDetailWidget> {
 	}
 
 	private static Binder uiBinder = GWT.create(Binder.class);
@@ -55,11 +56,14 @@ public class ShowDetailWidget extends Composite implements ShowDetailView {
 	@UiField
 	ScrollPanel details;
 
-	@UiField
+	@UiField(provided = true)
 	EditableEpisodeListWidget episodes;
 
 	private Presenter p;
-	public ShowDetailWidget() {
+
+	@Inject
+	public ShowDetailWidget(EditableEpisodeListWidget epListWidget) {
+		episodes = epListWidget;
 		initWidget(uiBinder.createAndBindUi(this));
 		driver.initialize(this);
 	}

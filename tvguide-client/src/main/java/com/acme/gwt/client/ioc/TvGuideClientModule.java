@@ -23,10 +23,12 @@ import com.acme.gwt.client.place.TvGuidePlaceHistoryMapper;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper;
 import com.acme.gwt.client.presenter.TvGuideActivityMapper.ActivityFactory;
+import com.acme.gwt.client.view.EditableEpisodeListView;
 import com.acme.gwt.client.view.FavoriteShowsListView;
 import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.client.view.ShowDetailView;
 import com.acme.gwt.client.view.WelcomeView;
+import com.acme.gwt.client.widget.EditableEpisodeListWidget;
 import com.acme.gwt.client.widget.FavoriteShowsListWidget;
 import com.acme.gwt.client.widget.ShowDetailWidget;
 import com.acme.gwt.client.widget.WelcomeWidget;
@@ -77,6 +79,8 @@ public class TvGuideClientModule extends AbstractGinModule {
 		bind(WelcomeView.class).to(WelcomeWidget.class);
 		bind(ShowDetailView.class).to(ShowDetailWidget.class);
 		bind(FavoriteShowsListView.class).to(FavoriteShowsListWidget.class);
+
+		bind(EditableEpisodeListView.class).to(EditableEpisodeListWidget.class);
 
 		bind(LoginView.class).to(LoginWidget.class);//not singleton, since it should only be loaded once
 	}
