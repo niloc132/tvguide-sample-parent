@@ -89,7 +89,8 @@ ShowDetailView.Presenter, EditableEpisodeListView.Presenter {
 	}
 
 	public void removeEpisode(TvEpisodeProxy episode) {
-		episodeSubView.getList().remove(episode);
+		int index = episodeSubView.getList().indexOf(episode);
+		episodeSubView.getList().remove(index);
 	}
 
 	@Override

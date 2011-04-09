@@ -21,6 +21,7 @@ import java.util.List;
 import com.acme.gwt.client.view.EditableEpisodeListView;
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.ColumnsWithFactory;
+import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.colinalworth.celltable.columns.client.NumberConverter;
 import com.google.gwt.cell.client.ActionCell;
 import com.google.gwt.cell.client.ActionCell.Delegate;
@@ -28,7 +29,6 @@ import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
 import com.google.gwt.editor.client.IsEditor;
-import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -48,7 +48,7 @@ import com.google.inject.Singleton;
 @Singleton
 public class EditableEpisodeListWidget extends Composite
 implements
-EditableEpisodeListView, IsEditor<HasDataEditor<TvEpisodeProxy>> {
+EditableEpisodeListView, IsEditor<HasDataFlushableEditor<TvEpisodeProxy>> {
 	private static Binder uiBinder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
@@ -70,14 +70,14 @@ EditableEpisodeListView, IsEditor<HasDataEditor<TvEpisodeProxy>> {
 
 	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
 	@Path("")
-	HasDataEditor<TvEpisodeProxy> listEd;
+	HasDataFlushableEditor<TvEpisodeProxy> listEd;
 	@UiField(provided = true)
 	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
 
 	private Presenter presenter;
 
 	public EditableEpisodeListWidget() {
-		listEd = HasDataEditor.of(list);
+		listEd = HasDataFlushableEditor.of(list);
 
 		columns.setFactory(this);
 		columns.configure(list);
@@ -86,7 +86,7 @@ EditableEpisodeListView, IsEditor<HasDataEditor<TvEpisodeProxy>> {
 	}
 
 	@Override
-	public HasDataEditor<TvEpisodeProxy> asEditor() {
+	public HasDataFlushableEditor<TvEpisodeProxy> asEditor() {
 		return listEd;
 	}
 
