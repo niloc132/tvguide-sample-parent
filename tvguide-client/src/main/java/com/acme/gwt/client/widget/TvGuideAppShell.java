@@ -16,15 +16,20 @@
  */
 package com.acme.gwt.client.widget;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -39,15 +44,44 @@ public class TvGuideAppShell extends Composite implements HasOneWidget {
 	interface Binder extends UiBinder<Widget, TvGuideAppShell> {
 	}
 	private Binder uiBinder = GWT.create(Binder.class);
+	
+	private static final Logger logger = Logger.getLogger(TvGuideAppShell.class.getName());
 
 	@UiField
 	LayoutPanel display;
-
+	
+	@UiField
+	MenuItem profileMenuItem, logoutMenuItem, aboutMenuItem, helpMenuItem;
+	
 	@Inject
 	public TvGuideAppShell(ActivityManager activityManager, TvViewerProxy user) {
 		initWidget(uiBinder.createAndBindUi(this));
-
 		activityManager.setDisplay(this);
+		//set all the menuItem Commands.. do stuff when they are clicked.
+		profileMenuItem.setCommand(new Command() {
+			@Override
+			public void execute() {
+				logger.log(Level.FINE,"TODO, fire the real command...");
+			}
+		});
+		logoutMenuItem.setCommand(new Command() {
+			@Override
+			public void execute() {
+				logger.log(Level.FINE,"TODO, fire the real command...");
+			}
+		});
+		aboutMenuItem.setCommand(new Command() {
+			@Override
+			public void execute() {
+				logger.log(Level.FINE,"TODO, fire the real command...");
+			}
+		});
+		helpMenuItem.setCommand(new Command() {
+			@Override
+			public void execute() {
+				logger.log(Level.FINE,"TODO, fire the real command...");
+			}
+		});
 	}
 
 	@Override

@@ -7,8 +7,16 @@
 	<g:DockLayoutPanel unit="PX">
 		<g:north size="25">
 			<g:HTMLPanel>
-				TvGuide Sample GWT App | profile | logout | help
+				TvGuide Sample GWT App
 			</g:HTMLPanel>
+		</g:north>
+		<g:north size="25">
+			<g:MenuBar>
+				<g:MenuItem ui:field="profileMenuItem">Profile</g:MenuItem>
+				<g:MenuItem ui:field="logoutMenuItem">Logout</g:MenuItem>
+				<g:MenuItem ui:field="aboutMenuItem">About</g:MenuItem>
+				<g:MenuItem ui:field="helpMenuItem">Help</g:MenuItem>
+			</g:MenuBar>
 		</g:north>
 		<g:center>
 			<g:LayoutPanel ui:field="display" />
