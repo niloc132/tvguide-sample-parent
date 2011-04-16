@@ -18,8 +18,8 @@ package com.acme.gwt.client.widget;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
+import com.colinalworth.celltable.columns.client.NumberConverter;
 import com.google.gwt.cell.client.EditTextCell;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
 import com.google.gwt.editor.client.IsEditor;
@@ -38,18 +38,23 @@ import com.google.gwt.user.client.ui.Widget;
  * @author colin
  */
 public class EditableEpisodeListWidget extends Composite
-		implements
-			IsEditor<HasDataEditor<TvEpisodeProxy>> {
+implements
+IsEditor<HasDataEditor<TvEpisodeProxy>> {
 	private static Binder uiBinder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
 	}
 
 	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
-		NumberCell season();//erp int != String
+		@Editable
+		@ConvertedWith(NumberConverter.class)
+		EditTextCell season();//erp int != String
 
-		NumberCell episodeNumber();// int != String
+		@Editable
+		@ConvertedWith(NumberConverter.class)
+		EditTextCell episodeNumber();// int != String
 
+		@Editable
 		EditTextCell name();
 	}
 
