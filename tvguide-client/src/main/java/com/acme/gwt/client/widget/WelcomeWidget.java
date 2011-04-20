@@ -37,11 +37,13 @@ import com.google.inject.Singleton;
  * 
  */
 @Singleton
-public class WelcomeWidget extends Composite implements RequiresResize,
-		WelcomeView {
+public class WelcomeWidget extends Composite
+		implements
+			RequiresResize,
+			WelcomeView {
 	interface FavoritesDriver
 			extends
-			RequestFactoryEditorDriver<List<TvShowProxy>, FavoriteShowsListWidget> {
+				RequestFactoryEditorDriver<List<TvShowProxy>, FavoriteShowsListWidget> {
 	}
 
 	private static WelcomeWidgetUiBinder uiBinder = GWT
@@ -51,11 +53,11 @@ public class WelcomeWidget extends Composite implements RequiresResize,
 	}
 
 	FavoritesDriver driver = GWT.create(FavoritesDriver.class);
-	
+
 	@UiField
 	LayoutPanel layoutPanel;
-	
-	@UiField(provided=true)
+
+	@UiField(provided = true)
 	FavoriteShowsListWidget listView;
 
 	@Inject
