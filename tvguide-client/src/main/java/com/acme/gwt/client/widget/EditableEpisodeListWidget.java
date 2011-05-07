@@ -18,7 +18,7 @@ package com.acme.gwt.client.widget;
 
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
-import com.colinalworth.celltable.columns.client.NumberConverter;
+import com.colinalworth.celltable.columns.client.converters.IntegerConverter;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
@@ -47,11 +47,11 @@ IsEditor<HasDataEditor<TvEpisodeProxy>> {
 
 	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
 		@Editable
-		@ConvertedWith(NumberConverter.class)
+		@ConvertedWith(IntegerConverter.class)
 		EditTextCell season();//erp int != String
 
 		@Editable
-		@ConvertedWith(NumberConverter.class)
+		@ConvertedWith(IntegerConverter.class)
 		EditTextCell episodeNumber();// int != String
 
 		@Editable
