@@ -18,9 +18,9 @@ package com.acme.gwt.shared;
 
 import com.acme.gwt.data.TvScheduledEpisode;
 import com.acme.gwt.server.InjectingLocator;
-import com.google.gwt.requestfactory.shared.EntityProxy;
-import com.google.gwt.requestfactory.shared.EntityProxyId;
-import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 /**
  * Maps a TvChannel,TvAirTime tuple to a single episode, as only one episode can be shown at a given

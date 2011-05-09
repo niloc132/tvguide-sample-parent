@@ -30,12 +30,12 @@ import com.acme.gwt.server.TvViewerJsonBootstrap;
 import com.acme.gwt.server.simple.SingletonSessionProvider;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.acme.gwt.shared.util.Md5;
-import com.google.gwt.requestfactory.shared.DefaultProxyStore;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
+import com.google.web.bindery.requestfactory.shared.DefaultProxyStore;
 
 /**
  * @author colin

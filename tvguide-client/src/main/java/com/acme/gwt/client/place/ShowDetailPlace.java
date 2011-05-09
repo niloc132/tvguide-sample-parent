@@ -21,8 +21,8 @@ import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
-import com.google.gwt.requestfactory.shared.EntityProxyId;
 import com.google.inject.Inject;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 
 /**
  * @author colin

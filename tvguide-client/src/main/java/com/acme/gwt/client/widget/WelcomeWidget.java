@@ -23,13 +23,13 @@ import com.acme.gwt.client.view.WelcomeView;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
 /**
  * @author colin

@@ -21,24 +21,24 @@ import java.util.ArrayList;
 
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.TvViewerProxy;
-import com.google.gwt.autobean.shared.AutoBean;
-import com.google.gwt.autobean.shared.AutoBeanCodex;
-import com.google.gwt.autobean.shared.AutoBeanUtils;
-import com.google.gwt.autobean.shared.Splittable;
-import com.google.gwt.requestfactory.server.ServiceLayer;
-import com.google.gwt.requestfactory.server.SimpleRequestProcessor;
-import com.google.gwt.requestfactory.shared.DefaultProxyStore;
-import com.google.gwt.requestfactory.shared.impl.MessageFactoryHolder;
-import com.google.gwt.requestfactory.shared.messages.IdMessage;
-import com.google.gwt.requestfactory.shared.messages.IdMessage.Strength;
-import com.google.gwt.requestfactory.shared.messages.InvocationMessage;
-import com.google.gwt.requestfactory.shared.messages.MessageFactory;
-import com.google.gwt.requestfactory.shared.messages.OperationMessage;
-import com.google.gwt.requestfactory.shared.messages.RequestMessage;
-import com.google.gwt.requestfactory.shared.messages.ResponseMessage;
 import com.google.gwt.user.server.Base64Utils;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+import com.google.web.bindery.autobean.shared.AutoBeanUtils;
+import com.google.web.bindery.autobean.shared.Splittable;
+import com.google.web.bindery.requestfactory.server.ServiceLayer;
+import com.google.web.bindery.requestfactory.server.SimpleRequestProcessor;
+import com.google.web.bindery.requestfactory.shared.DefaultProxyStore;
+import com.google.web.bindery.requestfactory.shared.impl.MessageFactoryHolder;
+import com.google.web.bindery.requestfactory.shared.messages.IdMessage;
+import com.google.web.bindery.requestfactory.shared.messages.IdMessage.Strength;
+import com.google.web.bindery.requestfactory.shared.messages.InvocationMessage;
+import com.google.web.bindery.requestfactory.shared.messages.MessageFactory;
+import com.google.web.bindery.requestfactory.shared.messages.OperationMessage;
+import com.google.web.bindery.requestfactory.shared.messages.RequestMessage;
+import com.google.web.bindery.requestfactory.shared.messages.ResponseMessage;
 
 /**
  * @author colin

@@ -19,8 +19,8 @@ package com.acme.gwt.client.view;
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.editor.client.Editor;
-import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
 /**
  * @author colin

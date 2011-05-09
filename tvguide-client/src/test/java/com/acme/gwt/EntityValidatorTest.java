@@ -28,9 +28,9 @@ import com.acme.gwt.shared.TvGuideRequest;
 import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvShowProxy.TvShowRequest;
 import com.acme.gwt.shared.TvViewerProxy.TvViewerRequest;
-import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator;
-import com.google.gwt.requestfactory.server.RequestFactoryInterfaceValidator.ClassLoaderLoader;
-import com.google.gwt.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.server.RequestFactoryInterfaceValidator;
+import com.google.web.bindery.requestfactory.server.RequestFactoryInterfaceValidator.ClassLoaderLoader;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
 
 /**
  * Basic tests to verify that the RF stuff in this project will work, given what the server

@@ -19,10 +19,10 @@ package com.acme.gwt.server;
 import javax.persistence.EntityManager;
 
 import com.acme.gwt.data.HasVersionAndId;
-import com.google.gwt.requestfactory.shared.Locator;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
+import com.google.web.bindery.requestfactory.shared.Locator;
 
 /**
  * Simple Locator for entity types, with basic data creation and finding pass along to another

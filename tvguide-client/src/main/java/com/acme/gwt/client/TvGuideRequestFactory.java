@@ -16,10 +16,10 @@
  */
 package com.acme.gwt.client;
 
-import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvGuideRequest;
+import com.acme.gwt.shared.TvSetupRequest;
 import com.acme.gwt.shared.TvViewerProxy;
-import com.google.gwt.requestfactory.shared.RequestFactory;
+import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
 /**
  * RequestFactory stub for the TvGuide server calls

@@ -3,10 +3,10 @@ package com.acme.gwt.client;
 import com.acme.gwt.client.widget.TvGuideAppShell;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.requestfactory.shared.DefaultProxyStore;
-import com.google.gwt.requestfactory.shared.ProxySerializer;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.inject.Inject;
+import com.google.web.bindery.requestfactory.shared.DefaultProxyStore;
+import com.google.web.bindery.requestfactory.shared.ProxySerializer;
 
 /**
  * Start the app up and running with the given user.

@@ -16,14 +16,14 @@
  */
 package com.acme.gwt.server;
 
-import com.google.gwt.requestfactory.client.DefaultRequestTransport;
-import com.google.gwt.requestfactory.server.DefaultExceptionHandler;
-import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.servlet.ServletModule;
+import com.google.web.bindery.requestfactory.gwt.client.DefaultRequestTransport;
+import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
+import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 /**
  * @author colin

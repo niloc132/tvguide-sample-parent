@@ -16,8 +16,8 @@
  */
 package com.acme.gwt.shared;
 
-import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Service;
 
 /**
  * This RequestContext will be used to inform the server about how a particular locale is set up.

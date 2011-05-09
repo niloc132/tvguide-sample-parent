@@ -21,9 +21,9 @@ import java.util.List;
 
 import com.acme.gwt.data.TvGuideCallFactory;
 import com.acme.gwt.server.InjectingServiceLocator;
-import com.google.gwt.requestfactory.shared.Request;
-import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.web.bindery.requestfactory.shared.Request;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Service;
 
 /**
  * Basic RequestContext for getting show information for a given user. At least for now, this is all

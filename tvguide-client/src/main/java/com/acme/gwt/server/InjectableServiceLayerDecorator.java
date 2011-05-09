@@ -19,12 +19,12 @@ package com.acme.gwt.server;
 import java.lang.reflect.Method;
 import java.util.concurrent.Callable;
 
-import com.google.gwt.requestfactory.server.ServiceLayerDecorator;
-import com.google.gwt.requestfactory.shared.Locator;
-import com.google.gwt.requestfactory.shared.ServiceLocator;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
+import com.google.web.bindery.requestfactory.shared.Locator;
+import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
 /**
  * @author colin
