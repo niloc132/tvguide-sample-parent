@@ -28,6 +28,9 @@ public interface AuthenticationCallFactory {
 	AuthenticationCall authenticate(@Assisted("email")
 	String email, @Assisted("digest")
 	String digest);
+	AuthenticationCall register(@Assisted("email")
+	String email, @Assisted("digest")
+	String digest);
 	AuthenticationCall deauth();
 	public interface AuthenticationCall extends Callable<TvViewer> {
 	}
