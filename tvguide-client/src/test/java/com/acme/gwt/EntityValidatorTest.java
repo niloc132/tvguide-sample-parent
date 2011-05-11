@@ -20,7 +20,6 @@ import static junit.framework.Assert.assertFalse;
 
 import java.util.logging.Logger;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.acme.gwt.shared.TvChannelProxy.TvChannelRequest;
@@ -38,7 +37,6 @@ import com.google.web.bindery.requestfactory.shared.RequestContext;
  *
  * @author colin
  */
-@Ignore
 public class EntityValidatorTest {
 
 	@Test
