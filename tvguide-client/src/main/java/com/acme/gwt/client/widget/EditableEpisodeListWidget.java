@@ -38,8 +38,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author colin
  */
 public class EditableEpisodeListWidget extends Composite
-implements
-IsEditor<HasDataEditor<TvEpisodeProxy>> {
+		implements
+			IsEditor<HasDataEditor<TvEpisodeProxy>> {
 	private static Binder uiBinder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {

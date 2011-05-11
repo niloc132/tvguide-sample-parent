@@ -74,7 +74,7 @@ public class TvViewerJsonBootstrap {
 		msg.as().setInvocations(new ArrayList<InvocationMessage>());
 		InvocationMessage invocation = factory.invocation().as();
 		invocation
-				.setOperation("com.google.gwt.requestfactory.shared.impl.FindRequest::find");
+				.setOperation("com.google.web.bindery.requestfactory.shared.impl.FindRequest::find");
 		invocation.setParameters(new ArrayList<Splittable>());
 		invocation.getParameters().add(AutoBeanCodex.encode(id));
 		msg.as().getInvocations().add(invocation);
