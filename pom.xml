@@ -51,31 +51,50 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java.compiler.version}</source>
-					<target>${java.compiler.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.relativitas.maven.plugins</groupId>
-				<artifactId>maven-java-formatter-plugin</artifactId>
-				<version>0.1.0</version>
-				<configuration>
-					<compilerSource>${java.compiler.version}</compilerSource>
-					<compilerCompliance>${java.compiler.version}</compilerCompliance>
-					<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>gwt-maven-plugin</artifactId>
+					<version>${gwt.plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.google.gwt</groupId>
+							<artifactId>gwt-user</artifactId>
+							<version>${gwt.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.google.gwt</groupId>
+							<artifactId>gwt-dev</artifactId>
+							<version>${gwt.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.compiler.version}</source>
+						<target>${java.compiler.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.relativitas.maven.plugins</groupId>
+					<artifactId>maven-java-formatter-plugin</artifactId>
+					<version>0.1.0</version>
+					<configuration>
+						<compilerSource>${java.compiler.version}</compilerSource>
+						<compilerCompliance>${java.compiler.version}</compilerCompliance>
+						<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<reporting>
 		<plugins>
