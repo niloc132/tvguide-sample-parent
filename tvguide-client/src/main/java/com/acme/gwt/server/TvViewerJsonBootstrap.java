@@ -62,8 +62,9 @@ public class TvViewerJsonBootstrap {
 		AutoBean<IdMessage> id = factory.id();
 		try {
 			id.as().setServerId(
-					Base64Utils.toBase64(user.getId().toString().getBytes(
-							"UTF-8")));
+					Base64Utils
+							.toBase64(("\"" + user.getId().toString() + "\"")
+									.getBytes("UTF-8")));
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}
