@@ -16,22 +16,17 @@
  */
 package com.acme.gwt.client.widget;
 
-import com.acme.gwt.client.view.ShowDetailView;
-import com.acme.gwt.shared.TvEpisodeProxy;
+import com.acme.gwt.client.view.ShowEditorView;
 import com.acme.gwt.shared.TvShowProxy;
-import com.colinalworth.celltable.columns.client.Columns;
-import com.google.gwt.cell.client.NumberCell;
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Singleton;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
@@ -41,12 +36,12 @@ import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriv
  *
  */
 @Singleton
-public class ShowDetailWidget extends Composite implements ShowDetailView {
-	interface Binder extends UiBinder<Widget, ShowDetailWidget> {
+public class ShowEditorWidget extends Composite implements ShowEditorView {
+	interface Binder extends UiBinder<Widget, ShowEditorWidget> {
 	}
 	interface Driver
 			extends
-				RequestFactoryEditorDriver<TvShowProxy, ShowDetailWidget> {
+				RequestFactoryEditorDriver<TvShowProxy, ShowEditorWidget> {
 	}
 
 	private static Binder uiBinder = GWT.create(Binder.class);
@@ -54,31 +49,27 @@ public class ShowDetailWidget extends Composite implements ShowDetailView {
 	private Driver driver = GWT.create(Driver.class);
 
 	@UiField
-	Label name;
-	@UiField
-	Label description;
+	Button save;
 
 	@UiField
-	ScrollPanel details;
+	TextBox name;
 
-	HasDataEditor<TvEpisodeProxy> episodes;
 	@UiField
-	CellTable<TvEpisodeProxy> episodeList;
+	TextArea description;
 
-	private Presenter p;
-	public ShowDetailWidget() {
+	@UiField
+	EditableEpisodeListWidget episodes;
+
+	private Presenter presenter;
+	public ShowEditorWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		EpisodeColumns columns = GWT.create(EpisodeColumns.class);
-		episodes = HasDataEditor.of(episodeList);
-		columns.configure(episodeList);
 
 		driver.initialize(this);
 	}
 
 	@Override
-	public void setPresenter(Presenter presenter) {
-		this.p = presenter;
+	public void setPresenter(Presenter p) {
+		presenter = p;
 	}
 
 	@Override
@@ -86,24 +77,18 @@ public class ShowDetailWidget extends Composite implements ShowDetailView {
 		return driver;
 	}
 
+	@Override
+	public void setIsSaved(boolean saved) {
+		save.setText(saved ? "Saved" : "Save");
+		save.setEnabled(!saved);
+	}
+
 	@UiHandler("back")
-	void onBackClick(ClickEvent evt) {
-		p.back();
+	void onBackClicked(ClickEvent evt) {
+		presenter.back();
 	}
-
-	@UiHandler("edit")
-	void onEditClick(ClickEvent evt) {
-		p.edit();
-	}
-
-	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
-		@Header("Season")
-		NumberCell season();
-
-		@Header("Number")
-		NumberCell episodeNumber();
-
-		@Header("Name")
-		TextCell name();
+	@UiHandler("save")
+	void onSaveClicked(ClickEvent evt) {
+		presenter.save();
 	}
 }

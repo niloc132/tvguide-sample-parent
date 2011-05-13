@@ -14,25 +14,10 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.view;
+package com.acme.gwt.data;
 
-import com.acme.gwt.shared.TvEpisodeProxy;
-import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.editor.client.Editor;
-import com.google.gwt.user.client.ui.IsWidget;
-import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
-
-/**
- * @author colin
- *
- */
-public interface ShowDetailView extends IsWidget, Editor<TvShowProxy> {
-	void setPresenter(Presenter presenter);
-	RequestFactoryEditorDriver<TvShowProxy, ?> getEditor();
-
-	public interface Presenter {
-		void focusEpisode(TvEpisodeProxy episode);
-		void back();
-		void edit();
+public class SetupReqImpl {
+	public static TvShow saveShow(TvShow show) {
+		return show;
 	}
 }

@@ -1,8 +1,10 @@
 package com.acme.gwt.data;
 
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Version;
+
+import com.acme.gwt.data.TvSetupCallFactory.TvShowCall;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
+import com.google.inject.persist.Transactional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -73,5 +82,23 @@ public class TvShow implements HasVersionAndId {
 
 	public void setEpisodes(List<TvEpisode> episodes) {
 		this.episodes = episodes;
+	}
+
+	public static class SaveCallable implements TvShowCall {
+		private final TvShow show;
+		@Inject
+		Provider<EntityManager> em;
+		@AssistedInject
+		public SaveCallable(@Assisted
+		TvShow show) {
+			this.show = show;
+		}
+
+		@Transactional
+		@Override
+		public TvShow call() throws Exception {
+			return em.get().merge(show);
+		}
+
 	}
 }

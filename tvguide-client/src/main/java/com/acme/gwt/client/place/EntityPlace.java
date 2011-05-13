@@ -16,28 +16,24 @@
  */
 package com.acme.gwt.client.place;
 
-import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.place.shared.PlaceTokenizer;
-import com.google.gwt.place.shared.Prefix;
+import com.google.gwt.place.shared.Place;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 
 /**
  * @author colin
  *
  */
-public class ShowDetailPlace extends EntityPlace<TvShowProxy> {
-	public ShowDetailPlace(EntityProxyId<TvShowProxy> showId) {
-		super(showId);
+public abstract class EntityPlace<E extends EntityProxy> extends Place {
+	private final EntityProxyId<E> id;
+
+	public EntityPlace(EntityProxyId<E> id) {
+		this.id = id;
 	}
-	@Prefix("show-detail")
-	public static class Tokenizer
-			extends
-				EntityTokenizer<TvShowProxy, ShowDetailPlace>
-			implements
-				PlaceTokenizer<ShowDetailPlace> {
-		@Override
-		public ShowDetailPlace getPlace(EntityProxyId<TvShowProxy> id) {
-			return new ShowDetailPlace(id);
-		}
+	/**
+	 * @return the id
+	 */
+	public EntityProxyId<E> getId() {
+		return id;
 	}
 }

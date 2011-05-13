@@ -36,5 +36,6 @@ public interface TvGuidePlaceHistoryMapper
 	public interface TvGuidePlaceTokenizers {
 		WelcomePlace.Tokenizer welcomeTokenizer();
 		ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
+		ShowEditorPlace.Tokenizer showEditorPlaceTokenizer();
 	}
 }

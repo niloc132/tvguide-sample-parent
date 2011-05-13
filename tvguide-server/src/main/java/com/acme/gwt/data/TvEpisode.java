@@ -18,6 +18,7 @@ import javax.persistence.Version;
 import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
+import com.sun.istack.internal.NotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -53,7 +54,9 @@ class TvEpisode implements HasVersionAndId {
 	}
 
 	private TvShow tvShow;
+	@NotNull
 	private Integer season;
+	@NotNull
 	private Integer episodeNumber;
 	private String name;
 

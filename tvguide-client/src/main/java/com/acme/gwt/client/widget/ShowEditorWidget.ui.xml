@@ -11,14 +11,14 @@
 			<g:ScrollPanel ui:field="details">
 				<g:HTMLPanel>
 					<g:Button text="Back" ui:field="back" />
-					<g:Button text="Edit" ui:field="edit" />
-					<g:Label ui:field="name" />
-					<g:Label ui:field="description" />
+					<g:Button text="Save" ui:field="save" />
+					<g:TextBox ui:field="name" />
+					<g:TextArea ui:field="description" />
 				</g:HTMLPanel>
 			</g:ScrollPanel>
 		</g:west>
 		<g:center>
-			<c:CellTable ui:field="episodeList" />
+			<tvg:EditableEpisodeListWidget ui:field="episodes" />
 		</g:center>
 	</g:SplitLayoutPanel>
 </ui:UiBinder> 

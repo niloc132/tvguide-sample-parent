@@ -17,6 +17,7 @@
 package com.acme.gwt.client.presenter;
 
 import com.acme.gwt.client.place.ShowDetailPlace;
+import com.acme.gwt.client.place.ShowEditorPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -37,6 +38,9 @@ public class TvGuideActivityMapper implements ActivityMapper {
 		if (place instanceof ShowDetailPlace) {
 			return factory.createShowDetailPresenter((ShowDetailPlace) place);
 		}
+		if (place instanceof ShowEditorPlace) {
+			return factory.createShowEditorPresenter((ShowEditorPlace) place);
+		}
 
 		return null;
 	}
@@ -47,5 +51,6 @@ public class TvGuideActivityMapper implements ActivityMapper {
 	public interface ActivityFactory {
 		WelcomePresenter createWelcomePresenter(WelcomePlace place);
 		ShowDetailPresenter createShowDetailPresenter(ShowDetailPlace place);
+		ShowEditorPresenter createShowEditorPresenter(ShowEditorPlace place);
 	}
 }

@@ -16,14 +16,15 @@
  */
 package com.acme.gwt.client.widget;
 
+import java.util.List;
+
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.Columns;
+import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
 import com.colinalworth.celltable.columns.client.converters.IntegerConverter;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.editor.client.Editor.Path;
-import com.google.gwt.editor.client.IsEditor;
-import com.google.gwt.editor.client.adapters.HasDataEditor;
+import com.google.gwt.editor.client.Editor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -39,41 +40,43 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class EditableEpisodeListWidget extends Composite
 		implements
-			IsEditor<HasDataEditor<TvEpisodeProxy>> {
+			Editor<List<TvEpisodeProxy>> {
+
 	private static Binder uiBinder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, EditableEpisodeListWidget> {
 	}
 
 	interface EpisodeColumns extends Columns<TvEpisodeProxy> {
+		@Header("Season")
 		@Editable
 		@ConvertedWith(IntegerConverter.class)
-		EditTextCell season();//erp int != String
+		EditTextCell season();
 
+		@Header("Episode")
 		@Editable
 		@ConvertedWith(IntegerConverter.class)
-		EditTextCell episodeNumber();// int != String
+		EditTextCell episodeNumber();
 
+		@Header("Name")
 		@Editable
 		EditTextCell name();
 	}
 
 	private EpisodeColumns columns = GWT.create(EpisodeColumns.class);
 	@Path("")
-	HasDataEditor<TvEpisodeProxy> listEd;
+	HasDataFlushableEditor<TvEpisodeProxy> listEd;
 	@UiField(provided = true)
 	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
 
 	public EditableEpisodeListWidget() {
-		listEd = HasDataEditor.of(list);
+		listEd = HasDataFlushableEditor.of(list);
 
-		columns.configure(list);
+		columns.configure(list, listEd);
+		//list.getColumnSortList().push(list.getColumn(0));
+		//list.getColumnSortList().push(list.getColumn(1));
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@Override
-	public HasDataEditor<TvEpisodeProxy> asEditor() {
-		return listEd;
-	}
 }

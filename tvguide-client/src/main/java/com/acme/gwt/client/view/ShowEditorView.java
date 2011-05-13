@@ -14,30 +14,25 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.place;
+package com.acme.gwt.client.view;
 
 import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.place.shared.PlaceTokenizer;
-import com.google.gwt.place.shared.Prefix;
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.gwt.editor.client.Editor;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
 /**
  * @author colin
  *
  */
-public class ShowDetailPlace extends EntityPlace<TvShowProxy> {
-	public ShowDetailPlace(EntityProxyId<TvShowProxy> showId) {
-		super(showId);
-	}
-	@Prefix("show-detail")
-	public static class Tokenizer
-			extends
-				EntityTokenizer<TvShowProxy, ShowDetailPlace>
-			implements
-				PlaceTokenizer<ShowDetailPlace> {
-		@Override
-		public ShowDetailPlace getPlace(EntityProxyId<TvShowProxy> id) {
-			return new ShowDetailPlace(id);
-		}
+public interface ShowEditorView extends IsWidget, Editor<TvShowProxy> {
+	void setPresenter(Presenter p);
+	RequestFactoryEditorDriver<TvShowProxy, ?> getEditor();
+
+	void setIsSaved(boolean saved);
+
+	interface Presenter {
+		void back();
+		void save();
 	}
 }

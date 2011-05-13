@@ -25,19 +25,19 @@ import com.google.web.bindery.requestfactory.shared.EntityProxyId;
  * @author colin
  *
  */
-public class ShowDetailPlace extends EntityPlace<TvShowProxy> {
-	public ShowDetailPlace(EntityProxyId<TvShowProxy> showId) {
+public class ShowEditorPlace extends EntityPlace<TvShowProxy> {
+	public ShowEditorPlace(EntityProxyId<TvShowProxy> showId) {
 		super(showId);
 	}
-	@Prefix("show-detail")
+	@Prefix("show-edit")
 	public static class Tokenizer
 			extends
-				EntityTokenizer<TvShowProxy, ShowDetailPlace>
+				EntityTokenizer<TvShowProxy, ShowEditorPlace>
 			implements
-				PlaceTokenizer<ShowDetailPlace> {
+				PlaceTokenizer<ShowEditorPlace> {
 		@Override
-		public ShowDetailPlace getPlace(EntityProxyId<TvShowProxy> id) {
-			return new ShowDetailPlace(id);
+		public ShowEditorPlace getPlace(EntityProxyId<TvShowProxy> id) {
+			return new ShowEditorPlace(id);
 		}
 	}
 }

@@ -27,6 +27,9 @@ import com.acme.gwt.data.TvGuideCallFactory;
 import com.acme.gwt.data.TvGuideCallFactory.ChannelListCall;
 import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
 import com.acme.gwt.data.TvGuideCallFactory.UserFavoritesCall;
+import com.acme.gwt.data.TvSetupCallFactory;
+import com.acme.gwt.data.TvSetupCallFactory.TvShowCall;
+import com.acme.gwt.data.TvShow;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.data.TvViewer.AuthCallable;
 import com.google.inject.AbstractModule;
@@ -52,6 +55,9 @@ public class TvGuideServiceModule extends AbstractModule {
 				FavoritesChannelCallable.class).implement(
 				ChannelListCall.class, ChannelListCallable.class).build(
 				TvGuideCallFactory.class));
+
+		install(new FactoryModuleBuilder().implement(TvShowCall.class,
+				TvShow.SaveCallable.class).build(TvSetupCallFactory.class));
 
 		//bind(EpisodesDateCall.class).to(EpisodeRangeCallable.class);
 		// Ensure that something has session stuff ready

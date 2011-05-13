@@ -26,9 +26,11 @@ import com.acme.gwt.client.presenter.TvGuideActivityMapper.ActivityFactory;
 import com.acme.gwt.client.view.FavoriteShowsListView;
 import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.client.view.ShowDetailView;
+import com.acme.gwt.client.view.ShowEditorView;
 import com.acme.gwt.client.view.WelcomeView;
 import com.acme.gwt.client.widget.FavoriteShowsListWidget;
 import com.acme.gwt.client.widget.ShowDetailWidget;
+import com.acme.gwt.client.widget.ShowEditorWidget;
 import com.acme.gwt.client.widget.WelcomeWidget;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -76,6 +78,7 @@ public class TvGuideClientModule extends AbstractGinModule {
 		// the Widgets themselves are set as singletons
 		bind(WelcomeView.class).to(WelcomeWidget.class);
 		bind(ShowDetailView.class).to(ShowDetailWidget.class);
+		bind(ShowEditorView.class).to(ShowEditorWidget.class);
 		bind(FavoriteShowsListView.class).to(FavoriteShowsListWidget.class);
 
 		bind(LoginView.class).to(LoginWidget.class);//not singleton, since it should only be loaded once

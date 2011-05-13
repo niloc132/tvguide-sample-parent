@@ -16,28 +16,29 @@
  */
 package com.acme.gwt.client.place;
 
-import com.acme.gwt.shared.TvShowProxy;
+import com.acme.gwt.client.TvGuideRequestFactory;
 import com.google.gwt.place.shared.PlaceTokenizer;
-import com.google.gwt.place.shared.Prefix;
+import com.google.inject.Inject;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 
 /**
  * @author colin
  *
  */
-public class ShowDetailPlace extends EntityPlace<TvShowProxy> {
-	public ShowDetailPlace(EntityProxyId<TvShowProxy> showId) {
-		super(showId);
+public abstract class EntityTokenizer<E extends EntityProxy, P extends EntityPlace<E>>
+		implements
+			PlaceTokenizer<P> {
+	@Inject
+	TvGuideRequestFactory rf;
+
+	@Override
+	public P getPlace(String arg0) {
+		return getPlace(rf.<E> getProxyId(arg0));
 	}
-	@Prefix("show-detail")
-	public static class Tokenizer
-			extends
-				EntityTokenizer<TvShowProxy, ShowDetailPlace>
-			implements
-				PlaceTokenizer<ShowDetailPlace> {
-		@Override
-		public ShowDetailPlace getPlace(EntityProxyId<TvShowProxy> id) {
-			return new ShowDetailPlace(id);
-		}
+	public abstract P getPlace(EntityProxyId<E> id);
+
+	public String getToken(P arg0) {
+		return rf.getHistoryToken(arg0.getId());
 	}
 }

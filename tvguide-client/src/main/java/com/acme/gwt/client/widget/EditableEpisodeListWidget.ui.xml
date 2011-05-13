@@ -5,7 +5,5 @@
 	<ui:style>
 		/* Add CSS here. See the GWT docs on UI Binder for more details */
 	</ui:style>
-	<g:HTMLPanel>
-		<c:CellTable ui:field="list"/>
-	</g:HTMLPanel>
+	<c:CellTable ui:field="list"/>
 </ui:UiBinder> 

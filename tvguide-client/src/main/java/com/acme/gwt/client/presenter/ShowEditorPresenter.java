@@ -17,15 +17,14 @@
 package com.acme.gwt.client.presenter;
 
 import com.acme.gwt.client.TvGuideRequestFactory;
-import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.ShowEditorPlace;
-import com.acme.gwt.client.view.ShowDetailView;
-import com.acme.gwt.shared.TvEpisodeProxy;
+import com.acme.gwt.client.view.ShowEditorView;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -35,46 +34,65 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
  * @author colin
  *
  */
-public class ShowDetailPresenter extends AbstractActivity
+public class ShowEditorPresenter extends AbstractActivity
 		implements
-			ShowDetailView.Presenter {
+			ShowEditorView.Presenter {
 	@Inject
-	ShowDetailView view;
+	ShowEditorView view;
 
 	@Inject
 	TvGuideRequestFactory rf;
-
 	@Inject
 	PlaceController placeController;
 
-	private final ShowDetailPlace place;
+	private final ShowEditorPlace place;
+
+	private final Receiver<TvShowProxy> receiver = new Receiver<TvShowProxy>() {
+		@Override
+		public void onSuccess(TvShowProxy show) {
+			view.setIsSaved(true);
+			view.getEditor().edit(
+					show,
+					rf.makeSetupRequest().saveShow(show).with(
+							view.getEditor().getPaths()).to(this));
+			view.asWidget().setVisible(true);//ugh
+			dirtyCheck.scheduleRepeating(5000);
+		}
+	};
+
+	private final Timer dirtyCheck = new Timer() {
+		@Override
+		public void run() {
+			if (view.getEditor().isDirty()) {
+				view.setIsSaved(false);
+				this.cancel();
+			}
+		}
+	};
 	@Inject
-	public ShowDetailPresenter(@Assisted
-	ShowDetailPlace place) {
+	public ShowEditorPresenter(@Assisted
+	ShowEditorPlace place) {
 		this.place = place;
 	}
 
 	@Override
 	public void start(final AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
-		//load it and show it
-		rf.find(place.getId()).with(view.getEditor().getPaths()).to(
-				new Receiver<TvShowProxy>() {
+		rf.find(place.getId()).with(view.getEditor().getPaths()).to(receiver)
+				.fire(new Receiver<Void>() {
 					@Override
-					public void onSuccess(TvShowProxy response) {
-						//deal with data, wire into view
-						view.getEditor().display(response);
-
-						//show view
+					public void onSuccess(Void arg0) {
 						panel.setWidget(view);
 					}
-				}).fire();
+				});
 	}
 
 	@Override
-	public void focusEpisode(TvEpisodeProxy episode) {
-		//TODO make a EpisodeDetailPlace around the entity id, push it
-		//placeController.goTo(...);
+	public String mayStop() {
+		if (view.getEditor().isDirty()) {
+			return "Changes have not been saved - are you sure you want to continue?";
+		}
+		return null;
 	}
 
 	@Override
@@ -83,7 +101,9 @@ public class ShowDetailPresenter extends AbstractActivity
 	}
 
 	@Override
-	public void edit() {
-		placeController.goTo(new ShowEditorPlace(place.getId()));
+	public void save() {
+		view.asWidget().setVisible(false);//ugh
+		view.getEditor().flush().fire();
 	}
+
 }
