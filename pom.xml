@@ -51,6 +51,18 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.relativitas.maven.plugins</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.1.0</version>
+				<configuration>
+					<compilerSource>${java.compiler.version}</compilerSource>
+					<compilerCompliance>${java.compiler.version}</compilerCompliance>
+					<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -76,16 +88,6 @@
 					<configuration>
 						<source>${java.compiler.version}</source>
 						<target>${java.compiler.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>com.relativitas.maven.plugins</groupId>
-					<artifactId>maven-java-formatter-plugin</artifactId>
-					<version>0.1.0</version>
-					<configuration>
-						<compilerSource>${java.compiler.version}</compilerSource>
-						<compilerCompliance>${java.compiler.version}</compilerCompliance>
-						<compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
 					</configuration>
 				</plugin>
 				<plugin>
