@@ -44,14 +44,15 @@ public class TvGuideServiceModule extends AbstractModule {
 
 		// Make the CallFactories available for injection
 		// Auth calls
-		install(new FactoryModuleBuilder().implement(AuthenticationCall.class,
-				AuthCallable.class).build(AuthenticationCallFactory.class));
+		install(new FactoryModuleBuilder()
+			.implement(AuthenticationCall.class, AuthCallable.class)
+			.build(AuthenticationCallFactory.class));
 		// TvGuide calls
-		install(new FactoryModuleBuilder().implement(EpisodesDateCall.class,
-				EpisodeRangeCallable.class).implement(UserFavoritesCall.class,
-				FavoritesChannelCallable.class).implement(
-				ChannelListCall.class, ChannelListCallable.class).build(
-				TvGuideCallFactory.class));
+		install(new FactoryModuleBuilder()
+			.implement(EpisodesDateCall.class,EpisodeRangeCallable.class)
+			.implement(UserFavoritesCall.class, FavoritesChannelCallable.class)
+			.implement(ChannelListCall.class, ChannelListCallable.class)
+			.build(TvGuideCallFactory.class));
 
 		//bind(EpisodesDateCall.class).to(EpisodeRangeCallable.class);
 		// Ensure that something has session stuff ready
