@@ -18,7 +18,9 @@ package com.acme.gwt.server;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
+import com.acme.gwt.client.TvGuideRequestFactory;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.google.gwt.user.server.Base64Utils;
@@ -39,6 +41,7 @@ import com.google.web.bindery.requestfactory.shared.messages.MessageFactory;
 import com.google.web.bindery.requestfactory.shared.messages.OperationMessage;
 import com.google.web.bindery.requestfactory.shared.messages.RequestMessage;
 import com.google.web.bindery.requestfactory.shared.messages.ResponseMessage;
+import com.google.web.bindery.requestfactory.vm.impl.OperationKey;
 
 /**
  * @author colin
@@ -49,36 +52,39 @@ public class TvViewerJsonBootstrap {
 	InjectableServiceLayerDecorator isld;
 	@Inject
 	Provider<TvViewer> viewerProvider;
+	@Inject
+	Logger logger;
 
 	public String getViewerAsJson() {
-		SimpleRequestProcessor p = new SimpleRequestProcessor(ServiceLayer
-				.create(isld));
 		TvViewer user = viewerProvider.get();
 		if (user == null) {
 			return "";
 		}
 
+		SimpleRequestProcessor p = new SimpleRequestProcessor(ServiceLayer.create(isld));
+
 		MessageFactory factory = MessageFactoryHolder.FACTORY;
 		AutoBean<IdMessage> id = factory.id();
 		try {
 			id.as().setServerId(
-					Base64Utils
-							.toBase64(("\"" + user.getId().toString() + "\"")
-									.getBytes("UTF-8")));
+					Base64Utils.toBase64(("\"" + user.getId().toString() + "\"").getBytes("UTF-8")));
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}
 		id.as().setStrength(Strength.PERSISTED);
-		id.as().setTypeToken(TvViewerProxy.class.getName());
+		id.as().setTypeToken(OperationKey.hash(TvViewerProxy.class.getName()));
 
 		AutoBean<RequestMessage> msg = factory.request();
 		msg.as().setInvocations(new ArrayList<InvocationMessage>());
 		InvocationMessage invocation = factory.invocation().as();
-		invocation
-				.setOperation("com.google.web.bindery.requestfactory.shared.impl.FindRequest::find");
+
+		invocation.setOperation("?");
+
 		invocation.setParameters(new ArrayList<Splittable>());
 		invocation.getParameters().add(AutoBeanCodex.encode(id));
+
 		msg.as().getInvocations().add(invocation);
+		msg.as().setRequestFactory(TvGuideRequestFactory.class.getName());
 
 		String value = p.process(AutoBeanCodex.encode(msg).getPayload());
 
@@ -88,6 +94,8 @@ public class TvViewerJsonBootstrap {
 		DefaultProxyStore store = new DefaultProxyStore();
 		store.put(TvViewerProxy.STORE_KEY, AutoBeanCodex.encode(AutoBeanUtils
 				.getAutoBean(opMsg)));
+
+
 
 		return store.encode();
 	}
