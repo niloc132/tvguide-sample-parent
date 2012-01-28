@@ -16,9 +16,6 @@
  */
 package com.acme.gwt.server;
 
-import java.lang.reflect.Method;
-import java.util.concurrent.Callable;
-
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
@@ -50,19 +47,5 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Override
 	public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
 		return injector.getInstance(clazz);
-	}
-
-	@Override
-	public Object invoke(Method domainMethod, Object... args) {
-		Object response = super.invoke(domainMethod, args);
-		try {
-			if (response instanceof Callable) {
-				return ((Callable<?>) response).call();
-			} else {
-				return response;
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 }
