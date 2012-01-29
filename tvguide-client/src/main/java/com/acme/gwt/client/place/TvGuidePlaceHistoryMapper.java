@@ -37,5 +37,6 @@ public interface TvGuidePlaceHistoryMapper
 		WelcomePlace.Tokenizer welcomeTokenizer();
 		ShowDetailPlace.Tokenizer showDetailPlaceTokenizer();
 		ShowEditorPlace.Tokenizer showEditorPlaceTokenizer();
+		CreateShowPlace.Tokenizer createShowPlaceTOkeniTokenizer();
 	}
 }

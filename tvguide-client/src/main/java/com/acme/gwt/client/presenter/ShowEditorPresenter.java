@@ -31,7 +31,9 @@ import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 /**
- * @author colin
+ * Presenter controlling an editor for the show object. Presenter keeps an eye on the driver to 
+ * see if it says that there are changes that can be saved - this seems to not work for 
+ * HasDataEditor-like editors
  *
  */
 public class ShowEditorPresenter extends AbstractActivity
@@ -47,6 +49,7 @@ public class ShowEditorPresenter extends AbstractActivity
 
 	private final ShowEditorPlace place;
 
+	/** save or load reciever that edits the results with a new request for saving */
 	private final Receiver<TvShowProxy> receiver = new Receiver<TvShowProxy>() {
 		@Override
 		public void onSuccess(TvShowProxy show) {
@@ -56,7 +59,7 @@ public class ShowEditorPresenter extends AbstractActivity
 					rf.makeSetupRequest().saveShow(show).with(
 							view.getEditor().getPaths()).to(this));
 			view.asWidget().setVisible(true);//ugh
-			dirtyCheck.scheduleRepeating(5000);
+			dirtyCheck.scheduleRepeating(500);
 		}
 	};
 
@@ -78,6 +81,7 @@ public class ShowEditorPresenter extends AbstractActivity
 	@Override
 	public void start(final AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
+		// find the object, and load it. An additional receiver is used here to display after loaded for the first time
 		rf.find(place.getId()).with(view.getEditor().getPaths()).to(receiver)
 				.fire(new Receiver<Void>() {
 					@Override

@@ -19,6 +19,7 @@ package com.acme.gwt.client.presenter;
 import java.util.List;
 
 import com.acme.gwt.client.TvGuideRequestFactory;
+import com.acme.gwt.client.place.CreateShowPlace;
 import com.acme.gwt.client.place.ShowDetailPlace;
 import com.acme.gwt.client.place.WelcomePlace;
 import com.acme.gwt.client.view.FavoriteShowsListView;
@@ -65,6 +66,10 @@ public class WelcomePresenter extends AbstractActivity
 						panel.setWidget(view);
 					}
 				});
+	}
+
+	public void createShow() {
+		placeController.goTo(new CreateShowPlace());
 	}
 
 	@Override

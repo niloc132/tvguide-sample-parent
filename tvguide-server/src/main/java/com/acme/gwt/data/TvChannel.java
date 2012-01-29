@@ -18,7 +18,8 @@ import com.acme.gwt.data.TvGuideCallFactory.ChannelListCall;
 import com.acme.gwt.data.TvGuideCallFactory.UserFavoritesCall;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
+import com.google.inject.persist.Transactional;
 
 /**
  * this is a local channel in a lineup of channels, this is not a network in a list of Cable networks.
@@ -106,16 +107,24 @@ class TvChannel implements HasVersionAndId {
 	}
 
 	public static class FavoritesChannelCallable implements UserFavoritesCall {
-		@Assisted
-		List<TvShow> newShowList;
+		private final List<TvShow> newShowList;
 		@Inject
 		TvViewer viewer;
+		@Inject
+		EntityManager em;
+
+		@AssistedInject
+		public FavoritesChannelCallable(List<TvShow> newList) {
+			newShowList = newList;
+		}
+		@Transactional
 		@Override
 		public List<TvShow> call() throws Exception {
-			if (newShowList == null) {
-				newShowList = viewer.getFavorites();
+			if (newShowList != null) {
+				viewer.setFavorites(newShowList);
+				viewer = em.merge(viewer);
 			}
-			return newShowList;
+			return viewer.getFavorites();
 		}
 
 	}

@@ -14,22 +14,27 @@
  *  limitations under the License.
  *
  */
-package com.acme.gwt.client.view;
+package com.acme.gwt.client.place;
 
-import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.place.shared.Prefix;
 
 /**
  * @author colin
  *
  */
-public interface FavoriteShowsListView extends IsWidget {
-	void setPresenter(Presenter p);
-	public interface Presenter {
-		void showDetail(TvShowProxy show);
-		/**
-		 * This method (and functionality) really doesnt belong here, but belongs in a more general show list view
-		 */
-		void createShow();
+public class CreateShowPlace extends Place {
+
+	@Prefix("new-show")
+	public static class Tokenizer implements PlaceTokenizer<CreateShowPlace> {
+		@Override
+		public CreateShowPlace getPlace(String token) {
+			return new CreateShowPlace();
+		}
+		@Override
+		public String getToken(CreateShowPlace place) {
+			return "";
+		}
 	}
 }
