@@ -18,6 +18,7 @@ import com.acme.gwt.data.TvGuideCallFactory.ChannelListCall;
 import com.acme.gwt.data.TvGuideCallFactory.UserFavoritesCall;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 import com.google.inject.persist.Transactional;
 
@@ -114,9 +115,14 @@ class TvChannel implements HasVersionAndId {
 		EntityManager em;
 
 		@AssistedInject
-		public FavoritesChannelCallable(List<TvShow> newList) {
-			newShowList = newList;
+		public FavoritesChannelCallable(@Assisted List<TvShow> shows) {
+			newShowList = shows;
 		}
+		@AssistedInject
+		public FavoritesChannelCallable() {
+			newShowList = null;
+		}
+		
 		@Transactional
 		@Override
 		public List<TvShow> call() throws Exception {

@@ -14,8 +14,8 @@ public class TvGuideService {
 	public List<TvShow> getFavoriteShows() throws Exception {
 		return factory.getFavoriteShows().call();
 	}
-	public void setFavoriteShows(List<TvShow> favoriteShows) throws Exception {
-		factory.setFavoriteShows(favoriteShows).call();
+	public List<TvShow> setFavoriteShows(List<TvShow> favoriteShows) throws Exception {
+		return factory.setFavoriteShows(favoriteShows).call();
 	}
 	public List<TvChannel> getAllChannels() throws Exception {
 		return factory.getAllChannels().call();

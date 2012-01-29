@@ -16,8 +16,8 @@
  */
 package com.acme.gwt.shared;
 
-import com.acme.gwt.data.TvSetupCallFactory;
 import com.acme.gwt.server.InjectingServiceLocator;
+import com.acme.gwt.server.TvSetupService;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
@@ -30,7 +30,7 @@ import com.google.web.bindery.requestfactory.shared.Service;
  * @author colin
  * @todo No methods yet, I am assuming we will get to this
  */
-@Service(value = TvSetupCallFactory.class, locator = InjectingServiceLocator.class)
+@Service(value = TvSetupService.class, locator = InjectingServiceLocator.class)
 public interface TvSetupRequest extends RequestContext {
 	Request<TvShowProxy> saveShow(TvShowProxy tvShow);
 }
