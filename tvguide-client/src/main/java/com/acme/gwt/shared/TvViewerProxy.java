@@ -1,9 +1,9 @@
 package com.acme.gwt.shared;
 
-import com.acme.gwt.data.AuthenticationCallFactory;
 import com.acme.gwt.data.TvViewer;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
+import com.acme.gwt.server.TvViewerService;
 import com.acme.gwt.shared.defs.Geo;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
@@ -39,7 +39,7 @@ public interface TvViewerProxy extends EntityProxy {
 
 	EntityProxyId<TvViewerProxy> stableId();
 
-	@Service(value = AuthenticationCallFactory.class, locator = InjectingServiceLocator.class)
+	@Service(value = TvViewerService.class, locator = InjectingServiceLocator.class)
 	public interface TvViewerRequest extends RequestContext {
 		//replace with controller
 		Request<TvViewerProxy> authenticate(String email, String digest);

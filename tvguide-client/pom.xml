@@ -10,8 +10,22 @@
 	<packaging>war</packaging>
 	<name>TvGuide Client</name>
 	<description>
-		The server code that allow access to data servlet support, and the GWT code that defines
-		how to get data, how to display it, and how to decide what the user is asking for next.
+		This project is meant to demonstrate a few features of how GWT, Gin, and Maven get along.
+		It isn't a definitive resource, but an example, experimental in places, to try to fine the
+		'ideal' way to write GWT code. 
+
+		The server aspects of this use Servlet, bound through Guice to serve up content.
+		RequestFactory is the bridge used to get data from the tvguide-server.jar to the client and
+		back again. The client fetches that data when it needs to do so from user interactions.
+
+		The client code itself uses the Activity/Place classes to allow navigation around the app,
+		and to allow the user to use the browser back/forward buttons to navigate, as well as to
+		make bookmarks.
+		
+		The logic of loading/saving data and handling general interactions with the application
+		is broken out into presenters, distinct from the views that actually draw the UI for the
+		user. GWT's documentation on MVP outlines two possible ways of providing this abstraction,
+		this application picks one of them, and tries to make it clear how to use it.
 	</description>
 	<properties>
 		<gwt.style>OBF</gwt.style>
@@ -67,6 +81,11 @@
 			<artifactId>gwt-servlet</artifactId>
 			<version>${gwt.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.web.bindery</groupId>
+			<artifactId>requestfactory-apt</artifactId>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>

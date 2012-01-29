@@ -10,6 +10,10 @@
 	<packaging>jar</packaging>
 	<name>TvGuide Core Server</name>
 	<description>
+		This project is meant to model a hypothetical persistence mechanism - it isn't here
+		as a demonstration of how anything should be done. For that reason, it has no dependencies
+		on GWT, but is used by the tvguide-client project.
+		
 		Details what data there is, how to store and get it, and the API used to read and write
 		from external interfaces. The tvguide-client project is one such interface, and provides
 		remaining important features like session support, and a particular implementation of

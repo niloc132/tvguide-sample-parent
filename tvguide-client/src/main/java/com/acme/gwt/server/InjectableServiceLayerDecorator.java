@@ -16,9 +16,6 @@
  */
 package com.acme.gwt.server;
 
-import java.lang.reflect.Method;
-import java.util.concurrent.Callable;
-
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
@@ -48,29 +45,7 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	}
 
 	@Override
-	public Object createServiceInstance(Method contextMethod,
-			Method domainMethod) {
-		// Check if the request needs a service locator
-		Class<? extends ServiceLocator> locatorType = getTop()
-				.resolveServiceLocator(contextMethod, domainMethod);
-		assert locatorType != null;
-
-		// Inject an instance of the locator itself, and then get an instance from it
-		ServiceLocator locator = injector.getInstance(locatorType);
-		return locator.getInstance(domainMethod.getDeclaringClass());
-	}
-
-	@Override
-	public Object invoke(Method domainMethod, Object... args) {
-		Object response = super.invoke(domainMethod, args);
-		try {
-			if (response instanceof Callable) {
-				return ((Callable<?>) response).call();
-			} else {
-				return response;
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
+		return injector.getInstance(clazz);
 	}
 }
