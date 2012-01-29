@@ -14,11 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import com.acme.gwt.data.TvGuideCallFactory.EpisodesDateCall;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import com.sun.istack.internal.NotNull;
 
 /**
  * Created by IntelliJ IDEA.
