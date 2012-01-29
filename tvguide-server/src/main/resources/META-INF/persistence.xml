@@ -49,7 +49,7 @@
       <!--<property name="openjpa.jdbc.SynchronizeMappings"-->
       <!--value="buildSchema(ForeignKeys=true)"/>-->
       <!--<property name="openjpa.Multithreaded" value="true"/>-->
-      <property name="openjpa.Log" value="SQL=TRACE,DefaultLevel=TRACE"/>
+
       <!--<property name="openjpa.jdbc.SchemaFactory"-->
       <!--value="native(ForeignKeys=true)"/>-->
       <!--<property name="openjpa.jdbc.MappingDefaults"-->

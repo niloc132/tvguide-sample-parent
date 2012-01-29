@@ -22,10 +22,10 @@ import com.acme.gwt.client.view.LoginView;
 import com.acme.gwt.shared.TvViewerProxy;
 import com.acme.gwt.shared.util.Md5;
 import com.google.gwt.inject.client.AsyncProvider;
-import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.Inject;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
 /**
  * All calls are void, allowing them to be async

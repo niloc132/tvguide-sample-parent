@@ -19,8 +19,8 @@ package com.acme.gwt.client.view;
 import java.util.List;
 
 import com.acme.gwt.shared.TvShowProxy;
-import com.google.gwt.requestfactory.client.RequestFactoryEditorDriver;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
 /**
  * @author colin

@@ -16,9 +16,9 @@
  */
 package com.acme.gwt.server;
 
-import com.google.gwt.requestfactory.shared.ServiceLocator;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
 /**
  * Provides instances of Service types. Must be specified in the {@literal @}Service annotations

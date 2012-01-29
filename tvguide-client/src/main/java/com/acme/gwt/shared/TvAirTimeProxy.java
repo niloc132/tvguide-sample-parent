@@ -20,8 +20,8 @@ import java.util.Date;
 
 import com.acme.gwt.data.TvAirTime;
 import com.acme.gwt.server.InjectingLocator;
-import com.google.gwt.requestfactory.shared.ProxyFor;
-import com.google.gwt.requestfactory.shared.ValueProxy;
+import com.google.web.bindery.requestfactory.shared.ProxyFor;
+import com.google.web.bindery.requestfactory.shared.ValueProxy;
 
 /**
  * Represents a block of time that something can air - start time and duration in minutes. There is

@@ -19,11 +19,11 @@ package com.acme.gwt.shared;
 import com.acme.gwt.data.TvChannel;
 import com.acme.gwt.server.InjectingLocator;
 import com.acme.gwt.server.InjectingServiceLocator;
-import com.google.gwt.requestfactory.shared.EntityProxy;
-import com.google.gwt.requestfactory.shared.EntityProxyId;
-import com.google.gwt.requestfactory.shared.ProxyFor;
-import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.ProxyFor;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Service;
 
 /**
  * Proxy object for a tv channel, with options to provide a name, icon/symbol, and channel number.

@@ -22,7 +22,7 @@ import com.acme.gwt.client.view.EditableEpisodeListView;
 import com.acme.gwt.shared.TvEpisodeProxy;
 import com.colinalworth.celltable.columns.client.ColumnsWithFactory;
 import com.colinalworth.celltable.columns.client.HasDataFlushableEditor;
-import com.colinalworth.celltable.columns.client.NumberConverter;
+import com.colinalworth.celltable.columns.client.converters.NumberConverter;
 import com.google.gwt.cell.client.ActionCell;
 import com.google.gwt.cell.client.ActionCell.Delegate;
 import com.google.gwt.cell.client.EditTextCell;
@@ -61,6 +61,7 @@ EditableEpisodeListView, IsEditor<HasDataFlushableEditor<TvEpisodeProxy>> {
 		@ConvertedWith(NumberConverter.class)
 		EditTextCell episodeNumber();// int != String
 
+		@Editable
 		EditTextCell name();
 
 		@Header("")

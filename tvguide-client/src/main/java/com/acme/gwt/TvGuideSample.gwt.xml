@@ -3,7 +3,7 @@
 <module rename-to="tvguide">
 	<!-- Basic packages to get the app working -->
 	<inherits name="com.google.gwt.user.User" />
-	<inherits name='com.google.gwt.requestfactory.RequestFactory' />
+	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
 	<inherits name='com.google.gwt.place.Place' />
 	<inherits name='com.google.gwt.activity.Activity' />
 
@@ -12,6 +12,9 @@
 
 	<!-- Gin, DI for GWT -->
 	<inherits name='com.google.gwt.inject.Inject' />
+	
+	<!-- Pre-Compress the compiled output to make serving it more space efficient -->
+	<inherits name="com.google.gwt.precompress.Precompress"/>
 
 	<!-- Make all code in the client package available to the compiler -->
 	<source path="client" />

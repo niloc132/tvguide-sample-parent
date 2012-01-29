@@ -1,0 +1,1 @@
+Some common code, needed to be available to both the core server code, but also should be available to be compiled into Javascript by the client project.
