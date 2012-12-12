@@ -21,6 +21,7 @@ import com.acme.gwt.client.place.ShowEditorPlace;
 import com.acme.gwt.client.view.ShowEditorView;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.History;
@@ -53,25 +54,25 @@ public class ShowEditorPresenter extends AbstractActivity
 	private final Receiver<TvShowProxy> receiver = new Receiver<TvShowProxy>() {
 		@Override
 		public void onSuccess(TvShowProxy show) {
-			view.setIsSaved(true);
+//			view.setIsSaved(true);
 			view.getEditor().edit(
 					show,
 					rf.makeSetupRequest().saveShow(show).with(
 							view.getEditor().getPaths()).to(this));
 			view.asWidget().setVisible(true);//ugh
-			dirtyCheck.scheduleRepeating(500);
+//			dirtyCheck.scheduleRepeating(500);
 		}
 	};
-
-	private final Timer dirtyCheck = new Timer() {
-		@Override
-		public void run() {
-			if (view.getEditor().isDirty()) {
-				view.setIsSaved(false);
-				this.cancel();
-			}
-		}
-	};
+//
+//	private final Timer dirtyCheck = new Timer() {
+//		@Override
+//		public void run() {
+//			if (view.getEditor().isDirty()) {
+//				view.setIsSaved(false);
+//				this.cancel();
+//			}
+//		}
+//	};
 	@Inject
 	public ShowEditorPresenter(@Assisted
 	ShowEditorPlace place) {
@@ -89,6 +90,7 @@ public class ShowEditorPresenter extends AbstractActivity
 						panel.setWidget(view);
 					}
 				});
+//		view.setIsSaved(false);
 	}
 
 	@Override

@@ -5,5 +5,12 @@
 	<ui:style>
 		/* Add CSS here. See the GWT docs on UI Binder for more details */
 	</ui:style>
-	<c:CellTable ui:field="list"/>
+	<g:DockLayoutPanel>
+		<g:north size="35">
+			<g:Button ui:field="addBtn">Add Episode</g:Button>
+		</g:north>
+		<g:center>
+			<c:CellTable ui:field="list"/>
+		</g:center>
+	</g:DockLayoutPanel>
 </ui:UiBinder> 

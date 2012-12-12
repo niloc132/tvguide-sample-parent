@@ -19,6 +19,8 @@ package com.acme.gwt.client.widget;
 import com.acme.gwt.client.view.ShowEditorView;
 import com.acme.gwt.shared.TvShowProxy;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -89,6 +91,12 @@ public class ShowEditorWidget extends Composite implements ShowEditorView {
 	}
 	@UiHandler("save")
 	void onSaveClicked(ClickEvent evt) {
-		presenter.save();
+		//workaround for late blur in celltable
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				presenter.save();
+			}
+		});
 	}
 }

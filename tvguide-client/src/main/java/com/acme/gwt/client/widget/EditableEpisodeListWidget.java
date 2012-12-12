@@ -25,11 +25,15 @@ import com.colinalworth.celltable.columns.client.converters.IntegerConverter;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.gwt.client.HasRequestContext;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
 
 /**
  * Facilitates editing episode info inline, not requiring any list, focus, edit, save, list cycle.
@@ -40,7 +44,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class EditableEpisodeListWidget extends Composite
 		implements
-			Editor<List<TvEpisodeProxy>> {
+			Editor<List<TvEpisodeProxy>>, HasRequestContext<List<TvEpisodeProxy>>{
 
 	private static Binder uiBinder = GWT.create(Binder.class);
 
@@ -68,15 +72,27 @@ public class EditableEpisodeListWidget extends Composite
 	HasDataFlushableEditor<TvEpisodeProxy> listEd;
 	@UiField(provided = true)
 	CellTable<TvEpisodeProxy> list = new CellTable<TvEpisodeProxy>();
+	private RequestContext context;
 
 	public EditableEpisodeListWidget() {
 		listEd = HasDataFlushableEditor.of(list);
-
 		columns.configure(list, listEd);
-		//list.getColumnSortList().push(list.getColumn(0));
-		//list.getColumnSortList().push(list.getColumn(1));
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
+	
+	@Override
+	public void setRequestContext(RequestContext ctx) {
+		// This is a cheating way to not need access to the presenter
+		this.context = ctx;
+	}
 
+	@UiHandler("addBtn")
+	void onAddClicked(ClickEvent event) {
+		TvEpisodeProxy newEpisode = context.create(TvEpisodeProxy.class);
+		newEpisode.setEpisodeNumber(0);
+		newEpisode.setName("");
+		newEpisode.setSeason(0);
+		listEd.getList().add(newEpisode);
+	}
 }
