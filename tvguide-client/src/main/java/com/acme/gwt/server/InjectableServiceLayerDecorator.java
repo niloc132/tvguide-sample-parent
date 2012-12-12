@@ -16,6 +16,9 @@
  */
 package com.acme.gwt.server;
 
+import java.lang.reflect.Method;
+import java.util.logging.Logger;
+
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
@@ -30,6 +33,8 @@ import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Inject
 	Injector injector;
+	
+	@Inject Logger logger;
 
 	/**
 	 * call tiny bootstrap's init before data is used
@@ -47,5 +52,15 @@ public class InjectableServiceLayerDecorator extends ServiceLayerDecorator {
 	@Override
 	public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
 		return injector.getInstance(clazz);
+	}
+	
+	@Override
+	public Object invoke(Method domainMethod, Object... args) {
+		try {
+			return super.invoke(domainMethod, args);
+		} catch (Exception ex) {
+			logger.severe(ex.getMessage());
+			throw new RuntimeException(ex);
+		}
 	}
 }

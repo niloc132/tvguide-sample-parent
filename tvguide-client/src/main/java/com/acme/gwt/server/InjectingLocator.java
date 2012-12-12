@@ -41,7 +41,9 @@ public class InjectingLocator<T extends HasVersionAndId>
 
 	@Override
 	public T create(Class<? extends T> clazz) {
-		return injector.getInstance(clazz);
+		T instance = injector.getInstance(clazz);
+		data.get().persist(instance);
+		return instance;
 	}
 
 	@Override
