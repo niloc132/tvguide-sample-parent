@@ -15,6 +15,10 @@
 		<developerConnection>scm:git:ssh://git@github.com/niloc132/tvguide-sample-parent.git</developerConnection>
 		<url>https://github.com/niloc132/tvguide-sample-parent/</url>
 	</scm>
+	<ciManagement>
+		<system>jenkins</system>
+		<url>https://buildhive.cloudbees.com/job/niloc132/job/tvguide-sample-parent/</url>
+	</ciManagement>
 	<distributionManagement>
 		<site>
 			<id>github-site</id>
